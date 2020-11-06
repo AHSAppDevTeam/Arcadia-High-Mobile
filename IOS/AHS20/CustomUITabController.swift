@@ -11,7 +11,7 @@ import UIKit
 import Firebase
 import GoogleSignIn
 
-class CustomTabBarController: UIViewController, UIViewControllerTransitioningDelegate {
+class CustomTabBarController: UIViewController, UIViewControllerTransitioningDelegate, UIScrollViewDelegate {
     
     
     @IBOutlet weak var mainContentView: UIView!
@@ -325,6 +325,7 @@ class CustomTabBarController: UIViewController, UIViewControllerTransitioningDel
         
         //print("set content size height - \(nextY + 20)")
         contentScrollView.contentSize = CGSize(width: hamBurgMenuWidth, height: nextY + 20);
+        contentScrollView.delegate = self;
         //contentScrollView.backgroundColor = UIColor.gray;
         
        // contentScrollView.alwaysBounceVertical = true;
@@ -346,6 +347,7 @@ class CustomTabBarController: UIViewController, UIViewControllerTransitioningDel
         hamBurgMenuView.layer.shadowOpacity = 0.5;
         hamBurgMenuView.layer.shadowColor = UIColor.lightGray.cgColor;
         hamBurgMenuView.layer.shadowOffset = CGSize(width: 3, height: 3);
+        
         
         hamBurgMenuView.addSubview(exitButton); // NOTE BUTTON IS NOT PART OF SCROLLVIEW
         
