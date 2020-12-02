@@ -112,7 +112,7 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate, UINavig
             }
             sender.isSelected = !sender.isSelected;
             setBookmarkColor();
-            resetUpArticles = true;
+            //resetUpArticles = true;
         }
     }
     
@@ -224,6 +224,8 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate, UINavig
             imageScrollView.contentSize = CGSize(width: origX, height: imageScrollView.frame.size.height);
             imageScrollView.delegate = self;
             imageScrollView.layer.cornerRadius = 5;
+            imageScrollView.layer.borderColor = UIColor.gray.cgColor;
+            imageScrollView.layer.borderWidth = 0.5;
             imageScrollView.isPagingEnabled = true;
             imageScrollView.showsHorizontalScrollIndicator = false;
             

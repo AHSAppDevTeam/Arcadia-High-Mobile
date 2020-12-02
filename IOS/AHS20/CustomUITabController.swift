@@ -11,7 +11,7 @@ import UIKit
 import Firebase
 
 
-class CustomTabBarController: UIViewController, UIViewControllerTransitioningDelegate {
+class CustomTabBarController: UIViewController, UIViewControllerTransitioningDelegate, UIScrollViewDelegate {
     
     @IBOutlet weak var contentView: UIView!
     
@@ -151,6 +151,9 @@ class CustomTabBarController: UIViewController, UIViewControllerTransitioningDel
         super.viewDidLoad();
         setUpConnection();
         setUpNotifDot();
+        
+        //developer stuff
+        setUpDevConfigs();
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.articleSelector), name:NSNotification.Name(rawValue: "article"), object: nil);
         

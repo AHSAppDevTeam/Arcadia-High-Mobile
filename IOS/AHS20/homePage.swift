@@ -218,7 +218,11 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 			articleImageView.contentMode = .scaleAspectFill;
 		}
 		articleImageView.backgroundColor = UIColor.white;
-		articleImageView.setRoundedEdge(corners: [.topLeft, .topRight, .bottomLeft, .bottomRight], radius: 10);
+		//articleImageView.setRoundedEdge(corners: [.topLeft, .topRight, .bottomLeft, .bottomRight], radius: 10);
+		articleImageView.layer.borderColor = UIColor.gray.cgColor;
+		articleImageView.layer.borderWidth = 0.5;
+		articleImageView.layer.cornerRadius = 7;
+		articleImageView.clipsToBounds = true;
 		
 		let spacing = CGFloat(10);
 		
@@ -258,8 +262,11 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 		timeStamp.textColor = UIColor.gray;
 		timeStamp.font = UIFont(name: "SFProDisplay-Semibold", size: 8);
 		timeStamp.backgroundColor = UIColor.white;
-		timeStamp.setRoundedEdge(corners: [.bottomRight, .bottomLeft, .topRight, .topLeft], radius: 3);
-		
+		//timeStamp.setRoundedEdge(corners: [.bottomRight, .bottomLeft, .topRight, .topLeft], radius: 3);
+		timeStamp.layer.borderColor = UIColor.gray.cgColor;
+		timeStamp.layer.borderWidth = 0.5;
+		timeStamp.layer.cornerRadius = 3;
+		timeStamp.clipsToBounds = true;
 		
 		
 		mainArticleView.addSubview(articleImageView);
@@ -386,6 +393,10 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 					imageView.imgFromURL(sURL: currArticle.articleImages?[0] ?? "");
 					imageView.contentMode = .scaleAspectFill;
 					imageView.setRoundedEdge(corners: [.bottomLeft, .bottomRight, .topLeft, .topRight], radius: 5);
+					imageView.clipsToBounds = true;
+					imageView.layer.borderColor = UIColor.gray.cgColor;
+					imageView.layer.borderWidth = 0.5;
+					imageView.layer.cornerRadius = 5;
 					imageView.backgroundColor = UIColor.white;
 					
 					contentView.addSubview(timeStamp);
