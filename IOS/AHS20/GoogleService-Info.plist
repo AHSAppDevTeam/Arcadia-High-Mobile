@@ -3,11 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>654225823864-24u04uoao3geu9qpo71qtqn6965ks25t.apps.googleusercontent.com</string>
+	<string>654225823864-jq2vdkeeoh3evsi7oun6r5u6li7ie70m.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.654225823864-24u04uoao3geu9qpo71qtqn6965ks25t</string>
+	<string>com.googleusercontent.apps.654225823864-jq2vdkeeoh3evsi7oun6r5u6li7ie70m</string>
 	<key>ANDROID_CLIENT_ID</key>
-	<string>654225823864-b207cdvh2tf8eg8id3qe8kapmgvv86nm.apps.googleusercontent.com</string>
+	<string>654225823864-8ip39fg3jsfe7q8ai20i1uegs74hgoto.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
 	<string>AIzaSyAxLCkYzcpipWPg75XCyAuEui5835zYyUU</string>
 	<key>GCM_SENDER_ID</key>
@@ -15,7 +15,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>hsappdev.AHS20</string>
+	<string>com.ArcadiaApaches.ArcadiaHighSchoolApp</string>
 	<key>PROJECT_ID</key>
 	<string>arcadia-high-mobile</string>
 	<key>STORAGE_BUCKET</key>
@@ -31,7 +31,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:654225823864:ios:6f072880afceec74b7758d</string>
+	<string>1:654225823864:ios:d2533ea26fdb1f3eb7758d</string>
 	<key>DATABASE_URL</key>
 	<string>https://arcadia-high-mobile.firebaseio.com</string>
 </dict>

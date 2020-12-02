@@ -12,6 +12,7 @@ import FirebaseDatabase
 import Firebase
 
 func setUpDevConfigs(){
+    print("set up testing notif")
     Messaging.messaging().subscribe(toTopic: "testing");
 }
 
