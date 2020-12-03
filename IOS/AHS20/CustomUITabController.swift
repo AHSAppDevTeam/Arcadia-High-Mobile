@@ -153,7 +153,7 @@ class CustomTabBarController: UIViewController, UIViewControllerTransitioningDel
         setUpNotifDot();
         
         //developer stuff
-        setUpDevConfigs();
+        //setUpDevConfigs();
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.articleSelector), name:NSNotification.Name(rawValue: "article"), object: nil);
         
