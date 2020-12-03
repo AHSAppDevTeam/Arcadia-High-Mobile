@@ -61,8 +61,8 @@ class savedClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDele
                 chevronImage.image = UIImage(systemName: "chevron.right");
                 chevronImage.tintColor = UIColor.gray;
                 rightEdge += 32;
-                
-                let leftPadding = CGFloat(6);
+            
+                let leftPadding = CGFloat(7);
                 
                 if (savedArticles[aIndex].articleImages?.count ?? 0 > 0){
                     let imageViewFrame = CGRect(x: leftPadding, y: 8, width: 150-(2*leftPadding), height: articleFrame.size.height - 16);
@@ -71,7 +71,11 @@ class savedClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDele
                     imageView.backgroundColor = UIColor.white;
                     imageView.contentMode = .scaleAspectFill;
                     imageView.clipsToBounds = true;
-                    imageView.setRoundedEdge(corners: [.topLeft, .topRight, .bottomLeft, .bottomRight], radius: 5);
+                    //imageView.setRoundedEdge(corners: [.topLeft, .topRight, .bottomLeft, .bottomRight], radius: 3);
+                    imageView.layer.borderWidth = 0.5;
+                    imageView.layer.borderColor = UIColor.gray.cgColor;
+                    imageView.layer.cornerRadius = 3;
+                    //imageView.clipsToBounds = true;
                     articleButton.addSubview(imageView);
                     leftEdge += imageViewFrame.size.width + 2 * leftPadding;
                 }
@@ -79,7 +83,7 @@ class savedClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDele
                     leftEdge += leftPadding + 2;
                 }
                 
-                let articleCatagoryFrame = CGRect(x: leftEdge + 1, y: 8, width: 70, height: 20);
+                let articleCatagoryFrame = CGRect(x: leftEdge + 1, y: 8, width: 74, height: 20);
                 let articleCatagory = UILabel(frame: articleCatagoryFrame);
                 articleCatagory.backgroundColor = mainThemeColor;
                 articleCatagory.text = savedArticles[aIndex].articleCatagory;
