@@ -12,8 +12,6 @@ import AudioToolbox
 import Firebase
 import FirebaseDatabase
 
-
-
 class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDelegate {
     
     @IBOutlet weak var filterScrollView: UIScrollView!
@@ -115,111 +113,10 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
         }
         
     }
-    
-    func makeCustomButtonRead(button: CustomUIButton){
-        button.backgroundColor = makeColor(r: 250, g: 250, b: 250);
-        
-        /*
-         TAG LIST for UICustomUIButton:
-         Main view  - 1 - subviews title and body text
-         Title - 2 - uicolor.gray - UIFont(name: "SFProDisplay-Semibold",size: 16)
-         Body - 3 - uicolor.gray
-         Catagory - 4 - set background to makeColor(r: 144, g: 75, b: 75)
-         ReadLabel - 5 - remove from superview
-         */
-        
-        for view in button.subviews{
-            switch view.tag {
-            case -1:
-                for subview in view.subviews{
-                    switch subview.tag {
-                    case 2:
-                        //print("title label view - \(view)")
-                        let titleLabel = subview as! UILabel;
-                        titleLabel.textColor = UIColor.gray;
-                        titleLabel.font = UIFont(name: "SFProDisplay-Semibold",size: 16);
-                    case 3:
-                        let bodyText = subview as! UILabel;
-                        bodyText.textColor = UIColor.gray;
-                    default:
-                        print("unknown view tag found in makeCustomButtonRead mainView subviews - \(subview)")
-                    }
-                }
-            case 4:
-                let catagory = view as! UILabel;
-                catagory.backgroundColor = makeColor(r: 144, g: 75, b: 75);
-            case 5:
-                view.removeFromSuperview();
-            default:
-                break;
-                //print("unknown view tag found in makeCustomButtonRead - \(view)")
-            }
-        }
-    }
-    
-    @objc func openArticle(sender: CustomUIButton){
-        if (bulletinReadDict[sender.articleCompleteData.articleID ?? ""] == nil){
-            bulletinReadDict[sender.articleCompleteData.articleID ?? ""] = true;
-            saveBullPref();
-            //generateBulletin(); -- too resource intensive
-            makeCustomButtonRead(button: sender);
-        }
-        let articleDataDict: [String: articleData] = ["articleContent" : sender.articleCompleteData];
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "article"), object: nil, userInfo: articleDataDict);
-    }
-    
-    @objc func addFilter(sender: CustomUIButton){
-        sender.isSelected = !sender.isSelected;
-        selectedFilters[sender.articleIndex] = sender.isSelected;
-        setUpFilters();
-        generateBulletin();
-        UIImpactFeedbackGenerator(style: .light).impactOccurred();
-    }
-    
-    func noFilterSelected() -> Bool{
-        for i in selectedFilters{
-            if (i){
-                return false;
-            }
-        }
-        return true;
-    }
-    
-    func filterArticles() -> [bulletinArticleData]{
-        var copy = [bulletinArticleData]();
-        for i in 0..<totalArticles.count{
-            if (selectedFilters[totalArticles[i].articleType] == true){
-                copy.append(totalArticles[i]);
-            }
-        }
-        return copy.count == 0 && noFilterSelected() ? totalArticles : copy;
-    }
-    
-    func sortArticlesByTime(a: bulletinArticleData, b: bulletinArticleData)->Bool{
-        let currTime = Int64(NSDate().timeIntervalSince1970);
-        if (a.articleUnixEpoch ?? INT64_MAX > currTime && b.articleUnixEpoch ?? INT64_MAX > currTime){
-            return (a.articleUnixEpoch ?? INT64_MAX) < (b.articleUnixEpoch ?? INT64_MAX);
-        }
-        else{
-            return (a.articleUnixEpoch ?? INT64_MAX) > (b.articleUnixEpoch ?? INT64_MAX);
-        }
-    }
-    
-    /*func filterRead(copy: [bulletinArticleData]) -> [[bulletinArticleData]]{ // 0th row is unread 1st is read
-     var output = [[bulletinArticleData]](repeating: [bulletinArticleData](), count: 2);
-     for i in copy{
-     if (bulletinReadDict[i.articleID ?? ""] == true){
-     output[1].append(i);
-     }
-     else{
-     output[0].append(i);
-     }
-     }
-     return output;
-     }*/
+
     
     
-    func generateBulletin(){
+    internal func generateBulletin(){
         if (bulletinArticleList[0].count > 0 || bulletinArticleList[1].count > 0 || bulletinArticleList[2].count > 0 || bulletinArticleList[3].count > 0 || bulletinArticleList[4].count > 0){
             totalArticles = [bulletinArticleData]();
             for i in 0...4{
@@ -356,67 +253,7 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
             bulletinScrollView.delegate = self;
         }
     }
-    
-    @objc func refreshBulletin(){
-        //  print("refresh");
-        // add func to load data
-        getBulletinArticleData();
-    }
-    
-    func setUpFilters(){
-        
-        for view in filterScrollView.subviews{
-            view.removeFromSuperview();
-        }
-        
-        let buttonFrameWidth = CGFloat(80);
-        let filterFrameHorizontalPadding = CGFloat(20);
-        
-        
-        //filterFrame.size = filterScrollView.frame.size;
-        filterFrame.size.height = filterScrollView.frame.size.height;
-        filterFrame.size.width = buttonFrameWidth; //
-        
-        var originX = CGFloat(16);
-        
-        for buttonIndex in 0..<filterSize{
-            
-            filterFrame.origin.x = originX;
-            let filterButton = CustomUIButton(frame: filterFrame);
-            filterButton.setTitle(filterName[buttonIndex], for: .normal);
-            filterButton.setTitleColor(selectedFilters[buttonIndex] ? UIColor.black : UIColor.gray, for: .normal);
-            filterButton.titleLabel?.font = UIFont(name: "SFProDisplay-Semibold", size: 20);
-            filterButton.contentVerticalAlignment = .top;
-            filterButton.sizeToFit();
-            //SFProText-Bold, SFProDisplay-Regular, SFProDisplay-Semibold, SFProDisplay-Black
-            
-            filterFrame.size.width = filterButton.frame.size.width;
-            let selectedBarHeight = CGFloat(2);
-            let selectedBarFrame = CGRect(x: originX, y: filterFrame.size.height-selectedBarHeight, width: filterFrame.size.width, height: selectedBarHeight);
-            let selectedBar = UIView(frame: selectedBarFrame);
-            selectedBar.backgroundColor = makeColor(r: 159, g: 12, b: 12);
-            selectedBar.layer.cornerRadius = 1;
-            selectedBar.isHidden = !selectedFilters[buttonIndex];
-            
-            filterButton.isSelected = selectedFilters[buttonIndex];
-            
-            filterButton.articleIndex = buttonIndex;
-            filterButton.addTarget(self, action: #selector(self.addFilter), for: .touchUpInside);
-            
-            self.filterScrollView.addSubview(selectedBar);
-            self.filterScrollView.addSubview(filterButton);
-            originX += filterButton.frame.size.width + filterFrameHorizontalPadding;
-        }
-        filterScrollView.contentSize = CGSize(width: originX, height: filterScrollView.frame.size.height);
-        
-        filterScrollView.layer.shadowColor = UIColor.black.cgColor;
-        filterScrollView.layer.shadowOpacity = 0.1;
-        filterScrollView.layer.shadowOffset = .zero;
-        filterScrollView.layer.shadowRadius = 5;
-        filterScrollView.layer.masksToBounds = false;
-        
-        filterScrollView.delegate = self;
-    }
+
     
     override func viewDidLoad() {
         super.viewDidLoad();

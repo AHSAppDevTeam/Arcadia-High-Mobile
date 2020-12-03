@@ -10,8 +10,7 @@ import Foundation
 import UIKit
 import Firebase
 
-
-class CustomTabBarController: UIViewController, UIViewControllerTransitioningDelegate, UIScrollViewDelegate {
+class tabBarClass: UIViewController, UIViewControllerTransitioningDelegate, UIScrollViewDelegate {
     
     @IBOutlet weak var contentView: UIView!
     
@@ -65,33 +64,10 @@ class CustomTabBarController: UIViewController, UIViewControllerTransitioningDel
         }
     }*/
     
-    let interactor = Interactor();
-    let transition = CATransition();
-    
-    func transition(to controller: UIViewController) {
-        transition.duration = 0.2
-        transition.type = CATransitionType.push
-        transition.subtype = CATransitionSubtype.fromRight
-        view.window?.layer.add(transition, forKey: kCATransition)
-        present(controller, animated: false)
-    }
-    
-    func animationController(
-        forDismissed dismissed: UIViewController)
-        -> UIViewControllerAnimatedTransitioning? {
-            return DismissAnimator()
-    }
-    
-    func interactionControllerForDismissal(
-        using animator: UIViewControllerAnimatedTransitioning)
-        -> UIViewControllerInteractiveTransitioning? {
-            
-            return interactor.hasStarted
-                ? interactor
-                : nil
-    }
+    internal let interactor = Interactor();
+    internal let transitionCA = CATransition();
 
-    @objc func articleSelector(notification: NSNotification){ // instigate transition
+    @objc private func articleSelector(notification: NSNotification){ // instigate transition
         guard let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "articlePageController") as? articlePageViewController else{
             return;
         };

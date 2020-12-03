@@ -55,7 +55,9 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 	let bookmarkImageUI = UIImage(named: "invertedbookmark");
 	//let bookmarkImageUI = UIImage(systemName: "bookmark");
 	
-	// TODO: get data from server
+	var refreshControl = UIRefreshControl();
+	var featuredArticles = [articleData]();
+	
 	var featuredSize = 6;
 	var featuredFrame = CGRect(x:0,y:0,width:0,height:0);
 	var asbNewsSize = 1;
@@ -65,10 +67,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 	var districtNewsSize = 1;
 	var districtNewsFrame = CGRect(x:0,y:0,width:0,height:0);
 	
-	var refreshControl = UIRefreshControl();
-	var featuredArticles = [articleData]();
-	
-	func getHomeArticleData(){
+	internal func getHomeArticleData(){
 		setUpConnection();
 		if (internetConnected){
 			featuredArticles = [articleData]();
@@ -170,39 +169,8 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 		}
 	}
 	
-	func setUpColorOfBookmark(sender: inout CustomUIButton){
-		if (savedArticleClass.isSavedCurrentArticle(articleID: sender.articleCompleteData.articleID!)){ // TODO: implement sender.articleID
-			sender.tintColor = mainThemeColor;
-		}
-		else{
-			sender.tintColor = UIColor.white;
-		}
-	}
 	
-	
-	@objc func openArticle(sender: CustomUIButton){
-		//print("Button pressed");
-		let articleDataDict: [String: articleData] = ["articleContent" : sender.articleCompleteData];
-		NotificationCenter.default.post(name: NSNotification.Name(rawValue: "article"), object: nil, userInfo: articleDataDict);
-	}
-	
-	
-	@objc func bookmarkCurrentArticle(sender: CustomUIButton){
-		if (savedArticleClass.isSavedCurrentArticle(articleID: sender.articleCompleteData.articleID!) == false){
-			sender.tintColor = mainThemeColor;
-			savedArticleClass.saveCurrArticle(articleID: sender.articleCompleteData.articleID!, article: sender.articleCompleteData);
-		}
-		else{
-			sender.tintColor = UIColor.white;
-			savedArticleClass.removeCurrArticle(articleID: sender.articleCompleteData.articleID!);
-		}
-		if (sender.articleCompleteData.isFeatured){
-			setUpAllViews();
-		}
-	}
-	
-	
-	func smallArticle(x: CGFloat, y: CGFloat, width: CGFloat, height: CGFloat, articleSingle: articleData) -> CustomUIButton{//TODO: find out a way to separate article from top and bottom
+	private func smallArticle(x: CGFloat, y: CGFloat, width: CGFloat, height: CGFloat, articleSingle: articleData) -> CustomUIButton{//TODO: find out a way to separate article from top and bottom
 		
 		let mainArticleFrame = CGRect(x: x, y: y, width: width, height: height);
 		let mainArticleView = CustomUIButton(frame: mainArticleFrame);
@@ -283,24 +251,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 		return mainArticleView;
 	}
 	
-	func arrayToPairs(a: [articleData]) -> [[articleData]]{
-		let b = a.sorted(by: sortArticlesByTime);
-		var ans = [[articleData]]();
-		var temp = [articleData](); // pairs
-		for i in b{
-			temp.append(i);
-			if (temp.count == 2){
-				ans.append(temp);
-				temp = [articleData]();
-			}
-		}
-		if (temp.count > 0){
-			ans.append(temp);
-		}
-		return ans;
-	}
-	
-	func setUpAllViews(){
+	private func setUpAllViews(){
 		
 		setUpConnection();
 		if (internetConnected && (homeArticleList[0].count > 0 || homeArticleList[1].count > 0 || homeArticleList[2].count > 0)){
@@ -309,6 +260,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 			asbLabel.text = "ASB News";
 			generalLabel.text = "General Info";
 			districtLabel.text = "District News";
+	  
 			
 			let generalInfoArticlePairs = arrayToPairs(a: homeArticleList[0]);
 			let districtArticlePairs = arrayToPairs(a: homeArticleList[1]);
@@ -505,16 +457,6 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 		}
 	}
 	
-	@objc func refreshAllArticles(){
-		print("refresh");
-		//article.setUpLocalData();
-		featuredLabel.text = loading;
-		asbLabel.text = loading;
-		generalLabel.text = loading;
-		districtLabel.text = loading;
-		getHomeArticleData();
-	}
-	
 	override func viewDidLoad() { // setup function
 		super.viewDidLoad();
 		
@@ -534,7 +476,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 		refreshControl.didMoveToSuperview();
 	}
 	
-	func  scrollViewDidScroll(_ scrollView: UIScrollView) {
+	internal func  scrollViewDidScroll(_ scrollView: UIScrollView) {
 		if (scrollView.tag != -1){
 			
 			asbNewsPageControl.currentPage = Int(round(asbNewsScrollView.contentOffset.x / asbNewsFrame.size.width));

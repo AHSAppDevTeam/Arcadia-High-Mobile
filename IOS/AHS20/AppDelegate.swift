@@ -35,6 +35,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             application.registerUserNotificationSettings(settings)
         }
         application.registerForRemoteNotifications();
+        
+        //self.window?.backgroundColor = UIColor.white;
+        //self.window?.tintColor = UIColor.white;
+        
         return true;
     }
     
