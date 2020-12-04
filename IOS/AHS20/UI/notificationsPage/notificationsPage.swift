@@ -26,32 +26,8 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
     var articleContentInSegue: articleData?;
     
     
-    let interactor = Interactor();
-    let transition = CATransition();
-    
-    func transition(to controller: UIViewController) {
-        transition.duration = 0.2
-        transition.type = CATransitionType.push
-        transition.subtype = CATransitionSubtype.fromRight
-        view.window?.layer.add(transition, forKey: kCATransition)
-        present(controller, animated: false)
-    }
-    
-    func animationController(
-        forDismissed dismissed: UIViewController)
-        -> UIViewControllerAnimatedTransitioning? {
-            
-            return DismissAnimator()
-    }
-    
-    func interactionControllerForDismissal(
-        using animator: UIViewControllerAnimatedTransitioning)
-        -> UIViewControllerInteractiveTransitioning? {
-            
-            return interactor.hasStarted
-                ? interactor
-                : nil
-    }
+    internal let interactor = Interactor();
+    internal let transition = CATransition();
 
     /*@objc func articleSelector(notification: NSNotification){ // instigate transition
         guard let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "articlePageController") as? articlePageViewController else{
@@ -73,7 +49,7 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
         if (articleDictionary[sender.notificationCompleteData.notificationArticleID ?? ""] != nil){
             /*articleContentInSegue = articleDictionary[sender.notificationCompleteData.notificationArticleID ?? ""];
             performSegue(withIdentifier: "notificationToArticle", sender: nil);*/
-            guard let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "articlePageController") as? articlePageViewController else{
+            guard let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "articlePageController") as? articlePageClass else{
                 return;
             };
             vc.transitioningDelegate = self;
@@ -273,36 +249,7 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
     
     let timeStampLength = CGFloat(100);
     
-    var refreshControl = UIRefreshControl();
-    
-    func typeIDToString(id: Int) -> String{
-        if (id == 0){
-            return "Mandatory";
-        }
-        else if (id == 1){
-            return "General";
-        }
-        else if (id == 2){
-            return "ASB";
-        }
-        else if (id == 3){
-            return "District";
-        }
-        else{
-            return "Bulletin";
-        }
-    }
-    
-    func notificationSort(a: notificationData, b: notificationData)->Bool{
-        let currTime = Int64(NSDate().timeIntervalSince1970);
-        if (a.notificationUnixEpoch ?? INT64_MAX > currTime && b.notificationUnixEpoch ?? INT64_MAX > currTime){
-            return (a.notificationUnixEpoch ?? INT64_MAX) < (b.notificationUnixEpoch ?? INT64_MAX);
-        }
-        else{
-            return (a.notificationUnixEpoch ?? INT64_MAX) > (b.notificationUnixEpoch ?? INT64_MAX);
-        }
-    }
-    
+    internal var refreshControl = UIRefreshControl();
     
     func loadScrollView(){
         
@@ -427,14 +374,6 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
         //  notificationScrollView.addSubview(refreshControl)
     }
     
-    @objc func refreshNotifications(){
-        // implement get data
-        //  loadNotificationPref();
-        loadNotifPref();
-        getLocalNotifications();
-        
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad();
         
@@ -459,11 +398,6 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
         
     }
     
-    
-    @IBAction func exitPopup(_ sender: UIButton) {
-        
-   //     unreadNotif = (notificationList[1].count > 0);
-        dismiss(animated: true);
-    }
+
     
 }
