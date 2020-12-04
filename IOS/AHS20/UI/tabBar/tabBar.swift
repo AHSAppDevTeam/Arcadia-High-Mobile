@@ -68,7 +68,7 @@ class tabBarClass: UIViewController, UIViewControllerTransitioningDelegate, UISc
     internal let transitionCA = CATransition();
 
     @objc private func articleSelector(notification: NSNotification){ // instigate transition
-        guard let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "articlePageController") as? articlePageViewController else{
+        guard let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "articlePageController") as? articlePageClass else{
             return;
         };
         vc.transitioningDelegate = self;

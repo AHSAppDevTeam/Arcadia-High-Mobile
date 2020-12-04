@@ -11,7 +11,7 @@ import UIKit
 import AudioToolbox
 import youtube_ios_player_helper
 
-class articlePageViewController: UIViewController, UIScrollViewDelegate, UINavigationControllerDelegate, UIGestureRecognizerDelegate{
+class articlePageClass: UIViewController, UIScrollViewDelegate, UINavigationControllerDelegate, UIGestureRecognizerDelegate{
 
     
     /*@IBOutlet weak var backButton: UIButton!
@@ -41,114 +41,13 @@ class articlePageViewController: UIViewController, UIScrollViewDelegate, UINavig
     let imagePageControl = UIPageControl();
     let imageScrollView = UIScrollView();
     
+    var passImageToZoomSegue: UIImage?;
+    
     
     /// START DISMISS ON PAN
     var interactor: Interactor? = nil;
     let transition = CATransition();
-    
-    func transitionDismissal() {
-        transition.duration = 0.3
-        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
-        transition.type = CATransitionType.push
-        transition.subtype = CATransitionSubtype.fromLeft
-        view.window?.layer.add(transition, forKey: nil)
-        dismiss(animated: false)
-    }
-    
-    
-    @objc func gestureAction(_ sender: UIPanGestureRecognizer) {
-        let percentThreshold: CGFloat = 0.3
-        let translation = sender.translation(in: view)
-        let fingerMovement = translation.x / view.bounds.width
-        let rightMovement = fmaxf(Float(fingerMovement), 0.0)
-        let rightMovementPercent = fminf(rightMovement, 1.0)
-        let progress = CGFloat(rightMovementPercent)
-        
-        switch sender.state {
-        case .began:
-            
-            interactor?.hasStarted = true
-            dismiss(animated: true)
-            
-        case .changed:
-            
-            interactor?.shouldFinish = progress > percentThreshold
-            interactor?.update(progress)
-            
-        case .cancelled:
-            
-            interactor?.hasStarted = false
-            interactor?.cancel()
-            
-        case .ended:
-            
-            guard let interactor = interactor else { return }
-            interactor.hasStarted = false
-            interactor.shouldFinish
-                ? interactor.finish()
-                : interactor.cancel()
-            
-        default:
-            break
-        }
-    }
-    
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        if let scrollView = otherGestureRecognizer.view as? UIScrollView {
-            return scrollView.contentOffset.x == 0;
-        }
-        return false
-    }
-    
     /// END DISMISS ON PAN
-    
-    @IBAction func saveArticle(sender: CustomUIButton){
-        if (sender.articleCompleteData.articleID != nil){
-            if (sender.isSelected == false){
-                savedArticleClass.saveCurrArticle(articleID: sender.articleCompleteData.articleID!, article: sender.articleCompleteData);
-            }
-            else{
-                savedArticleClass.removeCurrArticle(articleID: sender.articleCompleteData.articleID!);
-            }
-            sender.isSelected = !sender.isSelected;
-            setBookmarkColor();
-            //resetUpArticles = true;
-        }
-    }
-    
-    @IBAction func exitArticle(_ sender: UIButton){
-       // imageAvgColors = [Int:UIColor]();
-        transitionDismissal();
-    }
-    
-    func setBookmarkColor(){
-        if (articleContent?.articleID != nil && savedArticleClass.isSavedCurrentArticle(articleID: (articleContent?.articleID)!)){
-            bookmarkButton.setImage(UIImage(systemName: "bookmark.fill"), for: .normal);
-            
-            bookmarkButton.isSelected = true;
-        }
-        else{
-            bookmarkButton.setImage(UIImage(systemName: "bookmark"), for: .normal);
-            bookmarkButton.isSelected = false;
-        }
-    }
-    
-    var passImageToZoomSegue: UIImage?;
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "openImageZoomPage"){
-            let vc = segue.destination as! zoomableImageViewController;
-            vc.image = passImageToZoomSegue;
-        }
-    }
-    
-    @objc func toggleZoom(sender: UIButton){
-        if (sender.imageView?.image != nil){
-            UIImpactFeedbackGenerator(style: .light).impactOccurred();
-            passImageToZoomSegue = sender.imageView?.image;
-            performSegue(withIdentifier: "openImageZoomPage", sender: nil);
-        }
-    }
 
     
     override func viewDidLoad() {

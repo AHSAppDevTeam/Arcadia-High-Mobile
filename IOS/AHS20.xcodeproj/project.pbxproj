@@ -38,14 +38,16 @@
 		335AEEEE24E35333002A2C5F /* NewYorkMedium-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 335AEEED24E35333002A2C5F /* NewYorkMedium-Bold.otf */; };
 		335AEEEF24E35333002A2C5F /* NewYorkMedium-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 335AEEED24E35333002A2C5F /* NewYorkMedium-Bold.otf */; };
 		335AEEF024E35333002A2C5F /* NewYorkMedium-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 335AEEED24E35333002A2C5F /* NewYorkMedium-Bold.otf */; };
+		33A40BD8257AA9F4003CA200 /* notificationsPagePan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A40BD7257AA9F4003CA200 /* notificationsPagePan.swift */; };
+		33A40BE0257AAA33003CA200 /* notificationsPageMisc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A40BDF257AAA33003CA200 /* notificationsPageMisc.swift */; };
+		33A40BEC257AAAE0003CA200 /* articlePagePan.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A40BEB257AAAE0003CA200 /* articlePagePan.swift */; };
+		33A40BF4257AAB58003CA200 /* articlePageMisc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A40BF3257AAB58003CA200 /* articlePageMisc.swift */; };
 		33B3F59924E6343300F48FAB /* zoomableImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B3F59824E6343300F48FAB /* zoomableImageViewController.swift */; };
 		33B77F2C249ED23300A74B3A /* notificationFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B77F2B249ED23300A74B3A /* notificationFunc.swift */; };
 		33B77F2E249ED26F00A74B3A /* savedArticleClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B77F2D249ED26F00A74B3A /* savedArticleClass.swift */; };
 		33B77F30249ED2B200A74B3A /* epochClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33B77F2F249ED2B200A74B3A /* epochClass.swift */; };
 		33CB33CD24BC0F11005BB736 /* bulletinFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CB33CC24BC0F11005BB736 /* bulletinFunc.swift */; };
 		33CD41B42453ECAB008E6558 /* savedPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CD41B32453ECAB008E6558 /* savedPage.swift */; };
-		33CD41B52453ECAB008E6558 /* savedPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CD41B32453ECAB008E6558 /* savedPage.swift */; };
-		33CD41B62453ECAB008E6558 /* savedPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CD41B32453ECAB008E6558 /* savedPage.swift */; };
 		33CD41B82453ED78008E6558 /* notificationsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CD41B72453ED78008E6558 /* notificationsPage.swift */; };
 		33CD41B92453ED78008E6558 /* notificationsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CD41B72453ED78008E6558 /* notificationsPage.swift */; };
 		33CD41BA2453ED78008E6558 /* notificationsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CD41B72453ED78008E6558 /* notificationsPage.swift */; };
@@ -119,6 +121,10 @@
 		3354C8D924664C9B008C0F67 /* aboutUsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = aboutUsPage.swift; sourceTree = "<group>"; };
 		335AEEE924E3532B002A2C5F /* NewYorkSmall-MediumItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NewYorkSmall-MediumItalic.otf"; sourceTree = "<group>"; };
 		335AEEED24E35333002A2C5F /* NewYorkMedium-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NewYorkMedium-Bold.otf"; sourceTree = "<group>"; };
+		33A40BD7257AA9F4003CA200 /* notificationsPagePan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = notificationsPagePan.swift; sourceTree = "<group>"; };
+		33A40BDF257AAA33003CA200 /* notificationsPageMisc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = notificationsPageMisc.swift; sourceTree = "<group>"; };
+		33A40BEB257AAAE0003CA200 /* articlePagePan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = articlePagePan.swift; sourceTree = "<group>"; };
+		33A40BF3257AAB58003CA200 /* articlePageMisc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = articlePageMisc.swift; sourceTree = "<group>"; };
 		33B3F59824E6343300F48FAB /* zoomableImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = zoomableImageViewController.swift; sourceTree = "<group>"; };
 		33B77F2B249ED23300A74B3A /* notificationFunc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = notificationFunc.swift; sourceTree = "<group>"; };
 		33B77F2D249ED26F00A74B3A /* savedArticleClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = savedArticleClass.swift; sourceTree = "<group>"; };
@@ -269,6 +275,26 @@
 			path = AHS20UITests;
 			sourceTree = "<group>";
 		};
+		33A40BD6257AA9C3003CA200 /* notificationsPage */ = {
+			isa = PBXGroup;
+			children = (
+				33CD41B72453ED78008E6558 /* notificationsPage.swift */,
+				33A40BD7257AA9F4003CA200 /* notificationsPagePan.swift */,
+				33A40BDF257AAA33003CA200 /* notificationsPageMisc.swift */,
+			);
+			path = notificationsPage;
+			sourceTree = "<group>";
+		};
+		33A40BEA257AAAAF003CA200 /* articlePage */ = {
+			isa = PBXGroup;
+			children = (
+				33E80ED8244FBBB900020640 /* articlePage.swift */,
+				33A40BEB257AAAE0003CA200 /* articlePagePan.swift */,
+				33A40BF3257AAB58003CA200 /* articlePageMisc.swift */,
+			);
+			path = articlePage;
+			sourceTree = "<group>";
+		};
 		33B77F2A249ED1D500A74B3A /* Backend */ = {
 			isa = PBXGroup;
 			children = (
@@ -290,9 +316,9 @@
 				33CE441F2578BAC2002672C3 /* tabBar */,
 				33CE44282578BFE5002672C3 /* homePage */,
 				33CE44312578C258002672C3 /* bulletinPage */,
+				33A40BD6257AA9C3003CA200 /* notificationsPage */,
+				33A40BEA257AAAAF003CA200 /* articlePage */,
 				33CD41B32453ECAB008E6558 /* savedPage.swift */,
-				33CD41B72453ED78008E6558 /* notificationsPage.swift */,
-				33E80ED8244FBBB900020640 /* articlePage.swift */,
 				33B3F59824E6343300F48FAB /* zoomableImageViewController.swift */,
 				33E69207243AD21F0004E2F1 /* settingPage.swift */,
 				331793F12464FEF5007CF7B7 /* notificationSettings.swift */,
@@ -607,9 +633,12 @@
 				33B77F2C249ED23300A74B3A /* notificationFunc.swift in Sources */,
 				3354C8DA24664C9B008C0F67 /* aboutUsPage.swift in Sources */,
 				33CB33CD24BC0F11005BB736 /* bulletinFunc.swift in Sources */,
+				33A40BD8257AA9F4003CA200 /* notificationsPagePan.swift in Sources */,
+				33A40BF4257AAB58003CA200 /* articlePageMisc.swift in Sources */,
 				33CE43F12578B834002672C3 /* termsAndAgreementsPage.swift in Sources */,
 				33B77F30249ED2B200A74B3A /* epochClass.swift in Sources */,
 				33D3626424C10053008B4E67 /* htmlFunctions.swift in Sources */,
+				33A40BEC257AAAE0003CA200 /* articlePagePan.swift in Sources */,
 				33B3F59924E6343300F48FAB /* zoomableImageViewController.swift in Sources */,
 				330D3E14241D5E8C007D0628 /* homePage.swift in Sources */,
 				33CD41B82453ED78008E6558 /* notificationsPage.swift in Sources */,
@@ -629,6 +658,7 @@
 				33CE442D2578C113002672C3 /* homePageMisc.swift in Sources */,
 				33CE440B2578B9B8002672C3 /* miscellaneousFunctions.swift in Sources */,
 				33E69204243AD1F20004E2F1 /* bulletinPage.swift in Sources */,
+				33A40BE0257AAA33003CA200 /* notificationsPageMisc.swift in Sources */,
 				33CE44062578B9AD002672C3 /* UIClassExtensions.swift in Sources */,
 				33B77F2E249ED26F00A74B3A /* savedArticleClass.swift in Sources */,
 			);
@@ -640,7 +670,6 @@
 			files = (
 				33D3626524C10053008B4E67 /* htmlFunctions.swift in Sources */,
 				33CD41B92453ED78008E6558 /* notificationsPage.swift in Sources */,
-				33CD41B52453ECAB008E6558 /* savedPage.swift in Sources */,
 				330D3E27241D5E8D007D0628 /* AHS20Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -651,7 +680,6 @@
 			files = (
 				33D3626624C10053008B4E67 /* htmlFunctions.swift in Sources */,
 				33CD41BA2453ED78008E6558 /* notificationsPage.swift in Sources */,
-				33CD41B62453ECAB008E6558 /* savedPage.swift in Sources */,
 				330D3E32241D5E8D007D0628 /* AHS20UITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -821,7 +849,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.3;
+				MARKETING_VERSION = 3.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ArcadiaApaches.ArcadiaHighSchoolApp;
 				PRODUCT_NAME = AHS;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -846,7 +874,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 3.3;
+				MARKETING_VERSION = 3.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ArcadiaApaches.ArcadiaHighSchoolApp;
 				PRODUCT_NAME = AHS;
 				PROVISIONING_PROFILE_SPECIFIER = "";
