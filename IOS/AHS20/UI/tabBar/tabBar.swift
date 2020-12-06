@@ -139,6 +139,8 @@ class tabBarClass: UIViewController, UIViewControllerTransitioningDelegate, UISc
         
         fontSize = UserDefaults.standard.integer(forKey: "fontSize") != 0 ? UserDefaults.standard.integer(forKey: "fontSize") : 20;
         
+        tabBarView.backgroundColor = BackgroundColor;
+        contentView.backgroundColor = BackgroundColor;
         
         // set up buttons
         for index in 0..<buttons.count{

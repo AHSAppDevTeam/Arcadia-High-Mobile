@@ -380,6 +380,11 @@ func updateSubscriptionNotifs(){
     Messaging.messaging().subscribe(toTopic: "mandatory");
 }
 
-let mainThemeColor = makeColor(r: 159, g: 12, b: 12);
+//let mainThemeColor = makeColor(r: 159, g: 12, b: 12);
+
+let mainThemeColor = UIColor(named: "mainThemeColor")!;
+let InverseBackgroundColor = UIColor(named: "InverseBackgroundColor")!;
+let BackgroundGrayColor = UIColor(named: "BackgroundGrayColor")!;
+let BackgroundColor = UIColor(named: "BackgroundColor")!;
 
 var fontSize = 20;
