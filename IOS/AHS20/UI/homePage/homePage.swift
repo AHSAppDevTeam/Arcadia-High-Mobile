@@ -169,6 +169,27 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 		}
 	}
 	
+	private func getScrollViewFromPageControl(with tag: Int) -> UIScrollView{
+		switch tag {
+		case 0:
+			return generalInfoScrollView;
+		case 1:
+			return districtNewsScrollView;
+		case 2:
+			return asbNewsScrollView;
+		default:
+			return UIScrollView();
+		}
+	}
+	
+	@IBAction internal func pageControlSelectionAction(_ sender: UIPageControl){
+		let page = sender.currentPage;
+		let scrollview = getScrollViewFromPageControl(with: sender.tag);
+		var frame = scrollview.frame;
+		frame.origin.x = frame.size.width * CGFloat(page);
+		frame.origin.y = 0;
+		scrollview.scrollRectToVisible(frame, animated: true);
+	}
 	
 	private func smallArticle(x: CGFloat, y: CGFloat, width: CGFloat, height: CGFloat, articleSingle: articleData) -> CustomUIButton{//TODO: find out a way to separate article from top and bottom
 		

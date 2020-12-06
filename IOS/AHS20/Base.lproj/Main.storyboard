@@ -65,12 +65,15 @@
                                                 <viewLayoutGuide key="contentLayoutGuide" id="Ugi-DN-K4J"/>
                                                 <viewLayoutGuide key="frameLayoutGuide" id="qK8-7W-9zV"/>
                                             </scrollView>
-                                            <pageControl opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="hFL-pT-fxA">
+                                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="hFL-pT-fxA">
                                                 <rect key="frame" x="146.33333333333334" y="636.66666666666663" width="121.33333333333334" height="35.333333333333371"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="pageIndicatorTintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="currentPageIndicatorTintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <connections>
+                                                    <action selector="pageControlSelectionAction:" destination="XJz-g3-Eid" eventType="valueChanged" id="rq9-bC-fdF"/>
+                                                </connections>
                                             </pageControl>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YYQ-kZ-sr8" userLabel="loadingGeneralView">
                                                 <rect key="frame" x="0.0" y="347" width="414" height="325"/>
@@ -312,12 +315,15 @@
                                                 <viewLayoutGuide key="contentLayoutGuide" id="IOz-6r-x1z"/>
                                                 <viewLayoutGuide key="frameLayoutGuide" id="Rmm-pj-VGU"/>
                                             </scrollView>
-                                            <pageControl opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="iD6-UZ-DlH">
+                                            <pageControl opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="iD6-UZ-DlH">
                                                 <rect key="frame" x="146.33333333333334" y="961.66666666666663" width="121.33333333333334" height="35.333333333333371"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="pageIndicatorTintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="currentPageIndicatorTintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <connections>
+                                                    <action selector="pageControlSelectionAction:" destination="XJz-g3-Eid" eventType="valueChanged" id="QP6-pk-2kU"/>
+                                                </connections>
                                             </pageControl>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="alZ-v7-9ZZ" userLabel="loadingDistrictView">
                                                 <rect key="frame" x="0.0" y="672" width="414" height="325"/>
@@ -559,12 +565,15 @@
                                                 <viewLayoutGuide key="contentLayoutGuide" id="WEQ-Gu-FCM"/>
                                                 <viewLayoutGuide key="frameLayoutGuide" id="fnV-HE-OJk"/>
                                             </scrollView>
-                                            <pageControl opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="x8m-5V-ULZ">
+                                            <pageControl opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="x8m-5V-ULZ">
                                                 <rect key="frame" x="146.33333333333334" y="1285" width="121.33333333333334" height="42"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="pageIndicatorTintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="currentPageIndicatorTintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <connections>
+                                                    <action selector="pageControlSelectionAction:" destination="XJz-g3-Eid" eventType="valueChanged" id="Wm8-5l-Sef"/>
+                                                </connections>
                                             </pageControl>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Featured Articles" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7aJ-vf-lyx">
                                                 <rect key="frame" x="98.333333333333329" y="176.66666666666666" width="217.33333333333337" height="24.666666666666657"/>
