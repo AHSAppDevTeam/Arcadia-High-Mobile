@@ -289,7 +289,7 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
                 notificationCatagoryLabel.textAlignment = .center;
                 notificationCatagoryLabel.textColor = UIColor.white;
                 notificationCatagoryLabel.font = UIFont(name: "SFProDisplay-Semibold", size: 12);
-                notificationCatagoryLabel.backgroundColor = currArticleRead ? makeColor(r: 144, g: 75, b: 75) : mainThemeColor;
+                notificationCatagoryLabel.backgroundColor = currArticleRead ? dull_mainThemeColor : mainThemeColor;
                 notificationCatagoryLabel.setRoundedEdge(corners: [.bottomRight, .bottomLeft, .topRight, .topLeft], radius: 5);
                 //SFProText-Bold, SFProDisplay-Regular, SFProDisplay-Semibold, SFProDisplay-Black
                 
@@ -309,7 +309,7 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
                 let notificationTitle = UILabel(frame: notificationTitleFrame);
                 notificationTitle.text = currNotif.notificationTitle;
                 notificationTitle.font = currArticleRead ? UIFont(name: "SFProDisplay-Semibold",size: 18) : UIFont(name:"SFProText-Bold",size: 18);
-                notificationTitle.textColor = currArticleRead ? UIColor.gray : UIColor.black;
+                notificationTitle.textColor = currArticleRead ? BackgroundGrayColor : InverseBackgroundColor;
                 notificationTitle.adjustsFontSizeToFitWidth = true;
                 notificationTitle.minimumScaleFactor = 0.2;
                 
@@ -321,7 +321,7 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
                 notificationBodyText.text = currNotif.notificationBody;
                 notificationBodyText.numberOfLines = 0;
                 notificationBodyText.font = UIFont(name:"SFProDisplay-Regular",size: 14);
-                notificationBodyText.textColor = currArticleRead ? UIColor.gray : UIColor.black;
+                notificationBodyText.textColor = currArticleRead ? BackgroundGrayColor : InverseBackgroundColor;
                 // notificationBodyText.backgroundColor = UIColor.lightGray;
                 
                 let timeStampFrame = CGRect(x: notificationFrame.size.width - chevronWidth - timeStampLength + 10, y: 5, width: timeStampLength, height: 30);
@@ -329,11 +329,16 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
                 timeStamp.text = epochClass.epochToString(epoch: currNotif.notificationUnixEpoch ?? -1);
                 timeStamp.font = UIFont(name:"SFProDisplay-Regular",size: 12);
                 timeStamp.textAlignment = .right;
-                timeStamp.textColor = UIColor.darkGray;
+                timeStamp.textColor = InverseBackgroundColor;
                 
-                notificationButton.backgroundColor = currArticleRead ? makeColor(r: 250, g: 250, b: 250) : UIColor.white;
+                if (self.traitCollection.userInterfaceStyle == .dark){
+                    notificationButton.backgroundColor = currArticleRead ? BackgroundColor : dull_BackgroundColor;
+                }
+                else{
+                    notificationButton.backgroundColor = currArticleRead ? dull_BackgroundColor : BackgroundColor;
+                }
                 
-                notificationButton.layer.shadowColor = UIColor.black.cgColor;
+                notificationButton.layer.shadowColor = InverseBackgroundColor.cgColor;
                 notificationButton.layer.shadowOpacity = 0.2;
                 notificationButton.layer.shadowRadius = 5;
                 notificationButton.layer.shadowOffset = CGSize(width: 0 , height:3);
@@ -353,7 +358,7 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
                     let chevronFrame = CGRect(x: notificationButton.frame.size.width-chevronWidth-15, y: (notificationButton.frame.size.height/2)-(chevronWidth/2), width: chevronWidth-5, height: chevronWidth);
                     let chevronImage = UIImageView(frame: chevronFrame);
                     chevronImage.image = UIImage(systemName: "chevron.right");
-                    chevronImage.tintColor = UIColor.gray;
+                    chevronImage.tintColor = BackgroundGrayColor;
                     notificationButton.addSubview(chevronImage);
                 }
                 
@@ -380,7 +385,7 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
         // set iphone x or above color below the safe area
         notificationScrollView.bottomAnchor.constraint(equalToSystemSpacingBelow: view.bottomAnchor, multiplier: 1).isActive = true;
         
-        shadowView.layer.shadowColor = UIColor.black.cgColor;
+        shadowView.layer.shadowColor = InverseBackgroundColor.cgColor;
         shadowView.layer.shadowOpacity = 0.05;
         shadowView.layer.shadowOffset = CGSize(width: 0 , height: 5);
         

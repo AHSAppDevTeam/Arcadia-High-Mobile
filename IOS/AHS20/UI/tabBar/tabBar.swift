@@ -131,6 +131,8 @@ class tabBarClass: UIViewController, UIViewControllerTransitioningDelegate, UISc
         //developer stuff
         //setUpDevConfigs();
         
+        UserDefaults.standard.removeObject(forKey: "notificationReadDict");
+        
         NotificationCenter.default.addObserver(self, selector: #selector(self.articleSelector), name:NSNotification.Name(rawValue: "article"), object: nil);
         
         

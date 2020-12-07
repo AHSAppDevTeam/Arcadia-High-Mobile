@@ -951,7 +951,7 @@
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" contentInsetAdjustmentBehavior="never" translatesAutoresizingMaskIntoConstraints="NO" id="crg-tJ-0rO">
                                 <rect key="frame" x="0.0" y="58" width="414" height="453.33333333333326"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" name="BackgroundColor"/>
                                 <gestureRecognizers/>
                                 <connections>
                                     <outlet property="delegate" destination="08X-4I-yxB" id="5BU-sD-xkd"/>
@@ -959,7 +959,7 @@
                             </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gqs-Ri-FfJ" userLabel="shadowView">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="58"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="BackgroundColor"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UxG-mm-MkH">
                                 <rect key="frame" x="15.000000000000002" y="15" width="18.666666666666671" height="27"/>
@@ -991,7 +991,7 @@
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Athletics" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DgT-rI-5cM">
                                 <rect key="frame" x="42" y="13.999999999999998" width="110" height="26.333333333333329"/>
-                                <color key="backgroundColor" red="0.59999999999999998" green="0.16078431369999999" blue="0.21960784310000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" name="mainThemeColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="26.329999999999998" id="TNC-pH-q9Y"/>
                                     <constraint firstAttribute="width" constant="110" id="Ygc-JH-ebd"/>
@@ -1431,7 +1431,7 @@
                             </label>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Lrm-pV-QtS">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="942"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" name="BackgroundColor"/>
                                 <viewLayoutGuide key="contentLayoutGuide" id="g12-kH-Ab7"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="62e-8P-63L"/>
                             </scrollView>
@@ -2232,13 +2232,13 @@ This license agreement is governed by the laws of the State of California exclud
                             </label>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NZN-7j-auO">
                                 <rect key="frame" x="0.0" y="58" width="414" height="922"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" name="BackgroundColor"/>
                                 <viewLayoutGuide key="contentLayoutGuide" id="quT-Ls-N2h"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="CS7-96-2oQ"/>
                             </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H0Z-ns-bKQ" userLabel="shadowView">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="58"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="BackgroundColor"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MJJ-OQ-oKj">
                                 <rect key="frame" x="15.000000000000002" y="15" width="18.666666666666671" height="27"/>
@@ -2253,7 +2253,7 @@ This license agreement is governed by the laws of the State of California exclud
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notifications" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4fI-zh-Z0s">
                                 <rect key="frame" x="42" y="14" width="134.33333333333334" height="28"/>
                                 <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="24"/>
-                                <color key="textColor" red="0.59999999999999998" green="0.16078431369999999" blue="0.21960784310000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" name="mainThemeColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="arG-KJ-TsU">
@@ -2307,7 +2307,7 @@ This license agreement is governed by the laws of the State of California exclud
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Diy-5I-FmI"/>
+        <segue reference="rU3-UD-e0a"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.58039215690000001" green="0.066666666669999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
     <resources>

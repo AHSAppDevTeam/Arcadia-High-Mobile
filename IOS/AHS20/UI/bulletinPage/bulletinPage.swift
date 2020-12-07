@@ -208,7 +208,7 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
                         readLabel.text = "New";
                         readLabel.backgroundColor = UIColor.systemYellow;
                         readLabel.textAlignment = .center;
-                        readLabel.textColor = BackgroundColor;
+                        readLabel.textColor = UIColor.white;
                         readLabel.font = UIFont(name: "SFProDisplay-Semibold", size: 12);
                         readLabel.setRoundedEdge(corners: [.bottomRight, .bottomLeft, .topRight, .topLeft], radius: 5);
                         readLabel.tag = 5;
@@ -255,7 +255,7 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
                 bulletinScrollView.addSubview(noArticlesLabel);
                 currY += labelHeight;
             }
-            bulletinScrollView.contentSize = CGSize(width: bulletinFrame.size.width, height: CGFloat(currY) + 50);
+            bulletinScrollView.contentSize = CGSize(width: bulletinFrame.size.width, height: CGFloat(currY));
             bulletinScrollView.delegate = self;
         }
     }
