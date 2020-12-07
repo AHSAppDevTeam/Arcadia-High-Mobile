@@ -159,7 +159,7 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
                     let articleTitleText = UILabel(frame: articleTitleFrame);
                     articleTitleText.text = article.articleTitle;
                     articleTitleText.font = currArticleRead ? UIFont(name: "SFProDisplay-Semibold",size: 16) : UIFont(name: "SFProText-Bold",size: 16);
-                    articleTitleText.textColor = currArticleRead ? UIColor.gray : UIColor.black;
+                    articleTitleText.textColor = currArticleRead ? BackgroundGrayColor : InverseBackgroundColor;
                     articleTitleText.numberOfLines = 1;
                     articleTitleText.tag = 2;
                     articleTitleText.isUserInteractionEnabled = false;
@@ -174,7 +174,7 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
                     }
                     articleBodyText.numberOfLines = 4;
                     articleBodyText.font = UIFont(name: "SFProDisplay-Regular", size: 15);
-                    articleBodyText.textColor = currArticleRead ? UIColor.gray : UIColor.black;
+                    articleBodyText.textColor = currArticleRead ? BackgroundGrayColor : InverseBackgroundColor;
                     articleBodyText.tag = 3;
                     articleBodyText.isUserInteractionEnabled = false;
                     
@@ -186,7 +186,7 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
                     let dateTextFrame = CGRect(x: bulletinFrame.size.width - (2*articleHorizontalPadding) - 95, y : 5, width: 100, height: 25);
                     let dateText = UILabel(frame: dateTextFrame);
                     dateText.text = epochClass.epochToString(epoch: article.articleUnixEpoch ?? -1); // insert date here -------- temporary
-                    dateText.textColor = makeColor(r: 156, g: 0, b: 0);
+                    dateText.textColor = mainThemeColor;
                     dateText.textAlignment = .right;
                     dateText.font = UIFont(name: "SFProDisplay-Regular", size: 12);
                     dateText.isUserInteractionEnabled = false;
@@ -194,7 +194,7 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
                     let catagoryFrame = CGRect(x: 8, y: 12, width: catagoryFrameWidth, height: 20);
                     let catagory = UILabel(frame: catagoryFrame);
                     catagory.text = article.articleCatagory ?? "No Cata.";
-                    catagory.backgroundColor = currArticleRead ? makeColor(r: 144, g: 75, b: 75) : mainThemeColor;
+                    catagory.backgroundColor = currArticleRead ? dull_mainThemeColor : mainThemeColor;
                     catagory.textAlignment = .center;
                     catagory.textColor = UIColor.white;
                     catagory.setRoundedEdge(corners: [.bottomRight, .bottomLeft, .topRight, .topLeft], radius: 5);
@@ -208,7 +208,7 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
                         readLabel.text = "New";
                         readLabel.backgroundColor = UIColor.systemYellow;
                         readLabel.textAlignment = .center;
-                        readLabel.textColor = UIColor.white;
+                        readLabel.textColor = BackgroundColor;
                         readLabel.font = UIFont(name: "SFProDisplay-Semibold", size: 12);
                         readLabel.setRoundedEdge(corners: [.bottomRight, .bottomLeft, .topRight, .topLeft], radius: 5);
                         readLabel.tag = 5;
@@ -220,12 +220,17 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
                     articleButton.addSubview(mainView);
                     articleButton.addSubview(catagory);
                     
-                    articleButton.layer.shadowColor = UIColor.black.cgColor;
+                    articleButton.layer.shadowColor = InverseBackgroundColor.cgColor;
                     articleButton.layer.shadowOpacity = 0.2;
                     articleButton.layer.shadowRadius = 5;
-                    articleButton.layer.shadowOffset = CGSize(width: 0 , height:3);
+                    articleButton.layer.shadowOffset = CGSize(width: 0 , height: 3);
                     
-                    articleButton.backgroundColor = currArticleRead ? makeColor(r: 250, g: 250, b: 250) : UIColor.white;
+                    if (self.traitCollection.userInterfaceStyle == .dark){
+                        articleButton.backgroundColor = currArticleRead ? BackgroundColor : dull_BackgroundColor;
+                    }
+                    else{
+                        articleButton.backgroundColor = currArticleRead ? dull_BackgroundColor : BackgroundColor;
+                    }
                     
                     articleButton.articleCompleteData = bulletinDataToarticleData(data: article);
                     
@@ -239,9 +244,10 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
                 let noArticlesLabel = UILabel(frame: CGRect(x: articleHorizontalPadding, y: currY, width: UIScreen.main.bounds.width - 2*articleHorizontalPadding, height: labelHeight));
                 noArticlesLabel.text = "No articles found";
                 noArticlesLabel.font = UIFont(name: "SFProDisplay-Semibold", size: 20);
-                noArticlesLabel.backgroundColor = UIColor.white;
+                noArticlesLabel.backgroundColor = BackgroundColor;
+                noArticlesLabel.textColor = InverseBackgroundColor;
                 noArticlesLabel.textAlignment = .center;
-                noArticlesLabel.layer.shadowColor = UIColor.black.cgColor;
+                noArticlesLabel.layer.shadowColor = InverseBackgroundColor.cgColor;
                 noArticlesLabel.layer.shadowOpacity = 0.2;
                 noArticlesLabel.layer.shadowRadius = 5;
                 noArticlesLabel.layer.shadowOffset = CGSize(width: 0 , height:3);

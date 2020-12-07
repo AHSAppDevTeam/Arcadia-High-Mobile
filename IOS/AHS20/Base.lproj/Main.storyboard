@@ -70,8 +70,8 @@
                                                 <rect key="frame" x="146.33333333333334" y="636.66666666666663" width="121.33333333333334" height="35.333333333333371"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <color key="pageIndicatorTintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <color key="currentPageIndicatorTintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="pageIndicatorTintColor" name="BackgroundGrayColor"/>
+                                                <color key="currentPageIndicatorTintColor" name="InverseBackgroundColor"/>
                                                 <connections>
                                                     <action selector="pageControlSelectionAction:" destination="XJz-g3-Eid" eventType="valueChanged" id="rq9-bC-fdF"/>
                                                 </connections>
@@ -292,7 +292,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                 </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" name="BackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="bottom" secondItem="Q0j-7K-QnK" secondAttribute="bottom" constant="40" id="1Bh-h0-DGM"/>
                                                     <constraint firstItem="Q0j-7K-QnK" firstAttribute="top" secondItem="XMR-Ze-vhv" secondAttribute="bottom" constant="8" id="6Hx-6F-147"/>
@@ -320,8 +320,8 @@
                                                 <rect key="frame" x="146.33333333333334" y="961.66666666666663" width="121.33333333333334" height="35.333333333333371"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <color key="pageIndicatorTintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <color key="currentPageIndicatorTintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="pageIndicatorTintColor" name="BackgroundGrayColor"/>
+                                                <color key="currentPageIndicatorTintColor" name="InverseBackgroundColor"/>
                                                 <connections>
                                                     <action selector="pageControlSelectionAction:" destination="XJz-g3-Eid" eventType="valueChanged" id="QP6-pk-2kU"/>
                                                 </connections>
@@ -542,7 +542,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                 </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" name="BackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstItem="FgD-tC-vmb" firstAttribute="leading" secondItem="alZ-v7-9ZZ" secondAttribute="leading" constant="19" id="Gct-hj-ZmU"/>
                                                     <constraint firstItem="Ob0-fb-L5o" firstAttribute="top" secondItem="alZ-v7-9ZZ" secondAttribute="top" constant="8" id="TwZ-if-9dN"/>
@@ -570,8 +570,8 @@
                                                 <rect key="frame" x="146.33333333333334" y="1285" width="121.33333333333334" height="42"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <color key="pageIndicatorTintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <color key="currentPageIndicatorTintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="pageIndicatorTintColor" name="BackgroundGrayColor"/>
+                                                <color key="currentPageIndicatorTintColor" name="InverseBackgroundColor"/>
                                                 <connections>
                                                     <action selector="pageControlSelectionAction:" destination="XJz-g3-Eid" eventType="valueChanged" id="Wm8-5l-Sef"/>
                                                 </connections>
@@ -579,7 +579,7 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Featured Articles" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7aJ-vf-lyx">
                                                 <rect key="frame" x="111" y="176.66666666666666" width="192" height="24.666666666666657"/>
                                                 <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="21"/>
-                                                <nil key="textColor"/>
+                                                <color key="textColor" name="InverseBackgroundColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HwD-Wo-mKv" userLabel="loadingASBNews">
@@ -798,7 +798,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                 </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" name="BackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstItem="frI-jT-DTa" firstAttribute="top" secondItem="HwD-Wo-mKv" secondAttribute="top" constant="8" id="2Cq-wo-dsG"/>
                                                     <constraint firstItem="frI-jT-DTa" firstAttribute="leading" secondItem="HwD-Wo-mKv" secondAttribute="leading" constant="25" id="PpD-Vp-KOX"/>
@@ -1145,7 +1145,7 @@
                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PAGE NAME HERE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rvS-bp-55Q">
                                         <rect key="frame" x="15" y="17" width="207.33333333333334" height="28"/>
                                         <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="24"/>
-                                        <color key="textColor" red="0.62352941176470589" green="0.047058823529411764" blue="0.047058823529411764" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" name="mainThemeColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xR7-JS-TMx">
@@ -1154,7 +1154,7 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Arcadia" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ay2-jf-MOk">
                                                 <rect key="frame" x="50" y="6" width="78" height="27"/>
                                                 <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="23"/>
-                                                <color key="textColor" red="0.59999999999999998" green="0.16078431369999999" blue="0.21960784310000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="textColor" name="mainThemeColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="September 99" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="U86-L8-TFj">
@@ -1189,7 +1189,7 @@
                                     </view>
                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bdm-ca-Vej">
                                         <rect key="frame" x="377" y="46.666666666666664" width="5" height="5"/>
-                                        <color key="backgroundColor" red="0.62352941179999999" green="0.047058823530000002" blue="0.047058823530000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" name="mainThemeColor"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="5" id="MRF-vv-Y8r"/>
                                             <constraint firstAttribute="height" constant="5" id="beG-tN-5QT"/>
@@ -1206,14 +1206,14 @@
                                             <constraint firstAttribute="height" constant="30.670000000000002" id="2LS-tS-gfi"/>
                                             <constraint firstAttribute="width" constant="25" id="uuq-q0-Oiy"/>
                                         </constraints>
-                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="tintColor" name="InverseBackgroundColor"/>
                                         <state key="normal" backgroundImage="bell.fill" catalog="system"/>
                                         <connections>
                                             <action selector="openNotifications:" destination="er0-Fk-1NM" eventType="touchUpInside" id="4Np-Gr-JSe"/>
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" name="BackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="rvS-bp-55Q" firstAttribute="leading" secondItem="hWQ-Aq-Bwe" secondAttribute="leading" constant="15" id="0NW-Ni-VCP"/>
                                     <constraint firstItem="rvS-bp-55Q" firstAttribute="centerY" secondItem="hWQ-Aq-Bwe" secondAttribute="centerY" id="30w-GL-8xh"/>
@@ -1273,7 +1273,7 @@
                                         </subviews>
                                     </stackView>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" name="BackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="PBQ-ay-oxj" firstAttribute="height" secondItem="HYY-fu-odz" secondAttribute="height" multiplier="0.55" id="7qR-hD-G32"/>
                                     <constraint firstItem="7gx-G2-ytR" firstAttribute="height" secondItem="HYY-fu-odz" secondAttribute="height" multiplier="0.55" id="8Fn-3W-foe"/>
@@ -1348,7 +1348,7 @@
                                         <subviews>
                                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7fW-Zl-nwU">
                                                 <rect key="frame" x="0.0" y="41" width="416" height="901"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" name="BackgroundColor"/>
                                                 <viewLayoutGuide key="contentLayoutGuide" id="P5n-mr-d09"/>
                                                 <viewLayoutGuide key="frameLayoutGuide" id="GAd-35-9Gc"/>
                                                 <connections>
@@ -1357,7 +1357,7 @@
                                             </scrollView>
                                             <scrollView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6rC-8R-9Il">
                                                 <rect key="frame" x="0.0" y="0.0" width="416" height="45"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" name="BackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="45" id="VsH-b4-4hc"/>
                                                 </constraints>
@@ -1365,7 +1365,7 @@
                                                 <viewLayoutGuide key="frameLayoutGuide" id="Rpy-VH-LYh"/>
                                             </scrollView>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" name="BackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="6rC-8R-9Il" secondAttribute="trailing" id="1z7-lL-Ryn"/>
                                             <constraint firstItem="6rC-8R-9Il" firstAttribute="leading" secondItem="4Il-EP-tky" secondAttribute="leading" id="9Bm-Xu-SOD"/>
@@ -1379,7 +1379,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" name="BackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="4Il-EP-tky" firstAttribute="width" secondItem="pm9-GY-9Nm" secondAttribute="width" id="33x-uv-jeQ"/>
                                     <constraint firstItem="4Il-EP-tky" firstAttribute="leading" secondItem="pm9-GY-9Nm" secondAttribute="leading" id="7zw-ls-MRW"/>
@@ -1769,7 +1769,7 @@ Q2xlYXIgEFNhdmVkIEFydGljbGVzA
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subscribe to all" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yzu-8e-Q6j">
-                                                    <rect key="frame" x="20" y="8.9999999999999982" width="139" height="24.333333333333329"/>
+                                                    <rect key="frame" x="20" y="8.9999999999999982" width="135" height="24.333333333333329"/>
                                                     <fontDescription key="fontDescription" name="SFProDisplay-Semibold" family="SF Pro Display" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -1833,7 +1833,7 @@ Q2xlYXIgEFNhdmVkIEFydGljbGVzA
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ASB News" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C2J-vK-8aa">
-                                                    <rect key="frame" x="20.000000000000007" y="9.9999999999999982" width="95.666666666666686" height="24.333333333333329"/>
+                                                    <rect key="frame" x="19.999999999999993" y="9.9999999999999982" width="92.333333333333314" height="24.333333333333329"/>
                                                     <fontDescription key="fontDescription" name="SFProDisplay-Semibold" family="SF Pro Display" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -1863,7 +1863,7 @@ Q2xlYXIgEFNhdmVkIEFydGljbGVzA
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="District News" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pPu-Ev-zLs">
-                                                    <rect key="frame" x="20" y="9.9999999999999982" width="119" height="24.333333333333329"/>
+                                                    <rect key="frame" x="20" y="9.9999999999999982" width="118" height="24.333333333333329"/>
                                                     <fontDescription key="fontDescription" name="SFProDisplay-Semibold" family="SF Pro Display" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -2317,6 +2317,15 @@ This license agreement is governed by the laws of the State of California exclud
         <image name="chevron.left" catalog="system" width="96" height="128"/>
         <namedColor name="BackgroundColor">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="BackgroundGrayColor">
+            <color red="0.68571541878172582" green="0.68571541878172582" blue="0.68571541878172582" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="InverseBackgroundColor">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="mainThemeColor">
+            <color red="0.62400001287460327" green="0.046999998390674591" blue="0.046999998390674591" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

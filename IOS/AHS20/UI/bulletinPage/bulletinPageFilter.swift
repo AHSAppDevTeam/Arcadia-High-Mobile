@@ -68,7 +68,7 @@ extension bulletinClass{
             filterFrame.origin.x = originX;
             let filterButton = CustomUIButton(frame: filterFrame);
             filterButton.setTitle(filterName[buttonIndex], for: .normal);
-            filterButton.setTitleColor(selectedFilters[buttonIndex] ? UIColor.black : UIColor.gray, for: .normal);
+            filterButton.setTitleColor(selectedFilters[buttonIndex] ? InverseBackgroundColor : BackgroundGrayColor, for: .normal);
             filterButton.titleLabel?.font = UIFont(name: "SFProDisplay-Semibold", size: 20);
             filterButton.contentVerticalAlignment = .top;
             filterButton.sizeToFit();
@@ -78,7 +78,7 @@ extension bulletinClass{
             let selectedBarHeight = CGFloat(2);
             let selectedBarFrame = CGRect(x: originX, y: filterFrame.size.height-selectedBarHeight, width: filterFrame.size.width, height: selectedBarHeight);
             let selectedBar = UIView(frame: selectedBarFrame);
-            selectedBar.backgroundColor = makeColor(r: 159, g: 12, b: 12);
+            selectedBar.backgroundColor = mainThemeColor;
             selectedBar.layer.cornerRadius = 1;
             selectedBar.isHidden = !selectedFilters[buttonIndex];
             
@@ -93,7 +93,7 @@ extension bulletinClass{
         }
         filterScrollView.contentSize = CGSize(width: originX, height: filterScrollView.frame.size.height);
         
-        filterScrollView.layer.shadowColor = UIColor.black.cgColor;
+        filterScrollView.layer.shadowColor = InverseBackgroundColor.cgColor;
         filterScrollView.layer.shadowOpacity = 0.1;
         filterScrollView.layer.shadowOffset = .zero;
         filterScrollView.layer.shadowRadius = 5;
