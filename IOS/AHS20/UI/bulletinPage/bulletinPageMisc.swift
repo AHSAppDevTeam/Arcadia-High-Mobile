@@ -11,7 +11,9 @@ import UIKit
 
 extension bulletinClass{
     internal func makeCustomButtonRead(button: CustomUIButton){
-        button.backgroundColor = makeColor(r: 250, g: 250, b: 250);
+        //button.backgroundColor = makeColor(r: 250, g: 250, b: 250);
+        button.backgroundColor = self.traitCollection.userInterfaceStyle == .dark ? BackgroundColor : dull_BackgroundColor;
+        
         
         /*
          TAG LIST for UICustomUIButton:
@@ -30,18 +32,18 @@ extension bulletinClass{
                     case 2:
                         //print("title label view - \(view)")
                         let titleLabel = subview as! UILabel;
-                        titleLabel.textColor = UIColor.gray;
+                        titleLabel.textColor = BackgroundGrayColor;
                         titleLabel.font = UIFont(name: "SFProDisplay-Semibold",size: 16);
                     case 3:
                         let bodyText = subview as! UILabel;
-                        bodyText.textColor = UIColor.gray;
+                        bodyText.textColor = BackgroundGrayColor;
                     default:
                         print("unknown view tag found in makeCustomButtonRead mainView subviews - \(subview)")
                     }
                 }
             case 4:
                 let catagory = view as! UILabel;
-                catagory.backgroundColor = makeColor(r: 144, g: 75, b: 75);
+                catagory.backgroundColor = dull_mainThemeColor;
             case 5:
                 view.removeFromSuperview();
             default:

@@ -27,7 +27,7 @@ class savedClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDele
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated);
-        let savedArticles =  savedArticleClass.getSavedArticles();
+        let savedArticles = savedArticleClass.getSavedArticles();
         
         for view in mainScrollView.subviews{
             view.removeFromSuperview();
@@ -50,7 +50,7 @@ class savedClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDele
                 articleFrame.origin.y = articleVerticalPadding+(articleFrame.size.height+articleVerticalPadding)*CGFloat(aIndex);
                 
                 let articleButton = CustomUIButton(frame: articleFrame);
-                articleButton.backgroundColor = UIColor.white;
+                articleButton.backgroundColor = BackgroundColor;
                 
                 var leftEdge = CGFloat(0);
                 var rightEdge = CGFloat(0);
@@ -59,7 +59,7 @@ class savedClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDele
                 let chevronFrame = CGRect(x: articleFrame.size.width-chevronWidth-3, y: 50, width: chevronWidth-5, height: chevronWidth);
                 let chevronImage = UIImageView(frame: chevronFrame);
                 chevronImage.image = UIImage(systemName: "chevron.right");
-                chevronImage.tintColor = UIColor.gray;
+                chevronImage.tintColor = BackgroundGrayColor;
                 rightEdge += 32;
             
                 let leftPadding = CGFloat(7);
@@ -68,12 +68,12 @@ class savedClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDele
                     let imageViewFrame = CGRect(x: leftPadding, y: 8, width: 150-(2*leftPadding), height: articleFrame.size.height - 16);
                     let imageView = UIImageView(frame: imageViewFrame);
                     imageView.imgFromURL(sURL: savedArticles[aIndex].articleImages?[0] ?? "");
-                    imageView.backgroundColor = UIColor.white;
+                    imageView.backgroundColor = BackgroundColor;
                     imageView.contentMode = .scaleAspectFill;
                     imageView.clipsToBounds = true;
                     //imageView.setRoundedEdge(corners: [.topLeft, .topRight, .bottomLeft, .bottomRight], radius: 3);
                     imageView.layer.borderWidth = 0.5;
-                    imageView.layer.borderColor = UIColor.gray.cgColor;
+                    imageView.layer.borderColor = BackgroundGrayColor.cgColor;
                     imageView.layer.cornerRadius = 3;
                     //imageView.clipsToBounds = true;
                     articleButton.addSubview(imageView);
@@ -103,7 +103,7 @@ class savedClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDele
                 articleBody.text = (savedArticles[aIndex].hasHTML == true ? parseHTML(s: savedArticles[aIndex].articleBody ?? "").string : savedArticles[aIndex].articleBody);
                 articleBody.numberOfLines = 3;
                 articleBody.font = UIFont(name:"SFProDisplay-Regular",size: 14);
-                articleBody.textColor = UIColor.black;
+                articleBody.textColor = InverseBackgroundColor;
                 
                 let timeStampWidth = CGFloat(100);
                 let timeStampFrame = CGRect(x: articleFrame.size.width - 10 - timeStampWidth, y: 8, width: timeStampWidth, height: 20);
@@ -111,7 +111,7 @@ class savedClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDele
                 timeStamp.text = epochClass.epochToString(epoch: savedArticles[aIndex].articleUnixEpoch ?? -1);
                 timeStamp.textAlignment = .right;
                 timeStamp.font = UIFont(name:"SFProDisplay-Regular",size: 12);
-                timeStamp.textColor = UIColor.darkGray;
+                timeStamp.textColor = InverseBackgroundColor;
                 
                 articleButton.addSubview(chevronImage);
                 articleButton.addSubview(timeStamp);
@@ -119,10 +119,12 @@ class savedClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDele
                 articleButton.addSubview(articleTitle);
                 articleButton.addSubview(articleBody);
                 
-                articleButton.layer.shadowColor = UIColor.black.cgColor;
+                articleButton.layer.shadowColor = InverseBackgroundColor.cgColor;
                 articleButton.layer.shadowOpacity = 0.2;
                 articleButton.layer.shadowRadius = 5;
-                articleButton.layer.shadowOffset = CGSize(width: 0 , height:3);
+                articleButton.layer.shadowOffset = CGSize(width: 0 , height: self.traitCollection.userInterfaceStyle == .dark ? 0 : 3);
+                articleButton.layer.borderWidth = 0.15;
+                articleButton.layer.borderColor = BackgroundGrayColor.cgColor;
                 
                 articleButton.articleCompleteData = savedArticles[aIndex];
                 articleButton.addTarget(self, action: #selector(openArticle), for: .touchUpInside);

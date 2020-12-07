@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -38,7 +39,7 @@
                                         <rect key="frame" x="0.0" y="-1" width="414" height="1339"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Featured" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5XT-od-jzj">
-                                                <rect key="frame" x="19.999999999999993" y="10.000000000000002" width="108.33333333333331" height="27.666666666666671"/>
+                                                <rect key="frame" x="19.999999999999993" y="10.000000000000002" width="95.333333333333314" height="27.666666666666671"/>
                                                 <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="24"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -52,7 +53,7 @@
                                                 <viewLayoutGuide key="frameLayoutGuide" id="6HT-cQ-dII"/>
                                             </scrollView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="General Info" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4YX-jQ-HJz">
-                                                <rect key="frame" x="20" y="358.66666666666669" width="128.66666666666666" height="26"/>
+                                                <rect key="frame" x="19.999999999999993" y="358.66666666666669" width="114.33333333333331" height="26"/>
                                                 <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="21"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -65,12 +66,15 @@
                                                 <viewLayoutGuide key="contentLayoutGuide" id="Ugi-DN-K4J"/>
                                                 <viewLayoutGuide key="frameLayoutGuide" id="qK8-7W-9zV"/>
                                             </scrollView>
-                                            <pageControl opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="hFL-pT-fxA">
+                                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="hFL-pT-fxA">
                                                 <rect key="frame" x="146.33333333333334" y="636.66666666666663" width="121.33333333333334" height="35.333333333333371"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <color key="pageIndicatorTintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <color key="currentPageIndicatorTintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="pageIndicatorTintColor" name="BackgroundGrayColor"/>
+                                                <color key="currentPageIndicatorTintColor" name="InverseBackgroundColor"/>
+                                                <connections>
+                                                    <action selector="pageControlSelectionAction:" destination="XJz-g3-Eid" eventType="valueChanged" id="rq9-bC-fdF"/>
+                                                </connections>
                                             </pageControl>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YYQ-kZ-sr8" userLabel="loadingGeneralView">
                                                 <rect key="frame" x="0.0" y="347" width="414" height="325"/>
@@ -288,7 +292,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                 </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" name="BackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="bottom" secondItem="Q0j-7K-QnK" secondAttribute="bottom" constant="40" id="1Bh-h0-DGM"/>
                                                     <constraint firstItem="Q0j-7K-QnK" firstAttribute="top" secondItem="XMR-Ze-vhv" secondAttribute="bottom" constant="8" id="6Hx-6F-147"/>
@@ -299,7 +303,7 @@
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="District News" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7St-u3-tL8">
-                                                <rect key="frame" x="21" y="684.66666666666663" width="142" height="25"/>
+                                                <rect key="frame" x="21" y="684.66666666666663" width="125" height="25"/>
                                                 <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="21"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -312,12 +316,15 @@
                                                 <viewLayoutGuide key="contentLayoutGuide" id="IOz-6r-x1z"/>
                                                 <viewLayoutGuide key="frameLayoutGuide" id="Rmm-pj-VGU"/>
                                             </scrollView>
-                                            <pageControl opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="iD6-UZ-DlH">
+                                            <pageControl opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="iD6-UZ-DlH">
                                                 <rect key="frame" x="146.33333333333334" y="961.66666666666663" width="121.33333333333334" height="35.333333333333371"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <color key="pageIndicatorTintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <color key="currentPageIndicatorTintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="pageIndicatorTintColor" name="BackgroundGrayColor"/>
+                                                <color key="currentPageIndicatorTintColor" name="InverseBackgroundColor"/>
+                                                <connections>
+                                                    <action selector="pageControlSelectionAction:" destination="XJz-g3-Eid" eventType="valueChanged" id="QP6-pk-2kU"/>
+                                                </connections>
                                             </pageControl>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="alZ-v7-9ZZ" userLabel="loadingDistrictView">
                                                 <rect key="frame" x="0.0" y="672" width="414" height="325"/>
@@ -535,7 +542,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                 </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" name="BackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstItem="FgD-tC-vmb" firstAttribute="leading" secondItem="alZ-v7-9ZZ" secondAttribute="leading" constant="19" id="Gct-hj-ZmU"/>
                                                     <constraint firstItem="Ob0-fb-L5o" firstAttribute="top" secondItem="alZ-v7-9ZZ" secondAttribute="top" constant="8" id="TwZ-if-9dN"/>
@@ -546,7 +553,7 @@
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ASB News" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BR2-Jb-vl0">
-                                                <rect key="frame" x="22.000000000000007" y="1009.6666666666666" width="107.66666666666669" height="23.333333333333371"/>
+                                                <rect key="frame" x="21.999999999999993" y="1009.6666666666666" width="100.33333333333331" height="23.333333333333371"/>
                                                 <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="21"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -559,17 +566,20 @@
                                                 <viewLayoutGuide key="contentLayoutGuide" id="WEQ-Gu-FCM"/>
                                                 <viewLayoutGuide key="frameLayoutGuide" id="fnV-HE-OJk"/>
                                             </scrollView>
-                                            <pageControl opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="x8m-5V-ULZ">
+                                            <pageControl opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="x8m-5V-ULZ">
                                                 <rect key="frame" x="146.33333333333334" y="1285" width="121.33333333333334" height="42"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <color key="pageIndicatorTintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <color key="currentPageIndicatorTintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="pageIndicatorTintColor" name="BackgroundGrayColor"/>
+                                                <color key="currentPageIndicatorTintColor" name="InverseBackgroundColor"/>
+                                                <connections>
+                                                    <action selector="pageControlSelectionAction:" destination="XJz-g3-Eid" eventType="valueChanged" id="Wm8-5l-Sef"/>
+                                                </connections>
                                             </pageControl>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Featured Articles" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7aJ-vf-lyx">
-                                                <rect key="frame" x="98.333333333333329" y="176.66666666666666" width="217.33333333333337" height="24.666666666666657"/>
+                                                <rect key="frame" x="111" y="176.66666666666666" width="192" height="24.666666666666657"/>
                                                 <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="21"/>
-                                                <nil key="textColor"/>
+                                                <color key="textColor" name="InverseBackgroundColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HwD-Wo-mKv" userLabel="loadingASBNews">
@@ -788,7 +798,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                 </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" name="BackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstItem="frI-jT-DTa" firstAttribute="top" secondItem="HwD-Wo-mKv" secondAttribute="top" constant="8" id="2Cq-wo-dsG"/>
                                                     <constraint firstItem="frI-jT-DTa" firstAttribute="leading" secondItem="HwD-Wo-mKv" secondAttribute="leading" constant="25" id="PpD-Vp-KOX"/>
@@ -897,7 +907,7 @@
                             </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="MrD-os-5QI"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="BackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Xab-Ha-pr7" firstAttribute="height" secondItem="LqR-GK-uab" secondAttribute="height" id="48p-Sf-eVN"/>
                             <constraint firstItem="Xab-Ha-pr7" firstAttribute="top" secondItem="MrD-os-5QI" secondAttribute="top" id="CYW-yL-cMb"/>
@@ -941,7 +951,7 @@
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" contentInsetAdjustmentBehavior="never" translatesAutoresizingMaskIntoConstraints="NO" id="crg-tJ-0rO">
                                 <rect key="frame" x="0.0" y="58" width="414" height="453.33333333333326"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" name="BackgroundColor"/>
                                 <gestureRecognizers/>
                                 <connections>
                                     <outlet property="delegate" destination="08X-4I-yxB" id="5BU-sD-xkd"/>
@@ -949,7 +959,7 @@
                             </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gqs-Ri-FfJ" userLabel="shadowView">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="58"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="BackgroundColor"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UxG-mm-MkH">
                                 <rect key="frame" x="15.000000000000002" y="15" width="18.666666666666671" height="27"/>
@@ -981,7 +991,7 @@
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Athletics" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DgT-rI-5cM">
                                 <rect key="frame" x="42" y="13.999999999999998" width="110" height="26.333333333333329"/>
-                                <color key="backgroundColor" red="0.59999999999999998" green="0.16078431369999999" blue="0.21960784310000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" name="mainThemeColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="26.329999999999998" id="TNC-pH-q9Y"/>
                                     <constraint firstAttribute="width" constant="110" id="Ygc-JH-ebd"/>
@@ -995,6 +1005,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="58" id="o1B-OK-Ohn"/>
                                 </constraints>
+                                <color key="tintColor" name="mainThemeColor"/>
                                 <connections>
                                     <action selector="exitArticle:" destination="08X-4I-yxB" eventType="touchUpInside" id="RUe-3D-dS8"/>
                                     <action selector="exitPopup:" destination="iaA-pd-aga" eventType="touchUpInside" id="Jym-Rv-k54"/>
@@ -1002,7 +1013,7 @@
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="8vf-rb-I3g"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" name="BackgroundColor"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="Gqs-Ri-FfJ" firstAttribute="top" secondItem="8vf-rb-I3g" secondAttribute="top" id="3pN-B3-KnE"/>
@@ -1053,6 +1064,7 @@
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wU6-yC-LQ7">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="716"/>
+                                        <color key="backgroundColor" name="BackgroundGrayColor"/>
                                     </imageView>
                                 </subviews>
                                 <constraints>
@@ -1070,7 +1082,7 @@
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ziQ-E2-lBB">
                                 <rect key="frame" x="10.000000000000002" y="10" width="18.666666666666671" height="27"/>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" name="BackgroundColor"/>
                                 <state key="normal" image="chevron.left" catalog="system">
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="22" scale="large"/>
                                 </state>
@@ -1133,18 +1145,18 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="62"/>
                                 <subviews>
                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PAGE NAME HERE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rvS-bp-55Q">
-                                        <rect key="frame" x="15" y="16.666666666666664" width="215.66666666666666" height="28.666666666666664"/>
+                                        <rect key="frame" x="15" y="17" width="207.33333333333334" height="28"/>
                                         <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="24"/>
-                                        <color key="textColor" red="0.62352941176470589" green="0.047058823529411764" blue="0.047058823529411764" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" name="mainThemeColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xR7-JS-TMx">
                                         <rect key="frame" x="0.0" y="0.0" width="200" height="62"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Arcadia" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ay2-jf-MOk">
-                                                <rect key="frame" x="50" y="6.0000000000000018" width="89" height="27.666666666666671"/>
+                                                <rect key="frame" x="50" y="6" width="78" height="27"/>
                                                 <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="23"/>
-                                                <color key="textColor" red="0.59999999999999998" green="0.16078431369999999" blue="0.21960784310000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="textColor" name="mainThemeColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="September 99" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="U86-L8-TFj">
@@ -1179,7 +1191,7 @@
                                     </view>
                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bdm-ca-Vej">
                                         <rect key="frame" x="377" y="46.666666666666664" width="5" height="5"/>
-                                        <color key="backgroundColor" red="0.62352941179999999" green="0.047058823530000002" blue="0.047058823530000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" name="mainThemeColor"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="5" id="MRF-vv-Y8r"/>
                                             <constraint firstAttribute="height" constant="5" id="beG-tN-5QT"/>
@@ -1196,14 +1208,14 @@
                                             <constraint firstAttribute="height" constant="30.670000000000002" id="2LS-tS-gfi"/>
                                             <constraint firstAttribute="width" constant="25" id="uuq-q0-Oiy"/>
                                         </constraints>
-                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="tintColor" name="InverseBackgroundColor"/>
                                         <state key="normal" backgroundImage="bell.fill" catalog="system"/>
                                         <connections>
                                             <action selector="openNotifications:" destination="er0-Fk-1NM" eventType="touchUpInside" id="4Np-Gr-JSe"/>
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" name="BackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="rvS-bp-55Q" firstAttribute="leading" secondItem="hWQ-Aq-Bwe" secondAttribute="leading" constant="15" id="0NW-Ni-VCP"/>
                                     <constraint firstItem="rvS-bp-55Q" firstAttribute="centerY" secondItem="hWQ-Aq-Bwe" secondAttribute="centerY" id="30w-GL-8xh"/>
@@ -1263,7 +1275,7 @@
                                         </subviews>
                                     </stackView>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" name="BackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="PBQ-ay-oxj" firstAttribute="height" secondItem="HYY-fu-odz" secondAttribute="height" multiplier="0.55" id="7qR-hD-G32"/>
                                     <constraint firstItem="7gx-G2-ytR" firstAttribute="height" secondItem="HYY-fu-odz" secondAttribute="height" multiplier="0.55" id="8Fn-3W-foe"/>
@@ -1283,7 +1295,7 @@
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="re5-dC-xIv"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" name="BackgroundColor"/>
                         <constraints>
                             <constraint firstItem="hWQ-Aq-Bwe" firstAttribute="leading" secondItem="re5-dC-xIv" secondAttribute="leading" id="9Io-ir-hv1"/>
                             <constraint firstItem="re5-dC-xIv" firstAttribute="trailing" secondItem="m9h-Ju-R2A" secondAttribute="trailing" id="EVo-eg-N7g"/>
@@ -1338,7 +1350,7 @@
                                         <subviews>
                                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7fW-Zl-nwU">
                                                 <rect key="frame" x="0.0" y="41" width="416" height="901"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" name="BackgroundColor"/>
                                                 <viewLayoutGuide key="contentLayoutGuide" id="P5n-mr-d09"/>
                                                 <viewLayoutGuide key="frameLayoutGuide" id="GAd-35-9Gc"/>
                                                 <connections>
@@ -1347,7 +1359,7 @@
                                             </scrollView>
                                             <scrollView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6rC-8R-9Il">
                                                 <rect key="frame" x="0.0" y="0.0" width="416" height="45"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" name="BackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="45" id="VsH-b4-4hc"/>
                                                 </constraints>
@@ -1355,7 +1367,7 @@
                                                 <viewLayoutGuide key="frameLayoutGuide" id="Rpy-VH-LYh"/>
                                             </scrollView>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" name="BackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="6rC-8R-9Il" secondAttribute="trailing" id="1z7-lL-Ryn"/>
                                             <constraint firstItem="6rC-8R-9Il" firstAttribute="leading" secondItem="4Il-EP-tky" secondAttribute="leading" id="9Bm-Xu-SOD"/>
@@ -1369,7 +1381,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" name="BackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="4Il-EP-tky" firstAttribute="width" secondItem="pm9-GY-9Nm" secondAttribute="width" id="33x-uv-jeQ"/>
                                     <constraint firstItem="4Il-EP-tky" firstAttribute="leading" secondItem="pm9-GY-9Nm" secondAttribute="leading" id="7zw-ls-MRW"/>
@@ -1383,7 +1395,7 @@
                             </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="QWa-7E-gcV"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" name="BackgroundColor"/>
                         <constraints>
                             <constraint firstItem="pm9-GY-9Nm" firstAttribute="top" secondItem="QWa-7E-gcV" secondAttribute="top" id="Aq3-7E-u3u"/>
                             <constraint firstItem="pm9-GY-9Nm" firstAttribute="bottom" secondItem="QWa-7E-gcV" secondAttribute="bottom" id="Eyf-R4-cwN"/>
@@ -1414,20 +1426,20 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No saved articles found. Click on the bookmark icon to save an article." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Rh-dO-soH">
-                                <rect key="frame" x="10" y="455.33333333333331" width="394" height="89.666666666666686"/>
+                                <rect key="frame" x="10" y="456.33333333333331" width="394" height="87.666666666666686"/>
                                 <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="25"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Lrm-pV-QtS">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="942"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" name="BackgroundColor"/>
                                 <viewLayoutGuide key="contentLayoutGuide" id="g12-kH-Ab7"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="62e-8P-63L"/>
                             </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Vkk-Jn-XKk"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" name="BackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="6Rh-dO-soH" secondAttribute="trailing" constant="10" id="2gX-xX-cnc"/>
                             <constraint firstItem="6Rh-dO-soH" firstAttribute="centerY" secondItem="Vkk-Jn-XKk" secondAttribute="centerY" id="BZI-kO-xOq"/>
@@ -1453,7 +1465,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="insetGrouped" separatorStyle="singleLineEtched" sectionIndexMinimumDisplayRowCount="3" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="FSw-qv-3z5">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="separatorColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="separatorColor" name="BackgroundColor"/>
                         <sections>
                             <tableViewSection headerTitle="General" id="lgx-ZT-Fgj">
                                 <cells>
@@ -1683,7 +1695,7 @@ Q2xlYXIgEFNhdmVkIEFydGljbGVzA
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hAq-mj-Ifb">
                                 <rect key="frame" x="15.000000000000002" y="15" width="18.666666666666671" height="27"/>
-                                <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" name="BackgroundGrayColor"/>
                                 <state key="normal" image="chevron.left" catalog="system">
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="22" scale="large"/>
                                 </state>
@@ -1692,10 +1704,9 @@ Q2xlYXIgEFNhdmVkIEFydGljbGVzA
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notification Settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BFK-Rj-RZJ">
-                                <rect key="frame" x="41.999999999999986" y="14" width="249.66666666666663" height="28"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <rect key="frame" x="42" y="14" width="217" height="28"/>
                                 <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="24"/>
-                                <color key="textColor" red="0.58039215690000001" green="0.066666666669999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" name="mainThemeColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <containerView opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VND-nr-sKV">
@@ -1715,7 +1726,7 @@ Q2xlYXIgEFNhdmVkIEFydGljbGVzA
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="t72-7N-Wcb"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" name="BackgroundColor"/>
                         <constraints>
                             <constraint firstItem="hAq-mj-Ifb" firstAttribute="leading" secondItem="t72-7N-Wcb" secondAttribute="leading" constant="15" id="35D-iK-J1n"/>
                             <constraint firstItem="VND-nr-sKV" firstAttribute="trailing" secondItem="t72-7N-Wcb" secondAttribute="trailing" id="A4h-Qb-ui1"/>
@@ -1747,7 +1758,7 @@ Q2xlYXIgEFNhdmVkIEFydGljbGVzA
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="insetGrouped" separatorStyle="singleLineEtched" sectionIndexMinimumDisplayRowCount="5" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="rII-iU-PJ4">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="879"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="separatorColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="separatorColor" name="BackgroundColor"/>
                         <sections>
                             <tableViewSection id="Uoh-H4-jjP">
                                 <cells>
@@ -1945,19 +1956,19 @@ Q2xlYXIgEFNhdmVkIEFydGljbGVzA
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Terms and Agreements" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WsF-GI-9Jv">
-                                <rect key="frame" x="42" y="14" width="278.33333333333331" height="28"/>
+                                <rect key="frame" x="42.000000000000014" y="14" width="247.33333333333337" height="28"/>
                                 <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="24"/>
-                                <color key="textColor" red="0.58039215690000001" green="0.066666666669999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" name="mainThemeColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5cx-Le-tUN">
                                 <rect key="frame" x="0.0" y="50" width="414" height="686"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="naw-Mp-di2">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="5101.666666666667"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="5330"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ddp-ER-vDU">
-                                                <rect key="frame" x="5" y="0.0" width="404" height="5101.666666666667"/>
+                                                <rect key="frame" x="5" y="0.0" width="404" height="5330"/>
                                                 <accessibility key="accessibilityConfiguration">
                                                     <accessibilityTraits key="traits" link="YES" staticText="YES"/>
                                                 </accessibility>
@@ -2098,11 +2109,11 @@ This license agreement is governed by the laws of the State of California exclud
              
 14.2  Collateral agreements, changes and amendments are only valid if laid down in writing. The preceding clause can only be waived in writing.</string>
                                                 <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="15"/>
-                                                <nil key="textColor"/>
+                                                <color key="textColor" name="InverseBackgroundColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" name="BackgroundColor"/>
                                         <constraints>
                                             <constraint firstItem="Ddp-ER-vDU" firstAttribute="top" secondItem="naw-Mp-di2" secondAttribute="top" id="0EW-xF-0IB"/>
                                             <constraint firstItem="Ddp-ER-vDU" firstAttribute="top" secondItem="naw-Mp-di2" secondAttribute="top" id="54t-bQ-3Xy"/>
@@ -2135,7 +2146,7 @@ This license agreement is governed by the laws of the State of California exclud
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="EFY-5Y-bX7"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" name="BackgroundColor"/>
                         <constraints>
                             <constraint firstItem="WsF-GI-9Jv" firstAttribute="leading" secondItem="EFY-5Y-bX7" secondAttribute="leading" constant="42" id="F2n-ob-faC"/>
                             <constraint firstItem="4I7-DN-mXq" firstAttribute="top" secondItem="EFY-5Y-bX7" secondAttribute="top" id="Fbc-He-pbU"/>
@@ -2169,7 +2180,7 @@ This license agreement is governed by the laws of the State of California exclud
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kPR-pE-SXP">
                                 <rect key="frame" x="15.000000000000002" y="15" width="18.666666666666671" height="27"/>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" name="BackgroundColor"/>
                                 <state key="normal" image="chevron.left" catalog="system">
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="22" scale="large"/>
                                 </state>
@@ -2215,20 +2226,20 @@ This license agreement is governed by the laws of the State of California exclud
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No notifications. Please check back later." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ovN-aC-RAA">
-                                <rect key="frame" x="10" y="470" width="394" height="60"/>
+                                <rect key="frame" x="10" y="471" width="394" height="58.333333333333371"/>
                                 <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="25"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NZN-7j-auO">
                                 <rect key="frame" x="0.0" y="58" width="414" height="922"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" name="BackgroundColor"/>
                                 <viewLayoutGuide key="contentLayoutGuide" id="quT-Ls-N2h"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="CS7-96-2oQ"/>
                             </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H0Z-ns-bKQ" userLabel="shadowView">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="58"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="BackgroundColor"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MJJ-OQ-oKj">
                                 <rect key="frame" x="15.000000000000002" y="15" width="18.666666666666671" height="27"/>
@@ -2241,9 +2252,9 @@ This license agreement is governed by the laws of the State of California exclud
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notifications" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4fI-zh-Z0s">
-                                <rect key="frame" x="42" y="14" width="155.33333333333334" height="28"/>
+                                <rect key="frame" x="42" y="14" width="134.33333333333334" height="28"/>
                                 <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="24"/>
-                                <color key="textColor" red="0.59999999999999998" green="0.16078431369999999" blue="0.21960784310000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" name="mainThemeColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="arG-KJ-TsU">
@@ -2257,7 +2268,7 @@ This license agreement is governed by the laws of the State of California exclud
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="2sE-1G-zN5"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" name="BackgroundColor"/>
                         <constraints>
                             <constraint firstItem="H0Z-ns-bKQ" firstAttribute="trailing" secondItem="2sE-1G-zN5" secondAttribute="trailing" id="6f1-GT-WCk"/>
                             <constraint firstItem="NZN-7j-auO" firstAttribute="top" secondItem="arG-KJ-TsU" secondAttribute="bottom" id="Hc9-NE-aho"/>
@@ -2305,6 +2316,18 @@ This license agreement is governed by the laws of the State of California exclud
         <image name="bell.fill" catalog="system" width="128" height="124"/>
         <image name="bookmark" catalog="system" width="112" height="128"/>
         <image name="chevron.left" catalog="system" width="96" height="128"/>
+        <namedColor name="BackgroundColor">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="BackgroundGrayColor">
+            <color red="0.68571541878172582" green="0.68571541878172582" blue="0.68571541878172582" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="InverseBackgroundColor">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="mainThemeColor">
+            <color red="0.62400001287460327" green="0.046999998390674591" blue="0.046999998390674591" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

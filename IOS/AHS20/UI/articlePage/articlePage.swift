@@ -65,7 +65,7 @@ class articlePageClass: UIViewController, UIScrollViewDelegate, UINavigationCont
         //view.addGestureRecognizer(gestureRecognizer);
         mainScrollView.addGestureRecognizer(gestureRecognizer);
         
-        shadowView.layer.shadowColor = UIColor.black.cgColor;
+        shadowView.layer.shadowColor = InverseBackgroundColor.cgColor;
         shadowView.layer.shadowOpacity = 0.05;
         shadowView.layer.shadowOffset = CGSize(width: 0 , height: 5);
         
@@ -82,8 +82,9 @@ class articlePageClass: UIViewController, UIScrollViewDelegate, UINavigationCont
         let titleFont = UIFont(name: "NewYorkMedium-Bold", size: CGFloat(fontSize+8));
         let articleTitleFrame = CGRect(x: padding, y: nextY, width: universalWidth, height: articleTitleText?.getHeight(withConstrainedWidth: universalWidth, font: titleFont!) ?? 0);
         let articleTitle = UILabel(frame: articleTitleFrame);
-        articleTitle.text = articleTitleText; // set article title herer
+        articleTitle.text = articleTitleText; // set article title here
         articleTitle.font = titleFont;
+        articleTitle.textColor = InverseBackgroundColor;
         articleTitle.numberOfLines = 0;
         mainScrollView.addSubview(articleTitle);
         nextY += articleTitleFrame.height + 7;
@@ -123,7 +124,7 @@ class articlePageClass: UIViewController, UIScrollViewDelegate, UINavigationCont
             imageScrollView.contentSize = CGSize(width: origX, height: imageScrollView.frame.size.height);
             imageScrollView.delegate = self;
             imageScrollView.layer.cornerRadius = 5;
-            imageScrollView.layer.borderColor = UIColor.gray.cgColor;
+            imageScrollView.layer.borderColor = BackgroundGrayColor.cgColor;
             imageScrollView.layer.borderWidth = 0.5;
             imageScrollView.isPagingEnabled = true;
             imageScrollView.showsHorizontalScrollIndicator = false;
@@ -152,7 +153,7 @@ class articlePageClass: UIViewController, UIScrollViewDelegate, UINavigationCont
             let articleAuthor = UILabel(frame: articleAuthorFrame);
             articleAuthor.text = articleAuthorText;
             articleAuthor.font = articleAuthorFont;
-            articleAuthor.textColor = makeColor(r: 112, g: 112, b: 112);
+            articleAuthor.textColor = BackgroundGrayColor;
             articleAuthor.numberOfLines = 0;
             mainScrollView.addSubview(articleAuthor);
             nextY += articleAuthorFrame.size.height+3;
@@ -163,7 +164,7 @@ class articlePageClass: UIViewController, UIScrollViewDelegate, UINavigationCont
         let articleDate = UILabel(frame: articleDateFrame);
         articleDate.text = articleDateText;
         articleDate.font = UIFont(name: "SFProDisplay-Regular", size: CGFloat(fontSize-3));
-        articleDate.textColor = makeColor(r: 112, g: 112, b: 112);
+        articleDate.textColor = BackgroundGrayColor;
         articleDate.numberOfLines = 0;
         mainScrollView.addSubview(articleDate);
         nextY += articleDateFrame.size.height;
@@ -174,7 +175,8 @@ class articlePageClass: UIViewController, UIScrollViewDelegate, UINavigationCont
         let articleBody = UITextView(frame: articleBodyFrame);
         articleBody.attributedText = articleBodyText;
         articleBody.font = UIFont(name: "SFProDisplay-Regular", size: CGFloat(fontSize));
-        articleBody.textColor = makeColor(r: 33, g: 33, b: 33);
+        articleBody.textColor = InverseBackgroundColor;
+        articleBody.backgroundColor = BackgroundColor;
         articleBody.isScrollEnabled = false;
         articleBody.isEditable = false;
         articleBody.tintColor = UIColor.systemBlue;

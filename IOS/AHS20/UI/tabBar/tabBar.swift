@@ -131,6 +131,8 @@ class tabBarClass: UIViewController, UIViewControllerTransitioningDelegate, UISc
         //developer stuff
         //setUpDevConfigs();
         
+        //UserDefaults.standard.removeObject(forKey: "notificationReadDict");
+        
         NotificationCenter.default.addObserver(self, selector: #selector(self.articleSelector), name:NSNotification.Name(rawValue: "article"), object: nil);
         
         
@@ -139,12 +141,14 @@ class tabBarClass: UIViewController, UIViewControllerTransitioningDelegate, UISc
         
         fontSize = UserDefaults.standard.integer(forKey: "fontSize") != 0 ? UserDefaults.standard.integer(forKey: "fontSize") : 20;
         
+        //tabBarView.backgroundColor = BackgroundColor;
+        //contentView.backgroundColor = BackgroundColor;
         
         // set up buttons
         for index in 0..<buttons.count{
             let image = UIImage(named: iconImagePath[index]);
             buttons[index].setImage(image, for: .normal);
-            buttons[index].tintColor = UIColor.gray;
+            buttons[index].tintColor = BackgroundGrayColor;
             buttons[index].imageView?.contentMode = .scaleAspectFit;
             buttons[index].contentVerticalAlignment = .fill;
             buttons[index].contentHorizontalAlignment = .fill;
@@ -164,15 +168,15 @@ class tabBarClass: UIViewController, UIViewControllerTransitioningDelegate, UISc
         vc.view.frame = contentView.bounds;
         contentView.addSubview(vc.view);
         vc.didMove(toParent: self);
-        topBar.layer.shadowColor = UIColor.gray.cgColor;
+        topBar.layer.shadowColor = BackgroundGrayColor.cgColor;
         topBar.layer.shadowOpacity = 0.08;
         topBar.layer.shadowRadius = 5;
         topBar.layer.shadowOffset = CGSize(width: 0 , height:10);
-        tabBarView.layer.shadowColor = UIColor.gray.cgColor;
+        tabBarView.layer.shadowColor = BackgroundGrayColor.cgColor;
         tabBarView.layer.shadowOpacity = 0.07;
         tabBarView.layer.shadowRadius = 5;
         tabBarView.layer.shadowOffset = CGSize(width: 0, height: -10);
-        buttons[0].tintColor = UIColor.black;
+        buttons[0].tintColor = InverseBackgroundColor;
         dateLabel.text = getTitleDateAndMonth();
     }
     
@@ -205,7 +209,7 @@ class tabBarClass: UIViewController, UIViewControllerTransitioningDelegate, UISc
         }
         else{
             // remove prev view controller
-            buttons[prevIndex].tintColor = UIColor.gray;
+            buttons[prevIndex].tintColor = BackgroundGrayColor;
             
             let prevVC = viewControllers[prevIndex];
             prevVC.willMove(toParent: nil);
@@ -213,7 +217,7 @@ class tabBarClass: UIViewController, UIViewControllerTransitioningDelegate, UISc
             prevVC.removeFromParent();
             
             // add current view controller
-            sender.tintColor = UIColor.black;
+            sender.tintColor = InverseBackgroundColor;
             //sender.setImage(UIImage(named: iconImagePathInv[sender.tag]), for: .normal);
             let vc = viewControllers[selectedIndex];
             addChild(vc);
@@ -226,7 +230,7 @@ class tabBarClass: UIViewController, UIViewControllerTransitioningDelegate, UISc
                 //               topBar.layer.cornerRadius = homeTopCornerRadius;
                 //topBar.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner];
                 topBarHeightContraint.constant = 62;
-                topBar.layer.shadowColor = UIColor.gray.cgColor;
+                topBar.layer.shadowColor = BackgroundGrayColor.cgColor;
                 homeTopBarContent.isHidden = false;
                 topBarPageName.isHidden = true;
             }
@@ -238,15 +242,15 @@ class tabBarClass: UIViewController, UIViewControllerTransitioningDelegate, UISc
                 topBarPageName.isHidden = false;
                 if (sender.tag == 1){
                     topBarPageName.text = "Student Bulletin";
-                    topBar.layer.shadowColor = UIColor.white.cgColor;
+                    topBar.layer.shadowColor = BackgroundColor.cgColor;
                 }
                 else if (sender.tag == 2){
                     topBarPageName.text = "Saved";
-                    topBar.layer.shadowColor = UIColor.gray.cgColor;
+                    topBar.layer.shadowColor = BackgroundGrayColor.cgColor;
                 }
                 else if (sender.tag == 3){
                     topBarPageName.text = "Settings";
-                    topBar.layer.shadowColor = UIColor.gray.cgColor;
+                    topBar.layer.shadowColor = BackgroundGrayColor.cgColor;
                 }
             }
             

@@ -169,6 +169,27 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 		}
 	}
 	
+	private func getScrollViewFromPageControl(with tag: Int) -> UIScrollView{
+		switch tag {
+		case 0:
+			return generalInfoScrollView;
+		case 1:
+			return districtNewsScrollView;
+		case 2:
+			return asbNewsScrollView;
+		default:
+			return UIScrollView();
+		}
+	}
+	
+	@IBAction internal func pageControlSelectionAction(_ sender: UIPageControl){
+		let page = sender.currentPage;
+		let scrollview = getScrollViewFromPageControl(with: sender.tag);
+		var frame = scrollview.frame;
+		frame.origin.x = frame.size.width * CGFloat(page);
+		frame.origin.y = 0;
+		scrollview.scrollRectToVisible(frame, animated: true);
+	}
 	
 	private func smallArticle(x: CGFloat, y: CGFloat, width: CGFloat, height: CGFloat, articleSingle: articleData) -> CustomUIButton{//TODO: find out a way to separate article from top and bottom
 		
@@ -185,9 +206,9 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 			articleImageView.imgFromURL(sURL: articleSingle.articleImages?[0] ?? "");
 			articleImageView.contentMode = .scaleAspectFill;
 		}
-		articleImageView.backgroundColor = UIColor.white;
+		articleImageView.backgroundColor = BackgroundColor;
 		//articleImageView.setRoundedEdge(corners: [.topLeft, .topRight, .bottomLeft, .bottomRight], radius: 10);
-		articleImageView.layer.borderColor = UIColor.gray.cgColor;
+		articleImageView.layer.borderColor = BackgroundGrayColor.cgColor;
 		articleImageView.layer.borderWidth = 0.5;
 		articleImageView.layer.cornerRadius = 7;
 		articleImageView.clipsToBounds = true;
@@ -200,6 +221,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 		articleTitle.textAlignment = .left;
 		articleTitle.font = UIFont(name: "SFProDisplay-Semibold", size: 18);
 		articleTitle.numberOfLines = 0;
+		articleTitle.textColor = InverseBackgroundColor;
 		
 		var text = "";
 		if (articleSingle.hasHTML){
@@ -219,6 +241,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 		articleBody.isScrollEnabled = false;
 		articleBody.textContainerInset = UIEdgeInsets(top: 0, left: -4, bottom: 0, right: 0);
 		articleBody.textContainer.lineBreakMode = .byTruncatingTail;
+		articleBody.textColor = InverseBackgroundColor;
 		
 		
 		let timeStampText = epochClass.epochToString(epoch: articleSingle.articleUnixEpoch ?? -1);
@@ -235,6 +258,8 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 		timeStamp.layer.borderWidth = 0.5;
 		timeStamp.layer.cornerRadius = 3;
 		timeStamp.clipsToBounds = true;
+		timeStamp.textColor = InverseBackgroundColor;
+		timeStamp.backgroundColor = BackgroundColor;
 		
 		
 		mainArticleView.addSubview(articleImageView);
@@ -318,7 +343,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 					articleCatagory.text = articleCatagorytext;
 					articleCatagory.textAlignment = .center;
 					articleCatagory.textColor = .white;
-					articleCatagory.backgroundColor = makeColor(r: 159, g: 12, b: 12);
+					articleCatagory.backgroundColor = mainThemeColor;
 					articleCatagory.font = UIFont(name: "SFProText-Bold", size: 12);
 					articleCatagory.setRoundedEdge(corners: [.bottomRight, .bottomLeft, .topRight, .topLeft], radius: 5);
 					
@@ -336,7 +361,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 					titleLabel.text = title;
 					titleLabel.font = UIFont(name: "SFProDisplay-Semibold", size: 22);
 					titleLabel.textAlignment = .left;
-					titleLabel.textColor = UIColor.black;
+					titleLabel.textColor = InverseBackgroundColor;
 					titleLabel.numberOfLines = 2;
 					//SFProText-Bold, SFProDisplay-Regular, SFProDisplay-Semibold, SFProDisplay-Black
 					
@@ -349,7 +374,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 					imageView.layer.borderColor = UIColor.gray.cgColor;
 					imageView.layer.borderWidth = 0.5;
 					imageView.layer.cornerRadius = 5;
-					imageView.backgroundColor = UIColor.white;
+					imageView.backgroundColor = BackgroundColor;
 					
 					contentView.addSubview(timeStamp);
 					contentView.addSubview(articleCatagory);
@@ -373,7 +398,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 				// change horizontal size of scrollview
 				featuredScrollView.delegate = self;
 				featuredScrollView.showsHorizontalScrollIndicator = true;
-				featuredScrollView.backgroundColor = UIColor.white;
+				featuredScrollView.backgroundColor = BackgroundColor;
 				
 			}
 			else{
