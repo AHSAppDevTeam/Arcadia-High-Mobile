@@ -1005,6 +1005,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="58" id="o1B-OK-Ohn"/>
                                 </constraints>
+                                <color key="tintColor" name="mainThemeColor"/>
                                 <connections>
                                     <action selector="exitArticle:" destination="08X-4I-yxB" eventType="touchUpInside" id="RUe-3D-dS8"/>
                                     <action selector="exitPopup:" destination="iaA-pd-aga" eventType="touchUpInside" id="Jym-Rv-k54"/>
@@ -1063,6 +1064,7 @@
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wU6-yC-LQ7">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="716"/>
+                                        <color key="backgroundColor" name="BackgroundGrayColor"/>
                                     </imageView>
                                 </subviews>
                                 <constraints>
@@ -1080,7 +1082,7 @@
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ziQ-E2-lBB">
                                 <rect key="frame" x="10.000000000000002" y="10" width="18.666666666666671" height="27"/>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" name="BackgroundColor"/>
                                 <state key="normal" image="chevron.left" catalog="system">
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="22" scale="large"/>
                                 </state>
@@ -1693,7 +1695,7 @@ Q2xlYXIgEFNhdmVkIEFydGljbGVzA
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hAq-mj-Ifb">
                                 <rect key="frame" x="15.000000000000002" y="15" width="18.666666666666671" height="27"/>
-                                <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" name="BackgroundGrayColor"/>
                                 <state key="normal" image="chevron.left" catalog="system">
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="22" scale="large"/>
                                 </state>
@@ -1702,10 +1704,9 @@ Q2xlYXIgEFNhdmVkIEFydGljbGVzA
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notification Settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BFK-Rj-RZJ">
-                                <rect key="frame" x="41.999999999999986" y="14" width="249.66666666666663" height="28"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <rect key="frame" x="42" y="14" width="217" height="28"/>
                                 <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="24"/>
-                                <color key="textColor" red="0.58039215690000001" green="0.066666666669999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" name="mainThemeColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <containerView opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VND-nr-sKV">
@@ -1725,7 +1726,7 @@ Q2xlYXIgEFNhdmVkIEFydGljbGVzA
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="t72-7N-Wcb"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" name="BackgroundColor"/>
                         <constraints>
                             <constraint firstItem="hAq-mj-Ifb" firstAttribute="leading" secondItem="t72-7N-Wcb" secondAttribute="leading" constant="15" id="35D-iK-J1n"/>
                             <constraint firstItem="VND-nr-sKV" firstAttribute="trailing" secondItem="t72-7N-Wcb" secondAttribute="trailing" id="A4h-Qb-ui1"/>
@@ -1757,7 +1758,7 @@ Q2xlYXIgEFNhdmVkIEFydGljbGVzA
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="insetGrouped" separatorStyle="singleLineEtched" sectionIndexMinimumDisplayRowCount="5" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="rII-iU-PJ4">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="879"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="separatorColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="separatorColor" name="BackgroundColor"/>
                         <sections>
                             <tableViewSection id="Uoh-H4-jjP">
                                 <cells>
@@ -1957,7 +1958,7 @@ Q2xlYXIgEFNhdmVkIEFydGljbGVzA
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Terms and Agreements" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WsF-GI-9Jv">
                                 <rect key="frame" x="42.000000000000014" y="14" width="247.33333333333337" height="28"/>
                                 <fontDescription key="fontDescription" name="SFProText-Bold" family="SF Pro Text" pointSize="24"/>
-                                <color key="textColor" red="0.58039215690000001" green="0.066666666669999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" name="mainThemeColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5cx-Le-tUN">
@@ -2108,11 +2109,11 @@ This license agreement is governed by the laws of the State of California exclud
              
 14.2  Collateral agreements, changes and amendments are only valid if laid down in writing. The preceding clause can only be waived in writing.</string>
                                                 <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="15"/>
-                                                <nil key="textColor"/>
+                                                <color key="textColor" name="InverseBackgroundColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" name="BackgroundColor"/>
                                         <constraints>
                                             <constraint firstItem="Ddp-ER-vDU" firstAttribute="top" secondItem="naw-Mp-di2" secondAttribute="top" id="0EW-xF-0IB"/>
                                             <constraint firstItem="Ddp-ER-vDU" firstAttribute="top" secondItem="naw-Mp-di2" secondAttribute="top" id="54t-bQ-3Xy"/>
@@ -2179,7 +2180,7 @@ This license agreement is governed by the laws of the State of California exclud
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kPR-pE-SXP">
                                 <rect key="frame" x="15.000000000000002" y="15" width="18.666666666666671" height="27"/>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" name="BackgroundColor"/>
                                 <state key="normal" image="chevron.left" catalog="system">
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="22" scale="large"/>
                                 </state>

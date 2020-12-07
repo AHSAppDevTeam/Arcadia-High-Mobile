@@ -88,7 +88,7 @@ class savedClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDele
                 articleCatagory.backgroundColor = mainThemeColor;
                 articleCatagory.text = savedArticles[aIndex].articleCatagory;
                 articleCatagory.textAlignment = .center;
-                articleCatagory.textColor = BackgroundColor;
+                articleCatagory.textColor = UIColor.white;
                 articleCatagory.font = UIFont(name: "SFProDisplay-Semibold", size: 12);
                 articleCatagory.setRoundedEdge(corners: [.bottomRight, .bottomLeft, .topRight, .topLeft], radius: 5);
                 
@@ -123,6 +123,8 @@ class savedClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDele
                 articleButton.layer.shadowOpacity = 0.2;
                 articleButton.layer.shadowRadius = 5;
                 articleButton.layer.shadowOffset = CGSize(width: 0 , height: self.traitCollection.userInterfaceStyle == .dark ? 0 : 3);
+                articleButton.layer.borderWidth = 0.15;
+                articleButton.layer.borderColor = BackgroundGrayColor.cgColor;
                 
                 articleButton.articleCompleteData = savedArticles[aIndex];
                 articleButton.addTarget(self, action: #selector(openArticle), for: .touchUpInside);

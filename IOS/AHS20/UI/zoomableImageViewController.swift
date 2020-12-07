@@ -31,7 +31,7 @@ class zoomableImageViewController: UIViewController, UIScrollViewDelegate{
         scrollView.alwaysBounceHorizontal = false;
         scrollView.minimumZoomScale = 1.0;
         scrollView.maximumZoomScale = 6.0;
-        scrollView.backgroundColor = UIColor.lightGray;
+        scrollView.backgroundColor = BackgroundGrayColor;
         imageView.image = image;
     }
     

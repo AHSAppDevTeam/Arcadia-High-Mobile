@@ -53,18 +53,18 @@ class aboutUsPage: UIViewController {
         
         let emailViewFrame = CGRect(x: horizontalPadding, y: nextY, width: UIScreen.main.bounds.width - 2*horizontalPadding, height: CGFloat(100));
         let emailView = UIView(frame: emailViewFrame);
-        emailView.backgroundColor = UIColor.white;
+        emailView.backgroundColor = BackgroundColor;
         
         let emailViewTitle = UILabel();
         emailViewTitle.text = "Contact us at:";
-        emailViewTitle.textColor = UIColor.black;
+        emailViewTitle.textColor = InverseBackgroundColor;
         emailViewTitle.font = UIFont(name: "SFProDisplay-Semibold", size: 20);
         emailViewTitle.sizeToFit();
         emailViewTitle.center = CGPoint(x: emailViewFrame.size.width / 2, y: 25);
         
         let emailClickable = UITextView();
         emailClickable.text = "hsappdev@students.ausd.net";
-        emailClickable.textColor = UIColor.black;
+        emailClickable.textColor = InverseBackgroundColor;
         emailClickable.font = UIFont(name: "SFProDisplay-Semibold", size: 15);
         emailClickable.sizeToFit();
         emailClickable.isEditable = false;
@@ -82,7 +82,7 @@ class aboutUsPage: UIViewController {
         
         for i in 0...4{
             let outerView = UIView(frame: CGRect(x: horizontalPadding, y: nextY, width: UIScreen.main.bounds.width - 2*horizontalPadding, height: CGFloat(100))); // temp height
-            outerView.backgroundColor = UIColor.white;
+            outerView.backgroundColor = BackgroundColor;
             outerView.layer.cornerRadius = cornerRadius;
             var currY = CGFloat(0);
             
@@ -90,7 +90,7 @@ class aboutUsPage: UIViewController {
             let titleLabel = UILabel(frame: CGRect(x: 0, y: 10, width: outerView.frame.size.width, height: 20));
             titleLabel.text = arrayNames[i];
             titleLabel.font = UIFont(name: "SFProText-Bold", size: 18);
-            titleLabel.textColor = UIColor.black;
+            titleLabel.textColor = InverseBackgroundColor;
          //   titleLabel.backgroundColor = UIColor.gray;
             titleLabel.textAlignment = .center;
             
@@ -101,7 +101,7 @@ class aboutUsPage: UIViewController {
             let bodyText = UILabel(frame: CGRect(x: 0, y: currY, width: outerView.frame.size.width, height: CGFloat(nameTextHeights[i])));
             bodyText.text = nameText;
             bodyText.font = UIFont(name: "SFProDisplay-Semibold", size: 16);
-            bodyText.textColor = UIColor.gray;
+            bodyText.textColor = BackgroundGrayColor;
             bodyText.textAlignment = .center;
             bodyText.numberOfLines = 0;
             
