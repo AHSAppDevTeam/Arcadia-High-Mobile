@@ -17,6 +17,7 @@
 		330D3E27241D5E8D007D0628 /* AHS20Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330D3E26241D5E8D007D0628 /* AHS20Tests.swift */; };
 		330D3E32241D5E8D007D0628 /* AHS20UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330D3E31241D5E8D007D0628 /* AHS20UITests.swift */; };
 		331793F22464FEF5007CF7B7 /* notificationSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331793F12464FEF5007CF7B7 /* notificationSettings.swift */; };
+		3332CC56258090A300AAAF95 /* homePageDisplayFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3332CC55258090A300AAAF95 /* homePageDisplayFunc.swift */; };
 		333C082824CD004900E236CD /* UIImageColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333C082724CD004900E236CD /* UIImageColors.swift */; };
 		3343E25D244D0D1B0009D136 /* SFProDisplay-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3343E25C244D0D1B0009D136 /* SFProDisplay-Black.ttf */; };
 		3343E25E244D0D1B0009D136 /* SFProDisplay-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3343E25C244D0D1B0009D136 /* SFProDisplay-Black.ttf */; };
@@ -112,6 +113,7 @@
 		330D3E31241D5E8D007D0628 /* AHS20UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AHS20UITests.swift; sourceTree = "<group>"; };
 		330D3E33241D5E8D007D0628 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		331793F12464FEF5007CF7B7 /* notificationSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = notificationSettings.swift; sourceTree = "<group>"; };
+		3332CC55258090A300AAAF95 /* homePageDisplayFunc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = homePageDisplayFunc.swift; sourceTree = "<group>"; };
 		333C082724CD004900E236CD /* UIImageColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageColors.swift; sourceTree = "<group>"; };
 		3343E25C244D0D1B0009D136 /* SFProDisplay-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-Black.ttf"; sourceTree = "<group>"; };
 		3343E260244D0DD30009D136 /* SFProDisplay-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-Semibold.ttf"; sourceTree = "<group>"; };
@@ -352,6 +354,7 @@
 			children = (
 				330D3E13241D5E8C007D0628 /* homePage.swift */,
 				33CE442C2578C113002672C3 /* homePageMisc.swift */,
+				3332CC55258090A300AAAF95 /* homePageDisplayFunc.swift */,
 			);
 			path = homePage;
 			sourceTree = "<group>";
@@ -658,6 +661,7 @@
 				33CE442D2578C113002672C3 /* homePageMisc.swift in Sources */,
 				33CE440B2578B9B8002672C3 /* miscellaneousFunctions.swift in Sources */,
 				33E69204243AD1F20004E2F1 /* bulletinPage.swift in Sources */,
+				3332CC56258090A300AAAF95 /* homePageDisplayFunc.swift in Sources */,
 				33A40BE0257AAA33003CA200 /* notificationsPageMisc.swift in Sources */,
 				33CE44062578B9AD002672C3 /* UIClassExtensions.swift in Sources */,
 				33B77F2E249ED26F00A74B3A /* savedArticleClass.swift in Sources */,
