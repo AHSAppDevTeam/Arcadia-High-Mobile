@@ -1069,7 +1069,7 @@
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wU6-yC-LQ7">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="716"/>
-                                        <color key="backgroundColor" name="BackgroundGrayColor"/>
+                                        <color key="backgroundColor" name="BackgroundColor"/>
                                     </imageView>
                                 </subviews>
                                 <constraints>
@@ -1087,7 +1087,7 @@
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ziQ-E2-lBB">
                                 <rect key="frame" x="10.000000000000002" y="10" width="18.666666666666671" height="27"/>
-                                <color key="tintColor" name="BackgroundColor"/>
+                                <color key="tintColor" name="InverseBackgroundColor"/>
                                 <state key="normal" image="chevron.left" catalog="system">
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="22" scale="large"/>
                                 </state>

@@ -19,52 +19,9 @@ var unreadNotifCount = 0;
 
 // swift file with shared functions and extensions between files
 
-
-struct articleData: Codable {
-    var articleID: String?;
-    var articleTitle: String?;
-    var articleUnixEpoch: Int64?; // unix epoch time stamp
-    var articleBody: String?;
-    var articleAuthor: String?;
-    var articleImages: [String]?; // list of image urls
-    var articleVideoIDs: [String]?;
-    var articleCatagory: String?;
-    var isFeatured = false;
-    var hasHTML = false;
-}
-
 var internetConnected = false;
 var homeArticleList = [[articleData]](repeating: [articleData](), count: 3); // size of 4 rows, featured, asb, sports, district
 var bulletinArticleList = [[bulletinArticleData]](repeating: [bulletinArticleData](), count: 6); // size of 6 rows, seniors, colleges, events, athletics, reference, and others
-
-struct notificationData: Codable{
-    var messageID: String?;
-    var notificationTitle: String?;
-    var notificationBody: String?;
-    var notificationUnixEpoch: Int64?;
-    var notificationArticleID: String?; // articleID pointer
-    var notificationCatagory: Int?; // 0 - 3 : 0 is sports 1 is asb 2 is district 3 is bulletin
-}
-
-class CustomUIButton: UIButton{
-    var articleIndex = -1;
-    var articleCompleteData = articleData();
-}
-
-class notificationUIButton: CustomUIButton{
-    var alreadyRead = false;
-    var notificationCompleteData = notificationData();
-}
-
-struct bulletinArticleData: Codable {
-    var articleID: String?;
-    var articleTitle: String?;
-    var articleUnixEpoch: Int64?; // unix epoch time stamp
-    var articleBody: String?;
-    var articleCatagory: String?;
-    var articleType = -1;
-    var hasHTML = false;
-}
 
 
 var ref: DatabaseReference!; // database reference
@@ -118,29 +75,6 @@ final public class Reachability {
 
         return (isReachable && !needsConnection)
 
-    }
-}
-
-
-
-final class SegueFromRight: UIStoryboardSegue {
-    override func perform() {
-        let src = self.source
-        let dst = self.destination
-        
-        src.view.superview?.insertSubview(dst.view, aboveSubview: src.view)
-        dst.view.transform = CGAffineTransform(translationX: src.view.frame.size.width, y: 0)
-
-        UIView.animate(withDuration: 0.18,
-                              delay: 0.0,
-                            options: .curveEaseInOut,
-                         animations: {
-                                dst.view.transform = CGAffineTransform(translationX: 0, y: 0)
-                                },
-                        completion: { finished in
-                                src.present(dst, animated: false, completion: nil)
-                                    }
-                        )
     }
 }
 

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3307774225834F6000F7DA9F /* structsandclasses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3307774125834F6000F7DA9F /* structsandclasses.swift */; };
 		330B4D4D2484CA4C001087E9 /* NotificationSettingsWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330B4D4C2484CA4C001087E9 /* NotificationSettingsWrapper.swift */; };
 		330D3E10241D5E8C007D0628 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330D3E0F241D5E8C007D0628 /* AppDelegate.swift */; };
 		330D3E12241D5E8C007D0628 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 330D3E11241D5E8C007D0628 /* SceneDelegate.swift */; };
@@ -97,6 +98,7 @@
 
 /* Begin PBXFileReference section */
 		1F8AFE2CDA6DDABC3D4B82B4 /* Pods-AHS20-AHS20UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AHS20-AHS20UITests.debug.xcconfig"; path = "Target Support Files/Pods-AHS20-AHS20UITests/Pods-AHS20-AHS20UITests.debug.xcconfig"; sourceTree = "<group>"; };
+		3307774125834F6000F7DA9F /* structsandclasses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = structsandclasses.swift; sourceTree = "<group>"; };
 		330B4D4C2484CA4C001087E9 /* NotificationSettingsWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettingsWrapper.swift; sourceTree = "<group>"; };
 		330D3E0C241D5E8C007D0628 /* AHS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AHS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		330D3E0F241D5E8C007D0628 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -211,6 +213,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		3307774625834F7A00F7DA9F /* Custom */ = {
+			isa = PBXGroup;
+			children = (
+				33CE44052578B9AD002672C3 /* UIClassExtensions.swift */,
+				3307774125834F6000F7DA9F /* structsandclasses.swift */,
+			);
+			path = Custom;
+			sourceTree = "<group>";
+		};
 		330D3E03241D5E8B007D0628 = {
 			isa = PBXGroup;
 			children = (
@@ -299,10 +310,10 @@
 		33B77F2A249ED1D500A74B3A /* Backend */ = {
 			isa = PBXGroup;
 			children = (
+				3307774625834F7A00F7DA9F /* Custom */,
 				33CEDB6E2582FE8E009341EF /* transitions */,
 				33D3626324C10053008B4E67 /* htmlFunctions.swift */,
 				33CE440A2578B9B8002672C3 /* miscellaneousFunctions.swift */,
-				33CE44052578B9AD002672C3 /* UIClassExtensions.swift */,
 				33B77F2B249ED23300A74B3A /* notificationFunc.swift */,
 				33B77F2D249ED26F00A74B3A /* savedArticleClass.swift */,
 				33B77F2F249ED2B200A74B3A /* epochClass.swift */,
@@ -641,6 +652,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3307774225834F6000F7DA9F /* structsandclasses.swift in Sources */,
 				33B77F2C249ED23300A74B3A /* notificationFunc.swift in Sources */,
 				3354C8DA24664C9B008C0F67 /* aboutUsPage.swift in Sources */,
 				33CB33CD24BC0F11005BB736 /* bulletinFunc.swift in Sources */,
