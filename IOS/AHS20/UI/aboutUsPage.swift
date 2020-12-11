@@ -35,6 +35,8 @@ class aboutUsPage: UIViewController {
     let six = makeColor(r: 251, g: 255, b: 0).cgColor; // yellow
     let seven  = makeColor(r: 0, g: 255, b: 19).cgColor; // green
     
+    let arrayNames = ["Programmers", "Graphic Designers", "Content Editors", "Previous Members", "Founders"];
+    let names = ["Kimberly Yu\nAlex Dang\nRichard Wei", "Arina Miyadi\nSteffi Huang", "Danielle Wong\nEmily Yu", "Elle Yokota\nMiranda Chen\nTiffany Thai\nRoselind Zeng", "Seongwook Jang\nJason Zhao\nTiger Ma\nAlbert Yeung\nJessica Chou\nNathan Wong\nPaul Lee\nAlex Hitti"];
     
     override func viewDidLoad() {
         super.viewDidLoad();
@@ -42,9 +44,6 @@ class aboutUsPage: UIViewController {
         let scrollViewFrame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height);
         let scrollView = UIScrollView(frame: scrollViewFrame);
        // scrollView.backgroundColor = UIColor.gray;
-        let nameTextHeights = [100, 55, 55, 100, 180];
-        let arrayNames = ["Programmers", "Graphic Designers", "Content Editors", "Previous Members", "Founders"];
-        let names = ["Kimberly Yu\nEmily Yu\nAlex Dang\nRichard Wei", "Arina Miyadi\nSteffi Huang", "Danielle Wong\nEmily Yu", "Elle Yokota\nMiranda Chen\nTiffany Thai\nRoselind Zeng", "Seongwook Jang\nJason Zhao\nTiger Ma\nAlbert Yeung\nJessica Chou\nNathan Wong\nPaul Lee\nAlex Hitti"];
  
         let verticalPadding = CGFloat(40);
         let horizontalPadding = CGFloat(45);
@@ -98,9 +97,12 @@ class aboutUsPage: UIViewController {
             currY += 30 + 10;
         
             let nameText = names[i];
-            let bodyText = UILabel(frame: CGRect(x: 0, y: currY, width: outerView.frame.size.width, height: CGFloat(nameTextHeights[i])));
+            let bodyTextWidth = outerView.frame.size.width;
+            let bodyTextFont = UIFont(name: "SFProDisplay-Semibold", size: 16)!;
+            let bodyTextHeight = nameText.getHeight(withConstrainedWidth: bodyTextWidth, font: bodyTextFont) + 10;
+            let bodyText = UILabel(frame: CGRect(x: 0, y: currY, width: bodyTextWidth, height: bodyTextHeight));
             bodyText.text = nameText;
-            bodyText.font = UIFont(name: "SFProDisplay-Semibold", size: 16);
+            bodyText.font = bodyTextFont;
             bodyText.textColor = BackgroundGrayColor;
             bodyText.textAlignment = .center;
             bodyText.numberOfLines = 0;

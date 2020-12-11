@@ -57,6 +57,7 @@ class tabBarClass: UIViewController, UIScrollViewDelegate {
         guard let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "notificationPageController") as? notificationsClass else{
             return;
         };
+        //vc.refreshControl.beginRefreshing();
         transitionDelegateVar = transitionDelegate();
         vc.transitioningDelegate = transitionDelegateVar;
         vc.modalPresentationStyle = .custom;

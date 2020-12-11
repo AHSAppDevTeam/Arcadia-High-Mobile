@@ -335,7 +335,10 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
                 notificationButton.layer.shadowColor = InverseBackgroundColor.cgColor;
                 notificationButton.layer.shadowOpacity = 0.2;
                 notificationButton.layer.shadowRadius = 5;
-                notificationButton.layer.shadowOffset = CGSize(width: 0 , height:3);
+                //notificationButton.layer.shadowOffset = CGSize(width: 0 , height:3);
+                notificationButton.layer.shadowOffset = CGSize(width: 0 , height: self.traitCollection.userInterfaceStyle == .dark ? 0 : 3);
+                notificationButton.layer.borderWidth = 0.15;
+                notificationButton.layer.borderColor = BackgroundGrayColor.cgColor;
                 
                 notificationButton.notificationCompleteData = currNotif;
                // notificationButton.articleIndex = nIndex;
@@ -398,7 +401,5 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
         getLocalNotifications();
         
     }
-    
-
     
 }
