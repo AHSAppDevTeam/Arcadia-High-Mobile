@@ -9,8 +9,9 @@
 import Foundation
 import UIKit
 import Firebase
+import AudioToolbox
 
-class tabBarClass: UIViewController, UIViewControllerTransitioningDelegate, UIScrollViewDelegate {
+class tabBarClass: UIViewController, UIScrollViewDelegate {
     
     @IBOutlet weak var contentView: UIView!
     
@@ -64,17 +65,22 @@ class tabBarClass: UIViewController, UIViewControllerTransitioningDelegate, UISc
         }
     }*/
     
-    internal let interactor = Interactor();
-    internal let transitionCA = CATransition();
 
+    private var articleTransitionDelegate : transitionDelegate!;
+    
     @objc private func articleSelector(notification: NSNotification){ // instigate transition
         guard let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "articlePageController") as? articlePageClass else{
             return;
         };
-        vc.transitioningDelegate = self;
-        vc.interactor = interactor;
+        //vc.interactor = interactor;
         vc.articleContent = notification.userInfo?["articleContent"] as? articleData;
-        transition(to: vc);
+        //transition(to: vc);
+        //vc.modalTransitionStyle = transitionClass.getInitialTransition();
+        //view.window!.layer.add(transitionClass.getInitialTransition(), forKey: kCATransition);
+        articleTransitionDelegate = transitionDelegate();
+        vc.transitioningDelegate = articleTransitionDelegate;
+        vc.modalPresentationStyle = .custom;
+        self.present(vc, animated: true);
     }
     
     func setUpNotifDot(){

@@ -53,9 +53,10 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
                 return;
             };
             vc.transitioningDelegate = self;
-            vc.interactor = interactor;
+            //vc.interactor = interactor;
             vc.articleContent = articleDictionary[sender.notificationCompleteData.notificationArticleID ?? ""];
-            transition(to: vc);
+            //transition(to: vc);
+            self.present(vc, animated: true);
         }
         loadScrollView();
     }
