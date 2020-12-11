@@ -43,7 +43,7 @@ extension articlePageClass{
             gestureRecognizer.setTranslation(.zero, in: self.view);
         }
         else if (gestureRecognizer.state == .ended){
-            let thresholdPercent : CGFloat = 0.3; // if minx > thresholdPercent * uiscreen.main.bounds.width
+            let thresholdPercent : CGFloat = 0.25; // if minx > thresholdPercent * uiscreen.main.bounds.width
             if (self.view.frame.minX >= thresholdPercent * UIScreen.main.bounds.width){
                 dismiss(animated: true);
             }

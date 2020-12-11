@@ -48,25 +48,20 @@ class tabBarClass: UIViewController, UIScrollViewDelegate {
     
     var articleContentInSegue: articleData?;
     
+    private var transitionDelegateVar : transitionDelegate!;
+    
     @IBAction func openNotifications(_ sender: UIButton) {
         //print("Notifcations");
-        performSegue(withIdentifier: "notificationSegue", sender: nil);
+        //performSegue(withIdentifier: "notificationSegue", sender: nil);
+        
+        guard let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "notificationPageController") as? notificationsClass else{
+            return;
+        };
+        transitionDelegateVar = transitionDelegate();
+        vc.transitioningDelegate = transitionDelegateVar;
+        vc.modalPresentationStyle = .custom;
+        self.present(vc, animated: true);
     }
-    
-    /*@objc func articleSelector(notification: NSNotification){
-        articleContentInSegue = notification.userInfo?["articleContent"] as? articleData;
-        performSegue(withIdentifier: "articleSegue", sender: nil);
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "articleSegue"){
-            let vc = segue.destination as! articlePageViewController;
-            vc.articleContent = articleContentInSegue;
-        }
-    }*/
-    
-
-    private var articleTransitionDelegate : transitionDelegate!;
     
     @objc private func articleSelector(notification: NSNotification){ // instigate transition
         guard let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "articlePageController") as? articlePageClass else{
@@ -77,8 +72,8 @@ class tabBarClass: UIViewController, UIScrollViewDelegate {
         //transition(to: vc);
         //vc.modalTransitionStyle = transitionClass.getInitialTransition();
         //view.window!.layer.add(transitionClass.getInitialTransition(), forKey: kCATransition);
-        articleTransitionDelegate = transitionDelegate();
-        vc.transitioningDelegate = articleTransitionDelegate;
+        transitionDelegateVar = transitionDelegate();
+        vc.transitioningDelegate = transitionDelegateVar;
         vc.modalPresentationStyle = .custom;
         self.present(vc, animated: true);
     }

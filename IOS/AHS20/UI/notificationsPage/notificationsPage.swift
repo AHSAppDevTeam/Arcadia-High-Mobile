@@ -24,20 +24,11 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
     var articleDictionary = [String: articleData]();
     
     var articleContentInSegue: articleData?;
-    
-    
-    internal let interactor = Interactor();
-    internal let transition = CATransition();
 
-    /*@objc func articleSelector(notification: NSNotification){ // instigate transition
-        guard let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "articlePageController") as? articlePageViewController else{
-            return;
-        };
-        vc.transitioningDelegate = self;
-        vc.interactor = interactor;
-        vc.articleContent = notification.userInfo?["articleContent"] as? articleData;
-        transition(to: vc);
-    }*/
+    
+    @IBOutlet var gestureRecognizer: UIPanGestureRecognizer!
+    
+    private var articleTransitionDelegate : transitionDelegate!;
     
     @objc func openArticle(_ sender: notificationUIButton) {
         if (sender.alreadyRead == false){
@@ -52,10 +43,12 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
             guard let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "articlePageController") as? articlePageClass else{
                 return;
             };
-            vc.transitioningDelegate = self;
             //vc.interactor = interactor;
             vc.articleContent = articleDictionary[sender.notificationCompleteData.notificationArticleID ?? ""];
             //transition(to: vc);
+            articleTransitionDelegate = transitionDelegate();
+            vc.transitioningDelegate = articleTransitionDelegate;
+            vc.modalPresentationStyle = .custom;
             self.present(vc, animated: true);
         }
         loadScrollView();
@@ -392,6 +385,8 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
         
         totalNotificationList = [notificationData]();
         //notificationList = [[notificationData]](repeating: [notificationData](), count: 2);
+        
+        gestureRecognizer.addTarget(self, action: #selector(handlePan));
         
         refreshControl.addTarget(self, action: #selector(refreshNotifications), for: UIControl.Event.valueChanged);
         notificationScrollView.addSubview(refreshControl);
