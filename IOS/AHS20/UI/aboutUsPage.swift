@@ -64,7 +64,7 @@ class aboutUsPage: UIViewController {
         
         let emailClickable = UITextView();
         emailClickable.text = "hsappdev@students.ausd.net";
-        emailClickable.textColor = InverseBackgroundColor;
+        //emailClickable.backgroundColor ;
         emailClickable.font = UIFont(name: "SFProDisplay-Semibold", size: 15);
         emailClickable.sizeToFit();
         emailClickable.isEditable = false;

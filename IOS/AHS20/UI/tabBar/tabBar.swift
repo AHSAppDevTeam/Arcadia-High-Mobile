@@ -243,7 +243,7 @@ class tabBarClass: UIViewController, UIScrollViewDelegate {
                 topBarPageName.isHidden = false;
                 if (sender.tag == 1){
                     topBarPageName.text = "Student Bulletin";
-                    topBar.layer.shadowColor = BackgroundColor.cgColor;
+                    topBar.layer.shadowColor = UIColor.clear.cgColor;
                 }
                 else if (sender.tag == 2){
                     topBarPageName.text = "Saved";
