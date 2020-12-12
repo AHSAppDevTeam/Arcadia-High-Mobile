@@ -1035,12 +1035,16 @@
                             <constraint firstItem="Gqs-Ri-FfJ" firstAttribute="trailing" secondItem="8vf-rb-I3g" secondAttribute="trailing" id="vUb-2A-rC2"/>
                             <constraint firstItem="8vf-rb-I3g" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="DgT-rI-5cM" secondAttribute="trailing" symbolic="YES" id="wgt-9v-m1j"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="qlg-G3-nb7" appends="YES" id="8RY-Cf-85l"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="4x7-sb-xdK"/>
                     <size key="freeformSize" width="414" height="508"/>
                     <connections>
                         <outlet property="articleCatagoryLabel" destination="DgT-rI-5cM" id="DR7-CD-fcx"/>
                         <outlet property="bookmarkButton" destination="dSA-0F-sUe" id="NIv-JT-etR"/>
+                        <outlet property="gestureRecognizer" destination="qlg-G3-nb7" id="IBy-AN-Z0o"/>
                         <outlet property="mainScrollView" destination="crg-tJ-0rO" id="uOp-ZN-aZo"/>
                         <outlet property="mainView" destination="qDH-gC-dtr" id="lzr-gg-5mx"/>
                         <outlet property="shadowView" destination="Gqs-Ri-FfJ" id="Yhh-WS-ZFJ"/>
@@ -1048,6 +1052,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e3x-Ei-zbE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="qlg-G3-nb7"/>
             </objects>
             <point key="canvasLocation" x="160.86956521739131" y="2939.6739130434785"/>
         </scene>
@@ -1064,7 +1069,7 @@
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wU6-yC-LQ7">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="716"/>
-                                        <color key="backgroundColor" name="BackgroundGrayColor"/>
+                                        <color key="backgroundColor" name="BackgroundColor"/>
                                     </imageView>
                                 </subviews>
                                 <constraints>
@@ -1082,7 +1087,7 @@
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ziQ-E2-lBB">
                                 <rect key="frame" x="10.000000000000002" y="10" width="18.666666666666671" height="27"/>
-                                <color key="tintColor" name="BackgroundColor"/>
+                                <color key="tintColor" name="InverseBackgroundColor"/>
                                 <state key="normal" image="chevron.left" catalog="system">
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="22" scale="large"/>
                                 </state>
@@ -1326,8 +1331,6 @@
                         <outletCollection property="buttons" destination="gQX-ap-fFu" collectionClass="NSMutableArray" id="Eqt-4g-Ikt"/>
                         <outletCollection property="buttons" destination="rd3-Ho-FeZ" collectionClass="NSMutableArray" id="6el-vk-Enz"/>
                         <outletCollection property="buttons" destination="PBQ-ay-oxj" collectionClass="NSMutableArray" id="Jef-C8-zgi"/>
-                        <segue destination="iaA-pd-aga" kind="show" identifier="notificationSegue" customClass="SegueFromRight" customModule="AHS" customModuleProvider="target" id="at6-zS-lft"/>
-                        <segue destination="08X-4I-yxB" kind="presentation" identifier="articleSegue" customClass="SegueFromRight" customModule="AHS" customModuleProvider="target" id="Diy-5I-FmI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vHq-og-Cig" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -2220,7 +2223,7 @@ This license agreement is governed by the laws of the State of California exclud
         <!--Notifications Class-->
         <scene sceneID="wEy-Kl-Saf">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="iaA-pd-aga" customClass="notificationsClass" customModule="AHS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="notificationPageController" modalPresentationStyle="fullScreen" id="iaA-pd-aga" customClass="notificationsClass" customModule="AHS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="VUm-Fx-egc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2269,6 +2272,7 @@ This license agreement is governed by the laws of the State of California exclud
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="2sE-1G-zN5"/>
                         <color key="backgroundColor" name="BackgroundColor"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="H0Z-ns-bKQ" firstAttribute="trailing" secondItem="2sE-1G-zN5" secondAttribute="trailing" id="6f1-GT-WCk"/>
                             <constraint firstItem="NZN-7j-auO" firstAttribute="top" secondItem="arG-KJ-TsU" secondAttribute="bottom" id="Hc9-NE-aho"/>
@@ -2292,24 +2296,25 @@ This license agreement is governed by the laws of the State of California exclud
                             <constraint firstItem="arG-KJ-TsU" firstAttribute="leading" secondItem="2sE-1G-zN5" secondAttribute="leading" id="tIO-bv-aMS"/>
                             <constraint firstItem="NZN-7j-auO" firstAttribute="leading" secondItem="2sE-1G-zN5" secondAttribute="leading" id="vHO-QD-qX5"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="dtY-Dj-Wdk" appends="YES" id="12o-Zn-ouk"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="k1G-N1-tkc"/>
                     <size key="freeformSize" width="414" height="1000"/>
                     <connections>
+                        <outlet property="gestureRecognizer" destination="dtY-Dj-Wdk" id="FMb-N4-fd0"/>
                         <outlet property="noNotificationLabel" destination="ovN-aC-RAA" id="fdI-hg-nDs"/>
                         <outlet property="notificationScrollView" destination="NZN-7j-auO" id="Djl-yF-4jT"/>
                         <outlet property="shadowView" destination="H0Z-ns-bKQ" id="fKP-Nf-HRt"/>
-                        <segue destination="08X-4I-yxB" kind="presentation" identifier="notificationToArticle" customClass="SegueFromRight" customModule="AHS" customModuleProvider="target" id="rU3-UD-e0a"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oLZ-t6-pdv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="dtY-Dj-Wdk"/>
             </objects>
             <point key="canvasLocation" x="-1597.1014492753625" y="1778.804347826087"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="rU3-UD-e0a"/>
-    </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.58039215690000001" green="0.066666666669999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
     <resources>
         <image name="80" width="341.33334350585938" height="341.33334350585938"/>
@@ -2320,7 +2325,7 @@ This license agreement is governed by the laws of the State of California exclud
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="BackgroundGrayColor">
-            <color red="0.68571541878172582" green="0.68571541878172582" blue="0.68571541878172582" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.68599998950958252" green="0.68599998950958252" blue="0.68599998950958252" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="InverseBackgroundColor">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

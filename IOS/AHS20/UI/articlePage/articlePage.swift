@@ -30,6 +30,7 @@ class articlePageClass: UIViewController, UIScrollViewDelegate, UINavigationCont
     
     @IBOutlet weak var shadowView: UIView!
     
+    @IBOutlet var gestureRecognizer: UIPanGestureRecognizer!
     
     var contentWidth: CGFloat = 0.0
     var imageFrame = CGRect(x: 0, y:0, width: 0, height: 0);
@@ -45,8 +46,8 @@ class articlePageClass: UIViewController, UIScrollViewDelegate, UINavigationCont
     
     
     /// START DISMISS ON PAN
-    var interactor: Interactor? = nil;
-    let transition = CATransition();
+    //var interactor: Interactor? = nil;
+    //let transition = CATransition();
     /// END DISMISS ON PAN
 
     
@@ -59,11 +60,13 @@ class articlePageClass: UIViewController, UIScrollViewDelegate, UINavigationCont
         bookmarkButton.tintColor = mainThemeColor;
         setBookmarkColor();
         
-        let gestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(gestureAction));
+        //let gestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(gestureAction));
         //gestureRecognizer.edges = .left;
-        gestureRecognizer.delegate = self;
+        //gestureRecognizer.delegate = self;
         //view.addGestureRecognizer(gestureRecognizer);
-        mainScrollView.addGestureRecognizer(gestureRecognizer);
+        //mainScrollView.addGestureRecognizer(gestureRecognizer);
+        
+        gestureRecognizer.addTarget(self, action: #selector(self.handlePan));
         
         shadowView.layer.shadowColor = InverseBackgroundColor.cgColor;
         shadowView.layer.shadowOpacity = 0.05;

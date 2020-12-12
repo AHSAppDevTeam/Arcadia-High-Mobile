@@ -223,7 +223,9 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
                     articleButton.layer.shadowColor = InverseBackgroundColor.cgColor;
                     articleButton.layer.shadowOpacity = 0.2;
                     articleButton.layer.shadowRadius = 5;
-                    articleButton.layer.shadowOffset = CGSize(width: 0 , height: 3);
+                    articleButton.layer.shadowOffset = CGSize(width: 0 , height: self.traitCollection.userInterfaceStyle == .dark ? 0 : 3);
+                    articleButton.layer.borderWidth = 0.15;
+                    articleButton.layer.borderColor = BackgroundGrayColor.cgColor;
                     
                     if (self.traitCollection.userInterfaceStyle == .dark){
                         articleButton.backgroundColor = currArticleRead ? BackgroundColor : dull_BackgroundColor;

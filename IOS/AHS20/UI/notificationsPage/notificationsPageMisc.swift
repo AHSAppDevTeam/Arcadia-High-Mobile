@@ -47,6 +47,11 @@ extension notificationsClass{
         
     }
     
+    @IBAction internal func handlePan(_ gestureRecognizer: UIPanGestureRecognizer){
+       //print("got pan")
+        popTransition.handlePan(gestureRecognizer, fromViewController: self);
+    }
+    
     @IBAction internal func exitPopup(_ sender: UIButton) {
         
         //     unreadNotif = (notificationList[1].count > 0);

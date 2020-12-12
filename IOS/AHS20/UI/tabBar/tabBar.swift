@@ -9,8 +9,9 @@
 import Foundation
 import UIKit
 import Firebase
+import AudioToolbox
 
-class tabBarClass: UIViewController, UIViewControllerTransitioningDelegate, UIScrollViewDelegate {
+class tabBarClass: UIViewController, UIScrollViewDelegate {
     
     @IBOutlet weak var contentView: UIView!
     
@@ -47,34 +48,35 @@ class tabBarClass: UIViewController, UIViewControllerTransitioningDelegate, UISc
     
     var articleContentInSegue: articleData?;
     
+    private var transitionDelegateVar : transitionDelegate!;
+    
     @IBAction func openNotifications(_ sender: UIButton) {
         //print("Notifcations");
-        performSegue(withIdentifier: "notificationSegue", sender: nil);
+        //performSegue(withIdentifier: "notificationSegue", sender: nil);
+        
+        guard let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "notificationPageController") as? notificationsClass else{
+            return;
+        };
+        //vc.refreshControl.beginRefreshing();
+        transitionDelegateVar = transitionDelegate();
+        vc.transitioningDelegate = transitionDelegateVar;
+        vc.modalPresentationStyle = .custom;
+        self.present(vc, animated: true);
     }
     
-    /*@objc func articleSelector(notification: NSNotification){
-        articleContentInSegue = notification.userInfo?["articleContent"] as? articleData;
-        performSegue(withIdentifier: "articleSegue", sender: nil);
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "articleSegue"){
-            let vc = segue.destination as! articlePageViewController;
-            vc.articleContent = articleContentInSegue;
-        }
-    }*/
-    
-    internal let interactor = Interactor();
-    internal let transitionCA = CATransition();
-
     @objc private func articleSelector(notification: NSNotification){ // instigate transition
         guard let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "articlePageController") as? articlePageClass else{
             return;
         };
-        vc.transitioningDelegate = self;
-        vc.interactor = interactor;
+        //vc.interactor = interactor;
         vc.articleContent = notification.userInfo?["articleContent"] as? articleData;
-        transition(to: vc);
+        //transition(to: vc);
+        //vc.modalTransitionStyle = transitionClass.getInitialTransition();
+        //view.window!.layer.add(transitionClass.getInitialTransition(), forKey: kCATransition);
+        transitionDelegateVar = transitionDelegate();
+        vc.transitioningDelegate = transitionDelegateVar;
+        vc.modalPresentationStyle = .custom;
+        self.present(vc, animated: true);
     }
     
     func setUpNotifDot(){
@@ -242,7 +244,7 @@ class tabBarClass: UIViewController, UIViewControllerTransitioningDelegate, UISc
                 topBarPageName.isHidden = false;
                 if (sender.tag == 1){
                     topBarPageName.text = "Student Bulletin";
-                    topBar.layer.shadowColor = BackgroundColor.cgColor;
+                    topBar.layer.shadowColor = UIColor.clear.cgColor;
                 }
                 else if (sender.tag == 2){
                     topBarPageName.text = "Saved";
