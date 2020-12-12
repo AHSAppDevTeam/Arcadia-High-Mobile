@@ -25,8 +25,8 @@ open class popTransition: NSObject, UIViewControllerAnimatedTransitioning{
     
     open func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         guard
-            let fromViewController = transitionContext.viewController(forKey: .from),
-            let toViewController = transitionContext.viewController(forKey: .to)
+            let fromViewController = transitionContext.viewController(forKey: .from)
+            //let toViewController = transitionContext.viewController(forKey: .to)
         else {
             return;
         }
