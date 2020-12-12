@@ -34,23 +34,7 @@ extension articlePageClass{
     
     @IBAction internal func handlePan(_ gestureRecognizer: UIPanGestureRecognizer){
        //print("got pan")
-        if (gestureRecognizer.state == .began || gestureRecognizer.state == .changed){
-            let translation = gestureRecognizer.translation(in: self.view);
-            //print("translation - \(translation)")
-            
-            self.view.frame = CGRect(x: max(self.view.frame.minX + translation.x, 0), y: 0, width: self.view.frame.width, height: self.view.frame.height);
-            
-            gestureRecognizer.setTranslation(.zero, in: self.view);
-        }
-        else if (gestureRecognizer.state == .ended){
-            let thresholdPercent : CGFloat = 0.25; // if minx > thresholdPercent * uiscreen.main.bounds.width
-            if (self.view.frame.minX >= thresholdPercent * UIScreen.main.bounds.width){
-                dismiss(animated: true);
-            }
-            else{
-                self.view.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height);
-            }
-        }
+        popTransition.handlePan(gestureRecognizer, fromViewController: self);
     }
     
     internal func setBookmarkColor(){

@@ -45,4 +45,23 @@ open class popTransition: NSObject, UIViewControllerAnimatedTransitioning{
         })
     }
     
+    static public func handlePan(_ gestureRecognizer: UIPanGestureRecognizer, fromViewController: UIViewController){
+        if (gestureRecognizer.state == .began || gestureRecognizer.state == .changed){
+            let translation = gestureRecognizer.translation(in: fromViewController.view);
+            //print("translation - \(translation)")
+            
+            fromViewController.view.frame = CGRect(x: max(fromViewController.view.frame.minX + translation.x, 0), y: 0, width: fromViewController.view.frame.width, height: fromViewController.view.frame.height);
+            
+            gestureRecognizer.setTranslation(.zero, in: fromViewController.view);
+        }
+        else if (gestureRecognizer.state == .ended){
+            let thresholdPercent : CGFloat = 0.25; // if minx > thresholdPercent * uiscreen.main.bounds.width
+            if (fromViewController.view.frame.minX >= thresholdPercent * UIScreen.main.bounds.width){
+                fromViewController.dismiss(animated: true);
+            }
+            else{
+                fromViewController.view.frame = CGRect(x: 0, y: 0, width: fromViewController.view.frame.width, height: fromViewController.view.frame.height);
+            }
+        }
+    }
 }
