@@ -156,7 +156,7 @@ extension homeClass{
             // change horizontal size of scrollview
             generalInfoScrollView.contentSize = CGSize(width: (generalInfoFrame.size.width * CGFloat(generalInfoSize)), height: generalInfoScrollView.frame.size.height);
             generalInfoScrollView.delegate = self;
-            
+            generalInfoScrollView.isUserInteractionEnabled = true;
         }
     }
     
@@ -185,7 +185,7 @@ extension homeClass{
             // change horizontal size of scrollview
             districtNewsScrollView.contentSize = CGSize(width: (districtNewsFrame.size.width * CGFloat(districtNewsSize)), height: districtNewsScrollView.frame.size.height);
             districtNewsScrollView.delegate = self;
-            
+            districtNewsScrollView.isUserInteractionEnabled = true;
         }
     }
     
@@ -214,7 +214,7 @@ extension homeClass{
             // change horizontal size of scrollview
             asbNewsScrollView.contentSize = CGSize(width: (asbNewsFrame.size.width * CGFloat(asbNewsSize)) , height: asbNewsScrollView.frame.size.height);
             asbNewsScrollView.delegate = self;
-            
+            asbNewsScrollView.isUserInteractionEnabled = true;
         }
     }
     

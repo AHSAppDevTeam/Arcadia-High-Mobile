@@ -136,7 +136,7 @@ class articlePageClass: UIViewController, UIScrollViewDelegate, UINavigationCont
             
             if (imageSize + videoSize > 1){
                 //print("got to image")
-                imagePageControl.frame = CGRect(x: padding, y: nextY, width: UIScreen.main.bounds.width, height: 20);
+                imagePageControl.frame = CGRect(x: padding, y: nextY + 4, width: UIScreen.main.bounds.width, height: 20);
                 imagePageControl.currentPage = 0;
                 imagePageControl.numberOfPages = imageSize+videoSize;
                 //imagePageControl.center = CGPoint(x: UIScreen.main.bounds.width / 2, y: nextY + 12);

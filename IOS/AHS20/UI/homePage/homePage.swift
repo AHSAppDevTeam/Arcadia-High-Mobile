@@ -214,7 +214,6 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 	
 	internal func  scrollViewDidScroll(_ scrollView: UIScrollView) {
 		if (scrollView.tag != -1){
-			
 			asbNewsPageControl.currentPage = Int(round(asbNewsScrollView.contentOffset.x / asbNewsFrame.size.width));
 			
 			generalInfoPageControl.currentPage = Int(round(generalInfoScrollView.contentOffset.x / generalInfoFrame.size.width));
