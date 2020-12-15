@@ -135,13 +135,18 @@ class articlePageClass: UIViewController, UIScrollViewDelegate, UINavigationCont
             nextY += imageScrollViewFrame.size.height;
             
             if (imageSize + videoSize > 1){
+                //print("got to image")
+                imagePageControl.frame = CGRect(x: padding, y: nextY, width: UIScreen.main.bounds.width, height: 20);
                 imagePageControl.currentPage = 0;
-                imagePageControl.numberOfPages = imageSize + videoSize;
-                imagePageControl.center = CGPoint(x: UIScreen.main.bounds.width / 2, y: nextY + 12);
-                imagePageControl.pageIndicatorTintColor = UIColor.lightGray;
-                imagePageControl.currentPageIndicatorTintColor = UIColor.black;
+                imagePageControl.numberOfPages = imageSize+videoSize;
+                //imagePageControl.center = CGPoint(x: UIScreen.main.bounds.width / 2, y: nextY + 12);
+                imagePageControl.tintColor = InverseBackgroundColor;
+                imagePageControl.pageIndicatorTintColor = BackgroundGrayColor;
+                imagePageControl.currentPageIndicatorTintColor = InverseBackgroundColor;
+                imagePageControl.backgroundColor = BackgroundColor;
+                imagePageControl.isUserInteractionEnabled = false;
                 mainScrollView.addSubview(imagePageControl);
-                nextY += 20;
+                nextY += imagePageControl.frame.height;
             }
             
             mainScrollView.addSubview(imageScrollView);
