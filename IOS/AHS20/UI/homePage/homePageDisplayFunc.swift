@@ -30,9 +30,9 @@ extension homeClass{
     }
     
     private func setUpFeatured(){
-        if (featuredArticles.count > 0){
+        if (homeClass.featuredArticles.count > 0){
             featuredLabel.text = "Featured";
-            featuredSize = featuredArticles.count;
+            featuredSize = homeClass.featuredArticles.count;
             
             for view in featuredScrollView.subviews{
                 if (view.tag == 1){
@@ -42,7 +42,7 @@ extension homeClass{
             
             // Featured News ----- NOTE - article is not created by smallArticle() func
             
-            featuredArticles.sort(by: sortArticlesByTime);
+            homeClass.featuredArticles.sort(by: sortArticlesByTime);
             
             featuredScrollView.flashScrollIndicators();
             featuredMissingLabel.isHidden = true;
@@ -54,7 +54,7 @@ extension homeClass{
             for aIndex in 0..<featuredSize{
                 featuredFrame.origin.x = (featuredFrame.size.width * CGFloat(aIndex));
                 
-                let currArticle = featuredArticles[aIndex];
+                let currArticle = homeClass.featuredArticles[aIndex];
                 
                 let outerContentView = CustomUIButton(frame: featuredFrame);
                 
@@ -133,7 +133,7 @@ extension homeClass{
     }
     
     private func setUpGeneralInfo(){
-        let rawData = homeArticleList[0];
+        let rawData = dataManager.homeArticleList[0];
         if (rawData.count > 0){
             loadingGeneralView.isHidden = true;
             generalLabel.text = "General Info";
@@ -161,7 +161,7 @@ extension homeClass{
     }
     
     private func setUpDistrict(){
-        let rawData = homeArticleList[1];
+        let rawData = dataManager.homeArticleList[1];
         if (rawData.count > 0){
             loadingDistrictView.isHidden = true;
             districtLabel.text = "District News";
@@ -190,7 +190,7 @@ extension homeClass{
     }
     
     private func setUpASB(){
-        let rawData = homeArticleList[2];
+        let rawData = dataManager.homeArticleList[2];
         if (rawData.count > 0){
             loadingASBView.isHidden = true;
             asbLabel.text = "ASB News";

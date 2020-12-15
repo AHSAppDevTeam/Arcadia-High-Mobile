@@ -14,30 +14,8 @@ import FirebaseDatabase
 import SDWebImage
 import Firebase
 
-//var resetUpArticles = false;
-var unreadNotifCount = 0;
 
 // swift file with shared functions and extensions between files
-
-var internetConnected = false;
-var homeArticleList = [[articleData]](repeating: [articleData](), count: 3); // size of 4 rows, featured, asb, sports, district
-var bulletinArticleList = [[bulletinArticleData]](repeating: [bulletinArticleData](), count: 6); // size of 6 rows, seniors, colleges, events, athletics, reference, and others
-
-
-var ref: DatabaseReference!; // database reference
-
-func setUpConnection(){
-    if (Reachability.isConnectedToNetwork()){
-        internetConnected = true;
-        Database.database().goOnline();
-        ref = Database.database().reference();
-    }
-    else{
-        internetConnected = false;
-        Database.database().goOffline();
-        ref = nil;
-    }
-}
 
 func getTitleDateAndMonth() -> String {
     let dateObj = Date();
@@ -50,47 +28,6 @@ func getTitleDateAndMonth() -> String {
 }
 
 
-final public class Reachability {
-
-    class func isConnectedToNetwork() -> Bool {
-
-        var zeroAddress = sockaddr_in(sin_len: 0, sin_family: 0, sin_port: 0, sin_addr: in_addr(s_addr: 0), sin_zero: (0, 0, 0, 0, 0, 0, 0, 0))
-        zeroAddress.sin_len = UInt8(MemoryLayout.size(ofValue: zeroAddress))
-        zeroAddress.sin_family = sa_family_t(AF_INET)
-
-        let defaultRouteReachability = withUnsafePointer(to: &zeroAddress) {
-            $0.withMemoryRebound(to: sockaddr.self, capacity: 1) {zeroSockAddress in
-                SCNetworkReachabilityCreateWithAddress(nil, zeroSockAddress)
-            }
-        }
-
-        var flags: SCNetworkReachabilityFlags = SCNetworkReachabilityFlags(rawValue: 0)
-        if SCNetworkReachabilityGetFlags(defaultRouteReachability!, &flags) == false {
-            return false
-        }
-
-        // Working for Cellular and WIFI
-        let isReachable = (flags.rawValue & UInt32(kSCNetworkFlagsReachable)) != 0
-        let needsConnection = (flags.rawValue & UInt32(kSCNetworkFlagsConnectionRequired)) != 0
-
-        return (isReachable && !needsConnection)
-
-    }
-}
-
-
-func bulletinDataToarticleData(data: bulletinArticleData) -> articleData{
-    var temp = articleData();
-    temp.articleAuthor = nil;
-    temp.articleBody = data.articleBody;
-    temp.articleUnixEpoch = data.articleUnixEpoch;
-    temp.articleID = data.articleID;
-    temp.articleImages = [];
-    temp.articleTitle = data.articleTitle;
-    temp.articleCatagory = data.articleCatagory;
-    temp.hasHTML = data.hasHTML;
-    return temp;
-}
 
 // func that returns UIcolor from rgb values
 func makeColor(r: Float, g: Float, b: Float) -> UIColor{
@@ -109,12 +46,6 @@ func printFontFamilies(){
     }
 }
 
-final class InsetLabel: UILabel {
-    override func drawText(in rect: CGRect) {
-        super.drawText(in: rect.inset(by: UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)))
-    }
-}
-
 var utilNeedID: String?;
 
 func findArticleFromIDAndSegue(id: String){ // performs segue as well
@@ -122,7 +53,7 @@ func findArticleFromIDAndSegue(id: String){ // performs segue as well
         return;
     }
     utilNeedID = id;
-    if (homeArticleList[0].count == 0 && homeArticleList[1].count == 0 && homeArticleList[2].count == 0){ // load homepage
+    /*if (homeArticleList[0].count == 0 && homeArticleList[1].count == 0 && homeArticleList[2].count == 0){ // load homepage
         setUpConnection();
         if (internetConnected){
             homeArticleList = [[articleData]](repeating: [articleData](), count: 3);
@@ -291,29 +222,8 @@ func findArticleFromIDAndSegue(id: String){ // performs segue as well
                 }
             }
         }
-    }
+    }*/
 }
-
-func updateSubscriptionNotifs(){
-    let topics = ["general", "asb", "district", "bulletin"];
-    if (selectedNotifications[0] == true){
-        for topic in topics{
-            Messaging.messaging().subscribe(toTopic: topic);
-        }
-    }
-    else{
-        for i in 1...4{
-            if (selectedNotifications[i] == true){
-                Messaging.messaging().subscribe(toTopic: topics[i-1]);
-            }
-            else{
-                Messaging.messaging().unsubscribe(fromTopic: topics[i-1]);
-            }
-        }
-    }
-    Messaging.messaging().subscribe(toTopic: "mandatory");
-}
-
 //let mainThemeColor = makeColor(r: 159, g: 12, b: 12);
 
 let mainThemeColor = UIColor(named: "mainThemeColor")!;

@@ -80,7 +80,7 @@ class tabBarClass: UIViewController, UIScrollViewDelegate {
     }
     
     func setUpNotifDot(){
-        loadNotifPref();
+        /*loadNotifPref();
         selectedNotifications = UserDefaults.standard.array(forKey: "selectedNotifications") as? [Bool] ?? [true, false, false, false, false];
         updateSubscriptionNotifs();
         unreadNotifCount = 0;
@@ -122,12 +122,12 @@ class tabBarClass: UIViewController, UIScrollViewDelegate {
                     UIApplication.shared.applicationIconBadgeNumber = unreadNotifCount;
                 };
             }
-        }
+        }*/
     }
     
     override func viewDidLoad() {
         super.viewDidLoad();
-        setUpConnection();
+        dataManager.setUpConnection();
         setUpNotifDot();
         
         //developer stuff
@@ -184,7 +184,7 @@ class tabBarClass: UIViewController, UIScrollViewDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         // set notification dot
-        notificationDot.isHidden = unreadNotifCount == 0;
+        notificationDot.isHidden = notificationFuncClass.unreadNotifCount == 0;
     }
     
     @IBAction func didPressTab(_ sender: UIButton) {

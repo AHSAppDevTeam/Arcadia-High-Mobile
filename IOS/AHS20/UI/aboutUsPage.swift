@@ -42,7 +42,7 @@ class aboutUsPage: UIViewController {
     internal var scrollView = UIScrollView();
     
     internal func getNameFromFirebase(){
-        setUpConnection();
+        /*setUpConnection();
         if (internetConnected){
             
             DispatchQueue.global(qos: .background).async {
@@ -74,7 +74,7 @@ class aboutUsPage: UIViewController {
                 
             }
             
-        }
+        }*/
     }
     
     internal func renderViews(){

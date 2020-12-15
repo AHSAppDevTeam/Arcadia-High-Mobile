@@ -42,7 +42,7 @@ extension notificationsClass{
     @objc internal func refreshNotifications(){
         // implement get data
         //  loadNotificationPref();
-        loadNotifPref();
+        notificationFuncClass.loadNotifPref();
         getLocalNotifications();
         
     }

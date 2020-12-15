@@ -24,7 +24,12 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
     var articleDictionary = [String: articleData]();
     
     var articleContentInSegue: articleData?;
-
+    
+    static public var totalNotificationList = [notificationData]();
+    static public var notificationReadDict = [String : Bool](); // Message ID : Read = true
+    //var notificationList = [[notificationData]](repeating: [notificationData](), count: 2);
+    
+    // notification setting
     
     @IBOutlet var gestureRecognizer: UIPanGestureRecognizer!
     
@@ -32,10 +37,10 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
     
     @objc func openArticle(_ sender: notificationUIButton) {
         if (sender.alreadyRead == false){
-            notificationReadDict[sender.notificationCompleteData.messageID ?? ""] = true;
-            saveNotifPref();
-            unreadNotifCount = numOfUnreadInArray(arr: filterThroughSelectedNotifcations());
-            UIApplication.shared.applicationIconBadgeNumber = unreadNotifCount;
+            notificationsClass.notificationReadDict[sender.notificationCompleteData.messageID ?? ""] = true;
+            notificationFuncClass.saveNotifPref();
+            notificationFuncClass.unreadNotifCount = notificationFuncClass.numOfUnreadInArray(arr: notificationFuncClass.filterThroughSelectedNotifcations());
+            UIApplication.shared.applicationIconBadgeNumber = notificationFuncClass.unreadNotifCount;
         }
         if (articleDictionary[sender.notificationCompleteData.notificationArticleID ?? ""] != nil){
             /*articleContentInSegue = articleDictionary[sender.notificationCompleteData.notificationArticleID ?? ""];
@@ -55,9 +60,9 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
     }
     
     func getLocalNotifications(){
-        setUpConnection();
+        /*setUpConnection();
         if (internetConnected){
-            totalNotificationList = [notificationData]();
+            notificationsClass.totalNotificationList = [notificationData]();
             ref.child("notifications").observeSingleEvent(of: .value) { (snapshot) in
                 let enumerator = snapshot.children;
                 while let article = enumerator.nextObject() as? DataSnapshot{ // each article
@@ -97,11 +102,12 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
                 self.refreshControl.endRefreshing();
             }));
             present(infoPopup, animated: true, completion: nil);
-        }
+        }*/
+        
     }
     
     func setUpArticleDictionary(){
-        setUpConnection();
+        /*setUpConnection();
         if (internetConnected){
             for i in 0...2{
                 var s: String; // path inside homepage
@@ -224,7 +230,7 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
                     }
                 };
             }
-        }
+        }*/
     }
     
     
@@ -254,7 +260,7 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
             }
         }
         
-        var currNotifList = filterThroughSelectedNotifcations();
+        var currNotifList = notificationFuncClass.filterThroughSelectedNotifcations();
         currNotifList.sort(by: notificationSort);
         
         if (currNotifList.count > 0){
@@ -272,7 +278,7 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
                 notificationFrame.origin.y = yPos;
                 
                 let notificationButton = notificationUIButton(frame: notificationFrame);
-                let currArticleRead = notificationReadDict[currNotif.messageID ?? ""] == true ? true : false;
+                let currArticleRead = notificationsClass.notificationReadDict[currNotif.messageID ?? ""] == true ? true : false;
                 
                 let chevronWidth = CGFloat(22);
                 
@@ -386,7 +392,7 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
         shadowView.layer.shadowOpacity = 0.05;
         shadowView.layer.shadowOffset = CGSize(width: 0 , height: 5);
         
-        totalNotificationList = [notificationData]();
+        notificationsClass.totalNotificationList = [notificationData]();
         //notificationList = [[notificationData]](repeating: [notificationData](), count: 2);
         
         gestureRecognizer.addTarget(self, action: #selector(handlePan));
@@ -397,7 +403,7 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
         notificationScrollView.alwaysBounceVertical = true;
         refreshControl.beginRefreshing();
         setUpArticleDictionary();
-        loadNotifPref();
+        notificationFuncClass.loadNotifPref();
         getLocalNotifications();
         
     }

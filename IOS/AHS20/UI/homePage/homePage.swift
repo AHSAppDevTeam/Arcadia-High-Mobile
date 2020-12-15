@@ -57,7 +57,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 	//let bookmarkImageUI = UIImage(systemName: "bookmark");
 	
 	var refreshControl = UIRefreshControl();
-	var featuredArticles = [articleData]();
+	static var featuredArticles = [articleData]();
 	
 	var featuredSize = 6;
 	var featuredFrame = CGRect(x:0,y:0,width:0,height:0);
@@ -69,10 +69,8 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 	var districtNewsFrame = CGRect(x:0,y:0,width:0,height:0);
 	
 	internal func getHomeArticleData(){
-		setUpConnection();
+		/*setUpConnection();
 		if (internetConnected){
-			featuredArticles = [articleData]();
-			homeArticleList = [[articleData]](repeating: [articleData](), count: 3);
 			
 			for i in 0...2{
 				var s: String; // path inside homepage
@@ -168,7 +166,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 				self.refreshControl.endRefreshing();
 			}));
 			present(infoPopup, animated: true, completion: nil);
-		}
+		}*/
 	}
 	
 	private func getScrollViewFromPageControl(with tag: Int) -> UIScrollView{
