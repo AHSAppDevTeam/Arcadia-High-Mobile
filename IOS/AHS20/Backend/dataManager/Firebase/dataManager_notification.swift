@@ -61,4 +61,29 @@ extension dataManager{
         
     }
     
+    
+    static public func getNotificationDataDot(completion: @escaping (Bool) -> Void){
+        dataManager.setUpConnection();
+        if (dataManager.internetConnected){
+            //homeClass.featuredArticles = [articleData]();
+            //homeArticleList = [[articleData]](repeating: [articleData](), count: 3);
+            notificationsClass.totalNotificationList = [notificationData]();
+            
+            getNotificationDataBranch(completion: { (data) in
+                notificationsClass.totalNotificationList.append(data);
+                let singleNotification = data;
+                if ((notificationFuncClass.selectedNotifications[0] == true || notificationFuncClass.selectedNotifications[singleNotification.notificationCatagory ?? 0] == true || singleNotification.notificationCatagory == 0) && notificationsClass.notificationReadDict[singleNotification.messageID ?? ""] != true){
+                    notificationFuncClass.unreadNotifCount += 1;
+                    completion(true);
+                }
+                else{
+                    completion(false);
+                }
+            });
+        }
+        else{
+            completion(false);
+        }
+    }
+    
 }
