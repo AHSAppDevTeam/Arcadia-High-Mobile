@@ -245,6 +245,11 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
                 };
             }
         }*/
+        dataManager.loadAllArticles(completion: { (isConnected, data) in
+            if (isConnected){
+                self.articleDictionary[data!.articleID ?? ""] = data!;
+            }
+        });
     }
     
     

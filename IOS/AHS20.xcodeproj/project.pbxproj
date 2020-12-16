@@ -21,6 +21,7 @@
 		3332CC56258090A300AAAF95 /* homePageDisplayFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3332CC55258090A300AAAF95 /* homePageDisplayFunc.swift */; };
 		3332CC6425809D8400AAAF95 /* transitionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3332CC6325809D8400AAAF95 /* transitionDelegate.swift */; };
 		3338EE4325898991001C0CB7 /* dataManager_aboutus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3338EE4225898991001C0CB7 /* dataManager_aboutus.swift */; };
+		3338EE7E25899F21001C0CB7 /* dataManager_homeandbulletin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3338EE7D25899F21001C0CB7 /* dataManager_homeandbulletin.swift */; };
 		333C082824CD004900E236CD /* UIImageColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 333C082724CD004900E236CD /* UIImageColors.swift */; };
 		3343E25D244D0D1B0009D136 /* SFProDisplay-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3343E25C244D0D1B0009D136 /* SFProDisplay-Black.ttf */; };
 		3343E25E244D0D1B0009D136 /* SFProDisplay-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3343E25C244D0D1B0009D136 /* SFProDisplay-Black.ttf */; };
@@ -123,6 +124,7 @@
 		3332CC55258090A300AAAF95 /* homePageDisplayFunc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = homePageDisplayFunc.swift; sourceTree = "<group>"; };
 		3332CC6325809D8400AAAF95 /* transitionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = transitionDelegate.swift; sourceTree = "<group>"; };
 		3338EE4225898991001C0CB7 /* dataManager_aboutus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dataManager_aboutus.swift; sourceTree = "<group>"; };
+		3338EE7D25899F21001C0CB7 /* dataManager_homeandbulletin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dataManager_homeandbulletin.swift; sourceTree = "<group>"; };
 		333C082724CD004900E236CD /* UIImageColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageColors.swift; sourceTree = "<group>"; };
 		3343E25C244D0D1B0009D136 /* SFProDisplay-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-Black.ttf"; sourceTree = "<group>"; };
 		3343E260244D0DD30009D136 /* SFProDisplay-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProDisplay-Semibold.ttf"; sourceTree = "<group>"; };
@@ -415,6 +417,7 @@
 				33F86BBD258970C80091B621 /* dataManager_bulletin.swift */,
 				33F86BC2258970F00091B621 /* dataManager_notification.swift */,
 				3338EE4225898991001C0CB7 /* dataManager_aboutus.swift */,
+				3338EE7D25899F21001C0CB7 /* dataManager_homeandbulletin.swift */,
 			);
 			path = Firebase;
 			sourceTree = "<group>";
@@ -708,6 +711,7 @@
 				3332CC6425809D8400AAAF95 /* transitionDelegate.swift in Sources */,
 				33F86BC3258970F00091B621 /* dataManager_notification.swift in Sources */,
 				330D3E12241D5E8C007D0628 /* SceneDelegate.swift in Sources */,
+				3338EE7E25899F21001C0CB7 /* dataManager_homeandbulletin.swift in Sources */,
 				330B4D4D2484CA4C001087E9 /* NotificationSettingsWrapper.swift in Sources */,
 				331793F22464FEF5007CF7B7 /* notificationSettings.swift in Sources */,
 				33CE44332578C2D8002672C3 /* bulletinPageFilter.swift in Sources */,

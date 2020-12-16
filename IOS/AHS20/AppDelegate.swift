@@ -143,7 +143,17 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
         // Print full message.
         //  print(userInfo["articleID"])
         // TODO: GOTO ARTICLE from  articleID
-        findArticleFromIDAndSegue(id: userInfo["articleID"] as? String ?? "");
+        let id = userInfo["articleID"] as? String ?? "";
+        if (id != ""){
+            dataManager.loadAllArticles(completion: { (isConnected, data) in
+                if (isConnected){
+                    if (data!.articleID == id){
+                        let articleDataDict: [String: articleData] = ["articleContent" : data!];
+                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "article"), object: nil, userInfo: articleDataDict);
+                    }
+                }
+            });
+        }
         completionHandler()
     }
 }
