@@ -40,60 +40,13 @@ class aboutUsPage: UIViewController {
     
     //internal var firebaseWaitListNum = 0;
     internal var scrollView = UIScrollView();
-    
-    internal func getNameFromFirebase(){
-        /*setUpConnection();
-        if (internetConnected){
-            
-            DispatchQueue.global(qos: .background).async {
-                
-                for nameIndex in 0..<self.nameTitleArray.count{
-                    
-                    //self.firebaseWaitListNum += 1;
-                    
-                    ref.child("aboutus").child(self.nameTitleArray[nameIndex]).observeSingleEvent(of: .value) { (snapshot) in
-                        let enumerator = snapshot.children;
-                        
-                        var currentString : String = "";
-                        
-                        while let currentName = enumerator.nextObject() as? DataSnapshot{ // each article
-                            
-                            currentString += (currentName.value as? String ?? "") + "\n";
-                            
-                        };
-                        
-                        self.names[nameIndex] = currentString;
-                        //print("current - \(currentString)");
-                        //self.firebaseWaitListNum -= 1;
-                        DispatchQueue.main.async {
-                            self.renderViews();
-                        }
-                    }
-                    
-                }
-                
-            }
-            
-        }*/
-        
-        dataManager.getAboutUsData(completion: { (isConnected) in
-            if (isConnected){
-                self.renderViews();
-            }
-            else{
-                //self.featuredLabel.text = "No Connection";
-                let infoPopup = UIAlertController(title: "No internet connection detected", message: "No articles were loaded", preferredStyle: UIAlertController.Style.alert);
-                infoPopup.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
-                    //self.refreshControl.endRefreshing();
-                }));
-                self.present(infoPopup, animated: true, completion: nil);
-            }
-        });
-        
-    }
+    internal var textLabel = UILabel();
+  
     
     internal func renderViews(){
        // scrollView.backgroundColor = UIColor.gray;
+        
+        textLabel.isHidden = true;
         
         for subview in scrollView.subviews{
             if (subview.tag == 1){
@@ -184,7 +137,27 @@ class aboutUsPage: UIViewController {
         scrollView = UIScrollView(frame: scrollViewFrame);
         mainView.insertSubview(scrollView, at: 0);
         
-        getNameFromFirebase();
+        //let textLabelFrame = CGRect(x: 0, y: 0, width: <#T##CGFloat#>, height: <#T##CGFloat#>)
+        textLabel.text = "Loading...";
+        textLabel.textColor = BackgroundColor;
+        textLabel.font = UIFont(name: "SFProDisplay-Semibold", size: 22);
+        textLabel.sizeToFit();
+        textLabel.center = CGPoint(x: UIScreen.main.bounds.width / 2, y: UIScreen.main.bounds.height / 2);
+        
+        mainView.insertSubview(textLabel, at: 0);
+        
+        dataManager.getAboutUsData(completion: { (isConnected) in
+            if (isConnected){
+                self.renderViews();
+            }
+            else{
+                //print("no connection")
+                self.textLabel.text = "No connection";
+                self.textLabel.sizeToFit();
+                self.textLabel.center = CGPoint(x: UIScreen.main.bounds.width / 2, y: UIScreen.main.bounds.height / 2);
+            }
+        });
+        
     }
     
     
