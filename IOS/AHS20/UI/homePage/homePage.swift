@@ -167,6 +167,21 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 			}));
 			present(infoPopup, animated: true, completion: nil);
 		}*/
+		
+		dataManager.getHomepageData(completion: { (isConnected, index) in
+			if (isConnected){
+				self.updateViews(with: index);
+			}
+			else{
+				self.featuredLabel.text = "No Connection";
+				let infoPopup = UIAlertController(title: "No internet connection detected", message: "No articles were loaded", preferredStyle: UIAlertController.Style.alert);
+				infoPopup.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+					self.refreshControl.endRefreshing();
+				}));
+				self.present(infoPopup, animated: true, completion: nil);
+			}
+		})
+		
 	}
 	
 	private func getScrollViewFromPageControl(with tag: Int) -> UIScrollView{

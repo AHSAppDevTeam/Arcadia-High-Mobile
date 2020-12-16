@@ -104,6 +104,20 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
             present(infoPopup, animated: true, completion: nil);
         }*/
         
+        dataManager.getNotificationData(completion: { (isConnected) in
+            if (isConnected){
+                self.refreshControl.endRefreshing();
+                self.loadScrollView();
+            }
+            else{
+                let infoPopup = UIAlertController(title: "No internet connection detected", message: "No notifications were loaded", preferredStyle: UIAlertController.Style.alert);
+                infoPopup.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+                    self.refreshControl.endRefreshing();
+                }));
+                self.present(infoPopup, animated: true, completion: nil);
+            }
+        });
+        
     }
     
     func setUpArticleDictionary(){

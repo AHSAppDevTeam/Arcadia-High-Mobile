@@ -112,6 +112,22 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
             present(infoPopup, animated: true, completion: nil);
         }*/
         
+        dataManager.getBulletinData(completion: { (isConnected, index) in
+            
+            if (isConnected){
+                self.refreshControl.endRefreshing();
+                self.generateBulletin();
+            }
+            else{
+                let infoPopup = UIAlertController(title: "No internet connection detected", message: "No articles were loaded", preferredStyle: UIAlertController.Style.alert);
+                infoPopup.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+                    self.refreshControl.endRefreshing();
+                }));
+                self.present(infoPopup, animated: true, completion: nil);
+            }
+            
+        });
+        
     }
 
 

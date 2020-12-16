@@ -35,8 +35,8 @@ class aboutUsPage: UIViewController {
     let six = makeColor(r: 251, g: 255, b: 0).cgColor; // yellow
     let seven  = makeColor(r: 0, g: 255, b: 19).cgColor; // green
     
-    let nameTitleArray = ["Programmers", "Graphic Designers", "Content Editors", "Previous Members", "Founders"];
-    var names = Array(repeating: "", count: 5);
+    static let nameTitleArray = ["Programmers", "Graphic Designers", "Content Editors", "Previous Members", "Founders"];
+    static var names = Array(repeating: "", count: 5);
     
     //internal var firebaseWaitListNum = 0;
     internal var scrollView = UIScrollView();
@@ -75,13 +75,30 @@ class aboutUsPage: UIViewController {
             }
             
         }*/
+        
+        dataManager.getAboutUsData(completion: { (isConnected) in
+            if (isConnected){
+                self.renderViews();
+            }
+            else{
+                //self.featuredLabel.text = "No Connection";
+                let infoPopup = UIAlertController(title: "No internet connection detected", message: "No articles were loaded", preferredStyle: UIAlertController.Style.alert);
+                infoPopup.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+                    //self.refreshControl.endRefreshing();
+                }));
+                self.present(infoPopup, animated: true, completion: nil);
+            }
+        });
+        
     }
     
     internal func renderViews(){
        // scrollView.backgroundColor = UIColor.gray;
- 
+        
         for subview in scrollView.subviews{
-            subview.removeFromSuperview();
+            if (subview.tag == 1){
+                subview.removeFromSuperview();
+            }
         }
         
         let verticalPadding = CGFloat(40);
@@ -113,12 +130,13 @@ class aboutUsPage: UIViewController {
         emailView.addSubview(emailClickable);
         emailView.addSubview(emailViewTitle);
         emailView.layer.cornerRadius = cornerRadius;
+        emailView.tag = 1;
         scrollView.addSubview(emailView);
         
         nextY += emailViewFrame.size.height + verticalPadding;
         
         
-        for i in 0..<nameTitleArray.count{
+        for i in 0..<aboutUsPage.nameTitleArray.count{
             let outerView = UIView(frame: CGRect(x: horizontalPadding, y: nextY, width: UIScreen.main.bounds.width - 2*horizontalPadding, height: CGFloat(100))); // temp height
             outerView.backgroundColor = BackgroundColor;
             outerView.layer.cornerRadius = cornerRadius;
@@ -126,7 +144,7 @@ class aboutUsPage: UIViewController {
             
             
             let titleLabel = UILabel(frame: CGRect(x: 0, y: 10, width: outerView.frame.size.width, height: 20));
-            titleLabel.text = nameTitleArray[i];
+            titleLabel.text = aboutUsPage.nameTitleArray[i];
             titleLabel.font = UIFont(name: "SFProText-Bold", size: 18);
             titleLabel.textColor = InverseBackgroundColor;
          //   titleLabel.backgroundColor = UIColor.gray;
@@ -135,7 +153,7 @@ class aboutUsPage: UIViewController {
             outerView.addSubview(titleLabel);
             currY += 30 + 10;
         
-            let nameText = "\(names[i].dropLast())";
+            let nameText = "\(aboutUsPage.names[i].dropLast())";
             let bodyTextWidth = outerView.frame.size.width;
             let bodyTextFont = UIFont(name: "SFProDisplay-Semibold", size: 16)!;
             let bodyTextHeight = nameText.getHeight(withConstrainedWidth: bodyTextWidth, font: bodyTextFont) + 10;
@@ -150,7 +168,7 @@ class aboutUsPage: UIViewController {
             
             outerView.addSubview(bodyText);
             outerView.frame.size.height = currY;
-            
+            outerView.tag = 1;
             scrollView.addSubview(outerView);
             nextY += outerView.frame.size.height + verticalPadding;
         }
