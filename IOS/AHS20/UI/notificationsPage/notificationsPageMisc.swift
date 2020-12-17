@@ -53,10 +53,12 @@ extension notificationsClass{
     }
     
     @IBAction internal func exitPopup(_ sender: UIButton) {
-        
-        //     unreadNotif = (notificationList[1].count > 0);
         dismiss(animated: true);
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewDidAppear(animated);
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "updateNotifDot"), object: nil);
+    }
     
 }

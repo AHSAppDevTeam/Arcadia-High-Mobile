@@ -79,7 +79,7 @@ class tabBarClass: UIViewController, UIScrollViewDelegate {
         self.present(vc, animated: true);
     }
     
-    func setUpNotifDot(){
+    internal func setUpNotifDot(){
         notificationFuncClass.loadNotifPref();
         notificationFuncClass.selectedNotifications = UserDefaults.standard.array(forKey: "selectedNotifications") as? [Bool] ?? [true, false, false, false, false];
         dataManager.updateSubscriptionNotifs();
@@ -89,8 +89,12 @@ class tabBarClass: UIViewController, UIScrollViewDelegate {
             self.notificationDot.isHidden = notificationFuncClass.unreadNotifCount == 0;
             UIApplication.shared.applicationIconBadgeNumber = notificationFuncClass.unreadNotifCount;
         });
-        
-        
+    }
+    
+    @objc func updateNotifDot(notification: NSNotification){
+        //print("called update")
+        self.notificationDot.isHidden = notificationFuncClass.unreadNotifCount == 0;
+        UIApplication.shared.applicationIconBadgeNumber = notificationFuncClass.unreadNotifCount;
     }
     
     override func viewDidLoad() {
@@ -104,7 +108,7 @@ class tabBarClass: UIViewController, UIScrollViewDelegate {
         //UserDefaults.standard.removeObject(forKey: "notificationReadDict");
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.articleSelector), name:NSNotification.Name(rawValue: "article"), object: nil);
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.updateNotifDot), name:NSNotification.Name(rawValue: "updateNotifDot"), object: nil);
         
         // getSavedArticles(); // load default saved articles
         savedArticleClass.getArticleDictionary();
