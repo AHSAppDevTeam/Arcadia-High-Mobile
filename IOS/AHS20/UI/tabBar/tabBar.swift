@@ -79,55 +79,27 @@ class tabBarClass: UIViewController, UIScrollViewDelegate {
         self.present(vc, animated: true);
     }
     
-    func setUpNotifDot(){
-        loadNotifPref();
-        selectedNotifications = UserDefaults.standard.array(forKey: "selectedNotifications") as? [Bool] ?? [true, false, false, false, false];
-        updateSubscriptionNotifs();
-        unreadNotifCount = 0;
-        setUpConnection();
-        if (internetConnected){
-            totalNotificationList = [notificationData]();
-            ref.child("notifications").observeSingleEvent(of: .value) { (snapshot) in
-                let enumerator = snapshot.children;
-                while let article = enumerator.nextObject() as? DataSnapshot{ // each article
-                    let enumerator = article.children;
-                    var singleNotification = notificationData();
-                    
-                    singleNotification.messageID =  article.key;
-                    
-                    while let notificationContent = enumerator.nextObject() as? DataSnapshot{ // data inside article
-                        
-                        if (notificationContent.key == "notificationArticleID"){
-                            singleNotification.notificationArticleID  = notificationContent.value as? String;
-                        }
-                        else if (notificationContent.key == "notificationBody"){
-                            singleNotification.notificationBody  = notificationContent.value as? String;
-                        }
-                        else if (notificationContent.key == "notificationTitle"){
-                            singleNotification.notificationTitle  = notificationContent.value as? String;
-                        }
-                        else if (notificationContent.key == "notificationUnixEpoch"){
-                            singleNotification.notificationUnixEpoch  = notificationContent.value as? Int64;
-                        }
-                        else if (notificationContent.key == "notificationCategory"){
-                            singleNotification.notificationCatagory = notificationContent.value as? Int;
-                        }
-                        
-                    }
-                    totalNotificationList.append(singleNotification);
-                    if ((selectedNotifications[0] == true || selectedNotifications[singleNotification.notificationCatagory ?? 0] == true || singleNotification.notificationCatagory == 0) && notificationReadDict[singleNotification.messageID ?? ""] != true){
-                        unreadNotifCount += 1;
-                    }
-                    self.notificationDot.isHidden = unreadNotifCount == 0;
-                    UIApplication.shared.applicationIconBadgeNumber = unreadNotifCount;
-                };
-            }
-        }
+    internal func setUpNotifDot(){
+        notificationFuncClass.loadNotifPref();
+        notificationFuncClass.selectedNotifications = UserDefaults.standard.array(forKey: "selectedNotifications") as? [Bool] ?? [true, false, false, false, false];
+        dataManager.updateSubscriptionNotifs();
+        notificationFuncClass.unreadNotifCount = 0;
+       
+        dataManager.getNotificationDataDot(completion: { (isConnected) in
+            self.notificationDot.isHidden = notificationFuncClass.unreadNotifCount == 0;
+            UIApplication.shared.applicationIconBadgeNumber = notificationFuncClass.unreadNotifCount;
+        });
+    }
+    
+    @objc func updateNotifDot(notification: NSNotification){
+        //print("called update")
+        self.notificationDot.isHidden = notificationFuncClass.unreadNotifCount == 0;
+        UIApplication.shared.applicationIconBadgeNumber = notificationFuncClass.unreadNotifCount;
     }
     
     override func viewDidLoad() {
         super.viewDidLoad();
-        setUpConnection();
+        dataManager.setUpConnection();
         setUpNotifDot();
         
         //developer stuff
@@ -136,7 +108,7 @@ class tabBarClass: UIViewController, UIScrollViewDelegate {
         //UserDefaults.standard.removeObject(forKey: "notificationReadDict");
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.articleSelector), name:NSNotification.Name(rawValue: "article"), object: nil);
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.updateNotifDot), name:NSNotification.Name(rawValue: "updateNotifDot"), object: nil);
         
         // getSavedArticles(); // load default saved articles
         savedArticleClass.getArticleDictionary();
@@ -182,11 +154,7 @@ class tabBarClass: UIViewController, UIScrollViewDelegate {
         dateLabel.text = getTitleDateAndMonth();
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        // set notification dot
-        notificationDot.isHidden = unreadNotifCount == 0;
-    }
-    
+
     @IBAction func didPressTab(_ sender: UIButton) {
         let prevIndex = selectedIndex;
         selectedIndex = sender.tag;
