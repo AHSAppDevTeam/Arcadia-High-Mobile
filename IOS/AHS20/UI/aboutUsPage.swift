@@ -113,7 +113,7 @@ class aboutUsPage: UIViewController {
             let bodyText = UILabel(frame: CGRect(x: 0, y: currY, width: bodyTextWidth, height: bodyTextHeight));
             bodyText.text = nameText;
             bodyText.font = bodyTextFont;
-            bodyText.textColor = BackgroundGrayColor;
+            bodyText.textColor = InverseBackgroundColor;
             bodyText.textAlignment = .center;
             bodyText.numberOfLines = 0;
             

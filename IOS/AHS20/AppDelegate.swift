@@ -141,7 +141,7 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
         //   print("tapped on notification");
         
         // Print full message.
-        //  print(userInfo["articleID"])
+        //print("got notification - \(userInfo)")
         // TODO: GOTO ARTICLE from  articleID
         let id = userInfo["articleID"] as? String ?? "";
         if (id != ""){
