@@ -20,13 +20,27 @@ class savedClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDele
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "article"), object: nil, userInfo: articleDataDict);
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad();
+    @objc func reloadSavedArticles(notification: NSNotification){
+        renderList();
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad();
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.reloadSavedArticles), name:NSNotification.Name(rawValue: "savedpage_reloadSavedArticles"), object: nil);
+        
+    }
+    
+    deinit{
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "savedpage_reloadSavedArticles"), object: nil);
+    }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated);
+        renderList();
+    }
+    
+    public func renderList(){
         let savedArticles = savedArticleClass.getSavedArticles();
         
         for view in mainScrollView.subviews{

@@ -24,7 +24,12 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
     var articleDictionary = [String: articleData]();
     
     var articleContentInSegue: articleData?;
-
+    
+    static public var totalNotificationList = [notificationData]();
+    static public var notificationReadDict = [String : Bool](); // Message ID : Read = true
+    //var notificationList = [[notificationData]](repeating: [notificationData](), count: 2);
+    
+    // notification setting
     
     @IBOutlet var gestureRecognizer: UIPanGestureRecognizer!
     
@@ -32,10 +37,10 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
     
     @objc func openArticle(_ sender: notificationUIButton) {
         if (sender.alreadyRead == false){
-            notificationReadDict[sender.notificationCompleteData.messageID ?? ""] = true;
-            saveNotifPref();
-            unreadNotifCount = numOfUnreadInArray(arr: filterThroughSelectedNotifcations());
-            UIApplication.shared.applicationIconBadgeNumber = unreadNotifCount;
+            notificationsClass.notificationReadDict[sender.notificationCompleteData.messageID ?? ""] = true;
+            notificationFuncClass.saveNotifPref(filter: true);
+            notificationFuncClass.unreadNotifCount = notificationFuncClass.numOfUnreadInArray(arr: notificationFuncClass.filterThroughSelectedNotifcations());
+            UIApplication.shared.applicationIconBadgeNumber = notificationFuncClass.unreadNotifCount;
         }
         if (articleDictionary[sender.notificationCompleteData.notificationArticleID ?? ""] != nil){
             /*articleContentInSegue = articleDictionary[sender.notificationCompleteData.notificationArticleID ?? ""];
@@ -55,185 +60,30 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
     }
     
     func getLocalNotifications(){
-        setUpConnection();
-        if (internetConnected){
-            totalNotificationList = [notificationData]();
-            ref.child("notifications").observeSingleEvent(of: .value) { (snapshot) in
-                let enumerator = snapshot.children;
-                while let article = enumerator.nextObject() as? DataSnapshot{ // each article
-                    let enumerator = article.children;
-                    var singleNotification = notificationData();
-                    singleNotification.messageID = article.key;
-                    while let notificationContent = enumerator.nextObject() as? DataSnapshot{ // data inside article
-                        
-                        if (notificationContent.key == "notificationArticleID"){
-                            singleNotification.notificationArticleID  = notificationContent.value as? String;
-                        }
-                        else if (notificationContent.key == "notificationBody"){
-                            singleNotification.notificationBody  = notificationContent.value as? String;
-                        }
-                        else if (notificationContent.key == "notificationTitle"){
-                            singleNotification.notificationTitle  = notificationContent.value as? String;
-                        }
-                        else if (notificationContent.key == "notificationUnixEpoch"){
-                            singleNotification.notificationUnixEpoch  = notificationContent.value as? Int64;
-                        }
-                        else if (notificationContent.key == "notificationCategory"){
-                            singleNotification.notificationCatagory = notificationContent.value as? Int;
-                        }
-                    }
-                    totalNotificationList.append(singleNotification);
-                    //filterTotalNotificationArticles();
-                  //  print("found notifcaiton article on firebase");
-                    self.loadScrollView();
-                    self.refreshControl.endRefreshing();
-                };
-            }
-            
-        }
-        else{
-            let infoPopup = UIAlertController(title: "No internet connection detected", message: "No notifications were loaded", preferredStyle: UIAlertController.Style.alert);
-            infoPopup.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+        dataManager.getNotificationData(completion: { (isConnected) in
+            if (isConnected){
                 self.refreshControl.endRefreshing();
-            }));
-            present(infoPopup, animated: true, completion: nil);
-        }
+                self.loadScrollView();
+            }
+            else{
+                let infoPopup = UIAlertController(title: "No internet connection detected", message: "No notifications were loaded", preferredStyle: UIAlertController.Style.alert);
+                infoPopup.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+                    self.refreshControl.endRefreshing();
+                }));
+                self.present(infoPopup, animated: true, completion: nil);
+            }
+        });
+        
     }
     
     func setUpArticleDictionary(){
-        setUpConnection();
-        if (internetConnected){
-            for i in 0...2{
-                var s: String; // path inside homepage
-                switch i {
-                case 0: // general info
-                    s = "General_Info";
-                    break;
-                case 1: // district
-                    s = "District";
-                    break;
-                case 2: // asb
-                    s = "ASB";
-                    break;
-                default:
-                    s = "";
-                    break;
-                }
-                
-                ref.child("homepage").child(s).observeSingleEvent(of: .value) { (snapshot) in
-                    let enumerator = snapshot.children;
-                    while let article = enumerator.nextObject() as? DataSnapshot{ // each article
-                        let enumerator = article.children;
-                        var singleArticle = articleData();
-                        singleArticle.articleID = article.key;
-                        while let articleContent = enumerator.nextObject() as? DataSnapshot{ // data inside article
-                            if (articleContent.key == "articleAuthor"){
-                                singleArticle.articleAuthor = articleContent.value as? String;
-                            }
-                            else if (articleContent.key == "articleBody"){
-                                singleArticle.articleBody = articleContent.value as? String;
-                            }
-                            else if (articleContent.key == "articleUnixEpoch"){
-                                singleArticle.articleUnixEpoch = articleContent.value as? Int64;
-                            }
-                            else if (articleContent.key == "articleImages"){
-                                
-                                var tempImage = [String]();
-                                let imageIt = articleContent.children;
-                                while let image = imageIt.nextObject() as? DataSnapshot{
-                                    tempImage.append(image.value as! String);
-                                }
-                                //print(tempImage)
-                                singleArticle.articleImages = tempImage;
-                            }
-                            else if (articleContent.key == "articleVideoIDs"){
-                                var tempArr = [String]();
-                                let idIt = articleContent.children;
-                                while let id = idIt.nextObject() as? DataSnapshot{
-                                    tempArr.append(id.value as! String);
-                                }
-                                singleArticle.articleVideoIDs = tempArr;
-                            }
-                            else if (articleContent.key == "articleTitle"){
-                                singleArticle.articleTitle = articleContent.value as? String;
-                            }
-                            else if (articleContent.key == "isFeatured"){
-                                singleArticle.isFeatured = (articleContent.value as? Int == 0 ? false : true);
-                            }
-                            else if (articleContent.key == "hasHTML"){
-                                singleArticle.hasHTML = (articleContent.value as? Int == 0 ? false : true);
-                            }
-                        }
-                        singleArticle.articleCatagory = i == 0 ? "General Info" : s;
-                        self.articleDictionary[singleArticle.articleID ?? ""] = singleArticle;
-                    }
-                };
+        dataManager.loadAllArticles(completion: { (isConnected, data) in
+            if (isConnected){
+                self.articleDictionary[data!.articleID ?? ""] = data!;
             }
-            
-            for i in 0...4{
-                var s: String; // path inside homepage
-                switch i {
-                case 0: // seniors
-                    s = "Academics";
-                    break;
-                case 1: // colleges
-                    s = "Athletics";
-                    break;
-                case 2: // events
-                    s = "Clubs";
-                    break;
-                case 3: // athletics
-                    s = "Colleges";
-                    break;
-                case 4: // reference
-                    s = "Reference";
-                    break;
-                default:
-                    s = "";
-                    break;
-                }
-                ref.child("bulletin").child(s).observeSingleEvent(of: .value) { (snapshot) in
-                    let enumerator = snapshot.children;
-                    while let article = enumerator.nextObject() as? DataSnapshot{ // each article
-                        let enumerator = article.children;
-                        var singleArticle = bulletinArticleData();
-                        
-                        singleArticle.articleID = article.key;
-                        
-                        while let articleContent = enumerator.nextObject() as? DataSnapshot{ // data inside article
-                            
-                            
-                            if (articleContent.key == "articleBody"){
-                                singleArticle.articleBody = articleContent.value as? String;
-                            }
-                            else if (articleContent.key == "articleUnixEpoch"){
-                                singleArticle.articleUnixEpoch = articleContent.value as? Int64;
-                            }
-                                
-                            else if (articleContent.key == "articleTitle"){
-                                singleArticle.articleTitle = articleContent.value as? String;
-                            }
-                            else if (articleContent.key == "hasHTML"){
-                                singleArticle.hasHTML = (articleContent.value as? Int == 0 ? false : true);
-                            }
-                            
-                        }
-                        singleArticle.articleCatagory = s;
-                        singleArticle.articleType = i;
-                        self.articleDictionary[singleArticle.articleID ?? ""] = bulletinDataToarticleData(data: singleArticle);
-                    }
-                };
-            }
-        }
+        });
     }
-    
-    
-   /* override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.identifier == "notificationToArticle"){
-            let vc = segue.destination as! articlePageViewController;
-            vc.articleContent = articleContentInSegue;
-        }
-    }*/
+
     
 
     var notificationFrame = CGRect(x: 0, y: 0, width: 0, height: 0);
@@ -254,7 +104,7 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
             }
         }
         
-        var currNotifList = filterThroughSelectedNotifcations();
+        var currNotifList = notificationFuncClass.filterThroughSelectedNotifcations();
         currNotifList.sort(by: notificationSort);
         
         if (currNotifList.count > 0){
@@ -272,7 +122,7 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
                 notificationFrame.origin.y = yPos;
                 
                 let notificationButton = notificationUIButton(frame: notificationFrame);
-                let currArticleRead = notificationReadDict[currNotif.messageID ?? ""] == true ? true : false;
+                let currArticleRead = notificationsClass.notificationReadDict[currNotif.messageID ?? ""] == true ? true : false;
                 
                 let chevronWidth = CGFloat(22);
                 
@@ -386,7 +236,7 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
         shadowView.layer.shadowOpacity = 0.05;
         shadowView.layer.shadowOffset = CGSize(width: 0 , height: 5);
         
-        totalNotificationList = [notificationData]();
+        notificationsClass.totalNotificationList = [notificationData]();
         //notificationList = [[notificationData]](repeating: [notificationData](), count: 2);
         
         gestureRecognizer.addTarget(self, action: #selector(handlePan));
@@ -397,7 +247,7 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
         notificationScrollView.alwaysBounceVertical = true;
         refreshControl.beginRefreshing();
         setUpArticleDictionary();
-        loadNotifPref();
+        notificationFuncClass.loadNotifPref();
         getLocalNotifications();
         
     }

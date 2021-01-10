@@ -141,9 +141,24 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
         //   print("tapped on notification");
         
         // Print full message.
-        //  print(userInfo["articleID"])
+        //print("got notification - \(userInfo)")
         // TODO: GOTO ARTICLE from  articleID
-        findArticleFromIDAndSegue(id: userInfo["articleID"] as? String ?? "");
+        let id = userInfo["articleID"] as? String ?? "";
+        if (id != ""){
+            dataManager.loadAllArticles(completion: { (isConnected, data) in
+                if (isConnected){
+                    if (data!.articleID == id){
+                        let articleDataDict: [String: articleData] = ["articleContent" : data!];
+                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "article"), object: nil, userInfo: articleDataDict);
+                    }
+                }
+            });
+        }
+        
+        let notificationID = userInfo["notifID"] as? String ?? "";
+        notificationFuncClass.loadNotifPref();
+        notificationsClass.notificationReadDict[notificationID] = true;
+        notificationFuncClass.saveNotifPref(filter: false);
         completionHandler()
     }
 }
@@ -154,9 +169,9 @@ extension AppDelegate : MessagingDelegate {
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
         //   print("Firebase registration token: \(fcmToken)")
         
-        selectedNotifications = UserDefaults.standard.array(forKey: "selectedNotifications") as? [Bool] ?? [true, false, false, false, false];
+        notificationFuncClass.selectedNotifications = UserDefaults.standard.array(forKey: "selectedNotifications") as? [Bool] ?? [true, false, false, false, false];
         
-        updateSubscriptionNotifs();
+        dataManager.updateSubscriptionNotifs();
         
         let dataDict:[String: String] = ["token": fcmToken]
         NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: dataDict)

@@ -25,23 +25,23 @@ class notificationSettingsClass: UITableViewController{
         for i in 0...4{
             switch i {
             case 0:
-                if (selectedNotifications[i] == true){
+                if (notificationFuncClass.selectedNotifications[i] == true){
                     generalUpdates.isOn = true;
                 }
             case 1:
-                if (selectedNotifications[i] == true){
+                if (notificationFuncClass.selectedNotifications[i] == true){
                     generalNews.isOn = true;
                 }
             case 2:
-                if (selectedNotifications[i] == true){
+                if (notificationFuncClass.selectedNotifications[i] == true){
                     asbNews.isOn = true;
                 }
             case 3:
-                if (selectedNotifications[i] == true){
+                if (notificationFuncClass.selectedNotifications[i] == true){
                     districtNews.isOn = true;
                 }
             case 4:
-                if (selectedNotifications[i] == true){
+                if (notificationFuncClass.selectedNotifications[i] == true){
                     bulletinNews.isOn = true;
                 }
             default:
@@ -55,23 +55,23 @@ class notificationSettingsClass: UITableViewController{
         for i in 0...4{
             switch i {
             case 0:
-                if (selectedNotifications[i] == true){
+                if (notificationFuncClass.selectedNotifications[i] == true){
                     generalUpdates.isOn = true;
                 }
             case 1:
-                if (selectedNotifications[i] == true){
+                if (notificationFuncClass.selectedNotifications[i] == true){
                     generalNews.isOn = true;
                 }
             case 2:
-                if (selectedNotifications[i] == true){
+                if (notificationFuncClass.selectedNotifications[i] == true){
                     asbNews.isOn = true;
                 }
             case 3:
-                if (selectedNotifications[i] == true){
+                if (notificationFuncClass.selectedNotifications[i] == true){
                     districtNews.isOn = true;
                 }
             case 4:
-                if (selectedNotifications[i] == true){
+                if (notificationFuncClass.selectedNotifications[i] == true){
                     bulletinNews.isOn = true;
                 }
             default:
@@ -85,13 +85,13 @@ class notificationSettingsClass: UITableViewController{
         if (sender.tag > 0){
             if (generalUpdates.isOn == true){
                 generalUpdates.isOn = false;
-                selectedNotifications[0] = false;
+                notificationFuncClass.selectedNotifications[0] = false;
             }
             if (sender.isOn == true){
-                selectedNotifications[sender.tag] = true;
+                notificationFuncClass.selectedNotifications[sender.tag] = true;
             }
             else{
-                selectedNotifications[sender.tag] = false;
+                notificationFuncClass.selectedNotifications[sender.tag] = false;
             }
         }
         else{
@@ -100,23 +100,23 @@ class notificationSettingsClass: UITableViewController{
                 asbNews.isOn = false;
                 districtNews.isOn = false;
                 bulletinNews.isOn = false;
-                selectedNotifications = [Bool](repeating: false, count: 5);
-                selectedNotifications[0] = true;
+                notificationFuncClass.selectedNotifications = [Bool](repeating: false, count: 5);
+                notificationFuncClass.selectedNotifications[0] = true;
             }
             else{
-                selectedNotifications[sender.tag] = false;
+                notificationFuncClass.selectedNotifications[sender.tag] = false;
             }
         }
         
         //print(selectedNotifications);
-        UserDefaults.standard.set(selectedNotifications, forKey: "selectedNotifications");
+        UserDefaults.standard.set(notificationFuncClass.selectedNotifications, forKey: "selectedNotifications");
         
-        updateSubscriptionNotifs();
+        dataManager.updateSubscriptionNotifs();
         
        // filterTotalNotificationArticles();
        // unreadNotif = (notificationList[1].count > 0);
-        unreadNotifCount = numOfUnreadInArray(arr: filterThroughSelectedNotifcations());
-        UIApplication.shared.applicationIconBadgeNumber = unreadNotifCount;
+        notificationFuncClass.unreadNotifCount = notificationFuncClass.numOfUnreadInArray(arr: notificationFuncClass.filterThroughSelectedNotifcations());
+        UIApplication.shared.applicationIconBadgeNumber = notificationFuncClass.unreadNotifCount;
     }
     
 }

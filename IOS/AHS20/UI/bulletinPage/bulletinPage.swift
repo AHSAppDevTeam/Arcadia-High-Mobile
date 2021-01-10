@@ -44,7 +44,7 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
     var filterScrollViewMinHeight: CGFloat?;
     
     func getBulletinArticleData() {
-        setUpConnection();
+        /*setUpConnection();
         if (internetConnected){
             //print("ok -------- loading articles - bulletin");
             bulletinArticleList = [[bulletinArticleData]](repeating: [bulletinArticleData](), count: 5);
@@ -110,17 +110,34 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
                 self.refreshControl.endRefreshing();
             }));
             present(infoPopup, animated: true, completion: nil);
-        }
+        }*/
+        
+        dataManager.getBulletinData(completion: { (isConnected, index) in
+            
+            if (isConnected){
+                self.refreshControl.endRefreshing();
+                self.generateBulletin();
+            }
+            else{
+                let infoPopup = UIAlertController(title: "No internet connection detected", message: "No articles were loaded", preferredStyle: UIAlertController.Style.alert);
+                infoPopup.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+                    self.refreshControl.endRefreshing();
+                }));
+                self.present(infoPopup, animated: true, completion: nil);
+            }
+            
+        });
         
     }
 
-    
+
     
     internal func generateBulletin(){
-        if (bulletinArticleList[0].count > 0 || bulletinArticleList[1].count > 0 || bulletinArticleList[2].count > 0 || bulletinArticleList[3].count > 0 || bulletinArticleList[4].count > 0){
+        
+        if (dataManager.bulletinArrayHasData()){
             totalArticles = [bulletinArticleData]();
             for i in 0...4{
-                for c in bulletinArticleList[i]{
+                for c in dataManager.bulletinArticleList[i]{
                     totalArticles.append(c);
                 }
             }
@@ -234,7 +251,7 @@ class bulletinClass: UIViewController, UIScrollViewDelegate, UITabBarControllerD
                         articleButton.backgroundColor = currArticleRead ? dull_BackgroundColor : BackgroundColor;
                     }
                     
-                    articleButton.articleCompleteData = bulletinDataToarticleData(data: article);
+                    articleButton.articleCompleteData = dataManager.bulletinDataToarticleData(data: article);
                     
                     articleButton.addTarget(self, action: #selector(self.openArticle), for: .touchUpInside);
                     articleButton.tag = 1;

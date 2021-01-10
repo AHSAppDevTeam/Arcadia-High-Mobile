@@ -57,7 +57,7 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 	//let bookmarkImageUI = UIImage(systemName: "bookmark");
 	
 	var refreshControl = UIRefreshControl();
-	var featuredArticles = [articleData]();
+	static var featuredArticles = [articleData]();
 	
 	var featuredSize = 6;
 	var featuredFrame = CGRect(x:0,y:0,width:0,height:0);
@@ -69,106 +69,21 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 	var districtNewsFrame = CGRect(x:0,y:0,width:0,height:0);
 	
 	internal func getHomeArticleData(){
-		setUpConnection();
-		if (internetConnected){
-			featuredArticles = [articleData]();
-			homeArticleList = [[articleData]](repeating: [articleData](), count: 3);
-			
-			for i in 0...2{
-				var s: String; // path inside homepage
-				switch i {
-				case 0: // general info
-					s = "General_Info";
-					break;
-				case 1: // district
-					s = "District";
-					break;
-				case 2: // asb
-					s = "ASB";
-					break;
-				default:
-					s = "";
-					break;
-				}
 		
-				ref.child("homepage").child(s).observeSingleEvent(of: .value) { (snapshot) in
-					let enumerator = snapshot.children;
-					var temp = [articleData](); // temporary array
-					while let article = enumerator.nextObject() as? DataSnapshot{ // each article
-						
-						let enumerator = article.children;
-						var singleArticle = articleData();
-						
-						singleArticle.articleID = article.key;
-						
-						
-						while let articleContent = enumerator.nextObject() as? DataSnapshot{ // data inside article
-							
-							
-							if (articleContent.key == "articleAuthor"){
-								singleArticle.articleAuthor = articleContent.value as? String;
-							}
-							else if (articleContent.key == "articleBody"){
-								singleArticle.articleBody = articleContent.value as? String;
-							}
-							else if (articleContent.key == "articleUnixEpoch"){
-								singleArticle.articleUnixEpoch = articleContent.value as? Int64;
-							}
-							else if (articleContent.key == "articleImages"){
-								
-								var tempImage = [String]();
-								let imageIt = articleContent.children;
-								while let image = imageIt.nextObject() as? DataSnapshot{
-									tempImage.append(image.value as! String);
-								}
-								singleArticle.articleImages = tempImage;
-							}
-							else if (articleContent.key == "articleVideoIDs"){
-								var tempArr = [String]();
-								let idIt = articleContent.children;
-								while let id = idIt.nextObject() as? DataSnapshot{
-									tempArr.append(id.value as! String);
-								}
-								singleArticle.articleVideoIDs = tempArr;
-							}
-							else if (articleContent.key == "articleTitle"){
-								
-								singleArticle.articleTitle = articleContent.value as? String;
-							}
-							else if (articleContent.key == "isFeatured"){
-								singleArticle.isFeatured = (articleContent.value as? Int == 0 ? false : true);
-							}
-							else if (articleContent.key == "hasHTML"){
-								singleArticle.hasHTML = (articleContent.value as? Int == 0 ? false : true);
-							}
-							
-							
-						}
-						singleArticle.articleCatagory = i == 0 ? "General Info" : s;
-						temp.append(singleArticle);
-						//print(singleArticle.isFeatured);
-						if (singleArticle.isFeatured == true){
-							self.featuredArticles.append(singleArticle);
-						}
-					}
-					homeArticleList[i] = temp;
-					self.updateViews(with: i);
-					//print("temp - \(temp)")
-					//self.loadingASBView.isHidden = true;
-					//self.loadingDistrictView.isHidden = true;
-					//self.loadingGeneralView.isHidden = true;
-					//self.refreshControl.endRefreshing();
-				};
+		dataManager.getHomepageData(completion: { (isConnected, index) in
+			if (isConnected){
+				self.updateViews(with: index);
 			}
-		}
-		else{
-			featuredLabel.text = "No Connection";
-			let infoPopup = UIAlertController(title: "No internet connection detected", message: "No articles were loaded", preferredStyle: UIAlertController.Style.alert);
-			infoPopup.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
-				self.refreshControl.endRefreshing();
-			}));
-			present(infoPopup, animated: true, completion: nil);
-		}
+			else{
+				self.featuredLabel.text = "No Connection";
+				let infoPopup = UIAlertController(title: "No internet connection detected", message: "No articles were loaded", preferredStyle: UIAlertController.Style.alert);
+				infoPopup.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+					self.refreshControl.endRefreshing();
+				}));
+				self.present(infoPopup, animated: true, completion: nil);
+			}
+		})
+		
 	}
 	
 	private func getScrollViewFromPageControl(with tag: Int) -> UIScrollView{
@@ -213,14 +128,15 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 	}
 	
 	internal func  scrollViewDidScroll(_ scrollView: UIScrollView) {
-		if (scrollView.tag != -1){
-			
-			asbNewsPageControl.currentPage = Int(round(asbNewsScrollView.contentOffset.x / asbNewsFrame.size.width));
-			
-			generalInfoPageControl.currentPage = Int(round(generalInfoScrollView.contentOffset.x / generalInfoFrame.size.width));
-			
-			districtNewsPageControl.currentPage = Int(round(districtNewsScrollView.contentOffset.x / districtNewsFrame.size.width));
+		guard (scrollView.tag != -1 && asbNewsFrame.size.width != 0 && generalInfoFrame.size.width != 0 && districtNewsFrame.size.width != 0) else{
+			return;
 		}
+		//print("curr - \(asbNewsPageControl.currentPage) = \(asbNewsScrollView.contentOffset.x) / \(asbNewsFrame.size.width)")
+		asbNewsPageControl.currentPage = Int(round(asbNewsScrollView.contentOffset.x / asbNewsFrame.size.width));
+		
+		generalInfoPageControl.currentPage = Int(round(generalInfoScrollView.contentOffset.x / generalInfoFrame.size.width));
+		
+		districtNewsPageControl.currentPage = Int(round(districtNewsScrollView.contentOffset.x / districtNewsFrame.size.width));
 	}
 	
 	

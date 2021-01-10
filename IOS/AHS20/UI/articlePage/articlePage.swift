@@ -135,13 +135,18 @@ class articlePageClass: UIViewController, UIScrollViewDelegate, UINavigationCont
             nextY += imageScrollViewFrame.size.height;
             
             if (imageSize + videoSize > 1){
+                //print("got to image")
+                imagePageControl.frame = CGRect(x: padding, y: nextY + 4, width: UIScreen.main.bounds.width, height: 20);
                 imagePageControl.currentPage = 0;
-                imagePageControl.numberOfPages = imageSize + videoSize;
-                imagePageControl.center = CGPoint(x: UIScreen.main.bounds.width / 2, y: nextY + 12);
-                imagePageControl.pageIndicatorTintColor = UIColor.lightGray;
-                imagePageControl.currentPageIndicatorTintColor = UIColor.black;
+                imagePageControl.numberOfPages = imageSize+videoSize;
+                //imagePageControl.center = CGPoint(x: UIScreen.main.bounds.width / 2, y: nextY + 12);
+                imagePageControl.tintColor = InverseBackgroundColor;
+                imagePageControl.pageIndicatorTintColor = BackgroundGrayColor;
+                imagePageControl.currentPageIndicatorTintColor = InverseBackgroundColor;
+                imagePageControl.backgroundColor = BackgroundColor;
+                imagePageControl.isUserInteractionEnabled = false;
                 mainScrollView.addSubview(imagePageControl);
-                nextY += 20;
+                nextY += imagePageControl.frame.height;
             }
             
             mainScrollView.addSubview(imageScrollView);
@@ -191,7 +196,7 @@ class articlePageClass: UIViewController, UIScrollViewDelegate, UINavigationCont
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if (articleContent?.articleAuthor != nil){
+        if (articleContent?.articleAuthor != nil && imageFrame.size.width != 0){
             imagePageControl.currentPage = Int(round(imageScrollView.contentOffset.x / imageFrame.size.width));
             //UIScrollView.animate(withDuration: 0.3, delay: 0, options: .allowUserInteraction, animations: {self.imageScrollView.backgroundColor = self.imageAvgColors[self.imagePageControl.currentPage] != nil ? self.imageAvgColors[self.imagePageControl.currentPage] : UIColor.lightGray;}, completion: nil);
         }

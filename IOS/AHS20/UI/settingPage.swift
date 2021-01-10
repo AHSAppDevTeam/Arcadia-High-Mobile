@@ -33,7 +33,7 @@ class settingClass: UITableViewController {
         if (fontSize == 20){
             fontWordLabel.text = "Default";
             fontWordLabel.font = UIFont(name: fontWordLabel.font.fontName, size: max(CGFloat(fontSize-3), 1));
-            fontWordLabel.textColor = UIColor.black;
+            fontWordLabel.textColor = InverseBackgroundColor;
         }
         else if (fontSize >= 1 && fontSize < 20){
             fontWordLabel.text = "Small";

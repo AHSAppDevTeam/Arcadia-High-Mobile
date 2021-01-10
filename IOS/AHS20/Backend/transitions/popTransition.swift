@@ -57,10 +57,13 @@ open class popTransition: NSObject, UIViewControllerAnimatedTransitioning{
         else if (gestureRecognizer.state == .ended){
             let thresholdPercent : CGFloat = 0.25; // if minx > thresholdPercent * uiscreen.main.bounds.width
             if (fromViewController.view.frame.minX >= thresholdPercent * UIScreen.main.bounds.width){
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "savedpage_reloadSavedArticles"), object: nil, userInfo: nil);
                 fromViewController.dismiss(animated: true);
             }
             else{
-                fromViewController.view.frame = CGRect(x: 0, y: 0, width: fromViewController.view.frame.width, height: fromViewController.view.frame.height);
+                UIView.animate(withDuration: 0.2, animations: {
+                    fromViewController.view.frame = CGRect(x: 0, y: 0, width: fromViewController.view.frame.width, height: fromViewController.view.frame.height);
+                });
             }
         }
     }
