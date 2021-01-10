@@ -32,28 +32,28 @@ class notificationFuncClass{
         }
     }
     
-    static public func saveNotifPref(){
+    static public func saveNotifPref(filter: Bool){
         do{
-            
-            var currDict = [String: Bool]();
-            for i in notificationsClass.totalNotificationList{
-                currDict[i.messageID ?? ""] = true;
-            }
-            
-            var save = [String: Bool](); // messageid
-            for i in notificationsClass.notificationReadDict{
-                if (currDict[i.key] == true){
-                    save[i.key] = true;
-                }
-            }
-            
-            // combine only stuff that exists
             let encoder = JSONEncoder();
-            let data = try encoder.encode(save);
+            let data = try encoder.encode(filter ? filterReadDictionary() : notificationsClass.notificationReadDict);
             UserDefaults.standard.set(data, forKey: "notificationReadDict");
         } catch{
             print("error encoding object to save");
         }
+    }
+    
+    static private func filterReadDictionary() -> [String : Bool]{
+        var currDict = [String: Bool]();
+        for i in notificationsClass.totalNotificationList{
+            currDict[i.messageID ?? ""] = true;
+        }
+        var save = [String: Bool](); // messageid
+        for i in notificationsClass.notificationReadDict{
+            if (currDict[i.key] == true){
+                save[i.key] = true;
+            }
+        }
+        return save;
     }
     
     static public func filterThroughSelectedNotifcations() -> [notificationData]{

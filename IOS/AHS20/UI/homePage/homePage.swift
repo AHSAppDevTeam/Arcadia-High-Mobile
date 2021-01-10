@@ -128,13 +128,15 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 	}
 	
 	internal func  scrollViewDidScroll(_ scrollView: UIScrollView) {
-		if (scrollView.tag != -1){
-			asbNewsPageControl.currentPage = Int(round(asbNewsScrollView.contentOffset.x / asbNewsFrame.size.width));
-			
-			generalInfoPageControl.currentPage = Int(round(generalInfoScrollView.contentOffset.x / generalInfoFrame.size.width));
-			
-			districtNewsPageControl.currentPage = Int(round(districtNewsScrollView.contentOffset.x / districtNewsFrame.size.width));
+		guard (scrollView.tag != -1 && asbNewsFrame.size.width != 0 && generalInfoFrame.size.width != 0 && districtNewsFrame.size.width != 0) else{
+			return;
 		}
+		//print("curr - \(asbNewsPageControl.currentPage) = \(asbNewsScrollView.contentOffset.x) / \(asbNewsFrame.size.width)")
+		asbNewsPageControl.currentPage = Int(round(asbNewsScrollView.contentOffset.x / asbNewsFrame.size.width));
+		
+		generalInfoPageControl.currentPage = Int(round(generalInfoScrollView.contentOffset.x / generalInfoFrame.size.width));
+		
+		districtNewsPageControl.currentPage = Int(round(districtNewsScrollView.contentOffset.x / districtNewsFrame.size.width));
 	}
 	
 	

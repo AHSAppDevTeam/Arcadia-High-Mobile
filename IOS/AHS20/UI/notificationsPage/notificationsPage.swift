@@ -38,7 +38,7 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
     @objc func openArticle(_ sender: notificationUIButton) {
         if (sender.alreadyRead == false){
             notificationsClass.notificationReadDict[sender.notificationCompleteData.messageID ?? ""] = true;
-            notificationFuncClass.saveNotifPref();
+            notificationFuncClass.saveNotifPref(filter: true);
             notificationFuncClass.unreadNotifCount = notificationFuncClass.numOfUnreadInArray(arr: notificationFuncClass.filterThroughSelectedNotifcations());
             UIApplication.shared.applicationIconBadgeNumber = notificationFuncClass.unreadNotifCount;
         }

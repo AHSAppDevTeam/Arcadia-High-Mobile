@@ -154,6 +154,11 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
                 }
             });
         }
+        
+        let notificationID = userInfo["notifID"] as? String ?? "";
+        notificationFuncClass.loadNotifPref();
+        notificationsClass.notificationReadDict[notificationID] = true;
+        notificationFuncClass.saveNotifPref(filter: false);
         completionHandler()
     }
 }
