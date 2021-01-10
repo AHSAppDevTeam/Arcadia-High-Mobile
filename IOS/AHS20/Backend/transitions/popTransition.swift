@@ -61,7 +61,9 @@ open class popTransition: NSObject, UIViewControllerAnimatedTransitioning{
                 fromViewController.dismiss(animated: true);
             }
             else{
-                fromViewController.view.frame = CGRect(x: 0, y: 0, width: fromViewController.view.frame.width, height: fromViewController.view.frame.height);
+                UIView.animate(withDuration: 0.2, animations: {
+                    fromViewController.view.frame = CGRect(x: 0, y: 0, width: fromViewController.view.frame.width, height: fromViewController.view.frame.height);
+                });
             }
         }
     }
