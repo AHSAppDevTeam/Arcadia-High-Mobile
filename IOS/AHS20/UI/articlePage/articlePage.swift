@@ -196,7 +196,7 @@ class articlePageClass: UIViewController, UIScrollViewDelegate, UINavigationCont
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if (articleContent?.articleAuthor != nil){
+        if (articleContent?.articleAuthor != nil && imageFrame.size.width != 0){
             imagePageControl.currentPage = Int(round(imageScrollView.contentOffset.x / imageFrame.size.width));
             //UIScrollView.animate(withDuration: 0.3, delay: 0, options: .allowUserInteraction, animations: {self.imageScrollView.backgroundColor = self.imageAvgColors[self.imagePageControl.currentPage] != nil ? self.imageAvgColors[self.imagePageControl.currentPage] : UIColor.lightGray;}, completion: nil);
         }
