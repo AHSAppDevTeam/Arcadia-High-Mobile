@@ -14,7 +14,7 @@ extension dataManager{
         setUpConnection();
         if (internetConnected){
             
-            homeClass.featuredArticles = [articleData]();
+            //homeClass.featuredArticles = [articleData]();
             homeArticleList = [[articleData]](repeating: [articleData](), count: 3);
             
             for index in 0...2{
@@ -91,9 +91,9 @@ extension dataManager{
                         singleArticle.articleCatagory = index == 0 ? "General Info" : s;
                         temp.append(singleArticle);
                         //print(singleArticle.isFeatured);
-                        if (singleArticle.isFeatured){
+                        /*if (singleArticle.isFeatured){
                             homeClass.featuredArticles.append(singleArticle);
-                        }
+                        }*/
                         completion(true, singleArticle);
                     }
                     homeArticleList[index] = temp;
