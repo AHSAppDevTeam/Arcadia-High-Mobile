@@ -63,12 +63,14 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
         dataManager.getNotificationData(completion: { (isConnected) in
             if (isConnected){
                 self.refreshControl.endRefreshing();
+                self.loadingLabel.isHidden = true;
                 self.loadScrollView();
             }
             else{
                 let infoPopup = UIAlertController(title: "No internet connection detected", message: "No notifications were loaded", preferredStyle: UIAlertController.Style.alert);
                 infoPopup.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
                     self.refreshControl.endRefreshing();
+                    self.loadingLabel.isHidden = true;
                 }));
                 self.present(infoPopup, animated: true, completion: nil);
             }
@@ -94,6 +96,7 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
     let timeStampLength = CGFloat(100);
     
     internal var refreshControl = UIRefreshControl();
+    internal var loadingLabel = UILabel();
     
     func loadScrollView(){
         
@@ -239,17 +242,30 @@ class notificationsClass: UIViewController, UIScrollViewDelegate, UITabBarContro
         notificationsClass.totalNotificationList = [notificationData]();
         //notificationList = [[notificationData]](repeating: [notificationData](), count: 2);
         
+        let loadingLabelText = "Loading...";
+        let loadingLabelFont = UIFont(name:"SFProText-Bold",size: 18)!;
+        let loadingLabelWidth = loadingLabelText.getWidth(withConstrainedHeight: .greatestFiniteMagnitude, font: loadingLabelFont);
+        let loadingLabelFrame = CGRect(x: (UIScreen.main.bounds.width / 2) - (loadingLabelWidth / 2), y: 30, width: loadingLabelWidth, height: 30);
+        loadingLabel = UILabel(frame: loadingLabelFrame);
+        loadingLabel.text = loadingLabelText;
+        loadingLabel.font = loadingLabelFont;
+        
+        notificationScrollView.addSubview(loadingLabel);
+        
         gestureRecognizer.addTarget(self, action: #selector(handlePan));
         
         refreshControl.addTarget(self, action: #selector(refreshNotifications), for: UIControl.Event.valueChanged);
-        notificationScrollView.addSubview(refreshControl);
+        //notificationScrollView.addSubview(refreshControl);
+        notificationScrollView.refreshControl = refreshControl;
         notificationScrollView.isScrollEnabled = true;
         notificationScrollView.alwaysBounceVertical = true;
-        refreshControl.beginRefreshing();
+        
+        //refreshControl.beginRefreshing();
         setUpArticleDictionary();
         notificationFuncClass.loadNotifPref();
         getLocalNotifications();
         
     }
+    
     
 }
