@@ -19,6 +19,8 @@ Founders: Seongwook Jang (Project Manager), Jason Zhao (Lead Programmer), Tiger 
 
 3rd Gen: Alex Dang, Arina Miyadi, Richard Wei, Danielle Wong, Emily Yu, Kimberly Yu, Steffi Huang
 
+4th Gen: Rachel Saw, Jennifer Wong, Kelly Cheng, Kyrene Tam, Arina Miyadi, Steffi Huang, Jeffrey Aaron Jeyasingh, Xing Liu, Joshua McMahon, Richard Wei
+
 If there are parts you do not understand, please reach out to us. Thank you!
 
 ---
