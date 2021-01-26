@@ -56,7 +56,7 @@ public class Saved_Activity extends FullScreenActivity implements Navigation, Sa
         recyclerView.setNestedScrollingEnabled(false);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        articleDatabase.getAllArticles_withCallBack(new SavedDatabase.ArticleRetrievedCallback() {
+        articleDatabase.getAllArticlesFromNewest_withCallBack(new SavedDatabase.ArticleRetrievedCallback() {
             @Override
             public void onArticleLoaded(Article_or_BulletinHolder article) {
                 adapter.addItem(article);

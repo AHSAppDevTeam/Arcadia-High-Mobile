@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 
@@ -230,24 +231,54 @@ public class SavedDatabase extends SQLiteOpenHelper {
 
         while(data.moveToNext())
         {
-            Article_or_BulletinHolder.Option type = Article_or_BulletinHolder.Option.getOptionFromInteger(data.getInt(TYPE_COL));
-
-            Article_or_BulletinHolder holder = null;
-            if(type != null)
-                switch(type){
-                    case ARTICLE:
-                        holder = new Article_or_BulletinHolder(getArticleFromCursor(data));
-                        break;
-                    case BULLETIN_ARTICLE:
-                        holder = new Article_or_BulletinHolder(getBulletin_ArticleFromCursor(data));
-                        break;
-                    default:
-                        throw new IllegalStateException("Unexpected value: " + type);
-                }
-            callback.onArticleLoaded(holder);
+            getSingleSavedArticle(callback, data);
         }
         data.close();
 
+    }
+
+    /**
+     * Helper method to get a single article and perform a callback, to avoid duplicate code.
+     * @param callback
+     * @param data
+     */
+    private void getSingleSavedArticle(ArticleRetrievedCallback callback, Cursor data){
+        Article_or_BulletinHolder.Option type = Article_or_BulletinHolder.Option.getOptionFromInteger(data.getInt(TYPE_COL));
+
+        Article_or_BulletinHolder holder = null;
+        if(type != null)
+            switch(type){
+                case ARTICLE:
+                    holder = new Article_or_BulletinHolder(getArticleFromCursor(data));
+                    break;
+                case BULLETIN_ARTICLE:
+                    holder = new Article_or_BulletinHolder(getBulletin_ArticleFromCursor(data));
+                    break;
+                default:
+                    throw new IllegalStateException("Unexpected value: " + type);
+            }
+        callback.onArticleLoaded(holder);
+    }
+
+    /**
+     * Similar to getAllArticles_withCallBack() but reverses the order so that the most recently saved articles appear first
+     * @param callback
+     */
+    public void getAllArticlesFromNewest_withCallBack(ArticleRetrievedCallback callback) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "SELECT * FROM " + current_Table;
+        Cursor data =  db.rawQuery(query, null);
+        // Get the number of articles
+        int numberOfSavedArticles = data.getCount();
+        Log.d("Saved:jeffrey", Integer.toString(numberOfSavedArticles));
+        // Move to last index and loop backwards
+        // So that newest additions appear first
+        data.moveToLast();
+        for(int i = numberOfSavedArticles-1; i>=0; i--){
+            getSingleSavedArticle(callback, data);
+            data.moveToPrevious();
+        }
+        data.close();
     }
 
     private static Article getArticleFromCursor(Cursor data){
