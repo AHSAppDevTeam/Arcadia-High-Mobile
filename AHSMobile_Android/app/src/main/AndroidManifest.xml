@@ -6,19 +6,29 @@
 
     <application
         android:allowBackup="true"
+        android:fullBackupContent="@xml/backup_descriptor"
         android:hardwareAccelerated="true"
         android:icon="@mipmap/app_icon"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/app_icon_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        android:fullBackupContent="@xml/backup_descriptor">
-        <activity android:name="com.hsappdev.ahs.ArticleImageActivity" />
-        <activity android:name="com.hsappdev.ahs.Bulletin_Article_Activity"
-            android:configChanges="orientation|keyboardHidden|screenSize|layoutDirection"/>
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/title_activity_main">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".ArticleImageActivity" />
+        <activity
+            android:name=".Bulletin_Article_Activity"
+            android:configChanges="orientation|keyboardHidden|screenSize|layoutDirection" />
 
         <service
-            android:name="com.hsappdev.ahs.NotifService"
+            android:name=".NotifService"
             android:enabled="true"
             android:exported="false">
             <intent-filter>
@@ -30,19 +40,13 @@
         <activity android:name=".settingsActivities.About_Activity" />
         <activity android:name=".settingsActivities.Terms_Activity" />
         <activity android:name=".settingsActivities.Settings_Activity" />
-        <activity android:name="com.hsappdev.ahs.Saved_Activity" />
-        <activity android:name="com.hsappdev.ahs.Notif_Activity" />
+        <activity android:name=".Saved_Activity" />
+        <activity android:name=".Notif_Activity" />
         <activity
-            android:name="com.hsappdev.ahs.ArticleActivity"
+            android:name=".ArticleActivity"
             android:configChanges="orientation|keyboardHidden|screenSize|layoutDirection" />
-        <activity android:name="com.hsappdev.ahs.Bulletin_Activity" />
-        <activity android:name="com.hsappdev.ahs.News_Activity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        <activity android:name=".Bulletin_Activity" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
 
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"

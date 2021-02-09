@@ -179,4 +179,8 @@ Last updated August 08, 2020
     <string name="email">hsappdev@students.ausd.net</string>
     <string name="terms_and_agreements">Terms and Agreements</string>
     <string name="about_us">About Us</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
 </resources>

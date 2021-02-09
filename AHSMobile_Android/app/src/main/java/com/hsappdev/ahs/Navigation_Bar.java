@@ -40,111 +40,111 @@ public class Navigation_Bar extends Fragment {
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        try {
-            navigation = (Navigation) context;
-        } catch (ClassCastException e) {
-            throw new ClassCastException();
-        }
+//        try {
+//            navigation = (Navigation) context;
+//        } catch (ClassCastException e) {
+//            throw new ClassCastException();
+//        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.nav_bar, container, false);
-        ImageView
-                homeBtn = view.findViewById(R.id.nav_bar_home_button),
-                inner_bulletin_btn = view.findViewById(R.id.nav_bar_inner_bulletin_button),
-                savedBtn = view.findViewById(R.id.nav_bar_bookmarks_button),
-                settingsBtn = view.findViewById(R.id.nav_bar_settings_button);
-        View bulletinBtnLayout = view.findViewById(R.id.nav_bar_bulletin_button);
-
-        homeBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                navigation.goToHome();
-            }
-        });
-        bulletinBtnLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                navigation.goToBulletin();
-            }
-        });
-        savedBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                navigation.goToSaved();
-            }
-        });
-        settingsBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                navigation.goToSettings();
-            }
-        });
-        switch (navigation.getHighlightOption()){
-            case HOME:
-                homeBtn.setColorFilter(ContextCompat.getColor(this.getContext(),R.color.DarkCrimson_1A0303));
-                break;
-            case BULLETIN:
-                inner_bulletin_btn.setColorFilter(ContextCompat.getColor(this.getContext(),R.color.DarkCrimson_1A0303));
-                break;
-            case SAVED:
-                savedBtn.setColorFilter(ContextCompat.getColor(this.getContext(),R.color.DarkCrimson_1A0303));
-                break;
-            case SETTINGS:
-                settingsBtn.setColorFilter(ContextCompat.getColor(this.getContext(),R.color.DarkCrimson_1A0303));
-                break;
-            case NONE:
-            default:
-        }
-
-        final ImageView bulletinDot = view.findViewById(R.id.nav_bar_bulletinDot);
-        new Handler().post(new Runnable() {
-            @Override
-            public void run() {
-                android.os.Process.setThreadPriority(Process.THREAD_PRIORITY_LOWEST);
-                bulletinDot.setVisibility(View.GONE);
-                final BulletinDatabase db = BulletinDatabase.getInstance(getContext());
-                final Resources r = getResources();
-                final String[] categories = new String[]
-                        {
-                                r.getString(R.string.fb_bull_seniors),
-                                r.getString(R.string.fb_bull_events),
-                                r.getString(R.string.fb_bull_colleges),
-                                r.getString(R.string.fb_bull_reference),
-                                r.getString(R.string.fb_bull_athletics),
-                                r.getString(R.string.fb_bull_others),
-                        };
-                final DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child(r.getString(R.string.fb_bull_key));
-                ref.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        boolean success = false;
-                        for (String category : categories) {
-                            if(success)
-                                break;
-                            DataSnapshot snapshot1 = snapshot.child(category);
-                            for (DataSnapshot dataSnapshot : snapshot1.getChildren()) {
-                                if(success)
-                                    break;
-                                String ID = dataSnapshot.getKey();
-                                if(!db.getReadStatusByID(ID)) {
-                                    bulletinDot.setVisibility(View.VISIBLE);
-                                    success = true;
-                                }
-                            }
-                        }
-
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
-            }
-        });
+//        ImageView
+//                homeBtn = view.findViewById(R.id.nav_bar_home_button),
+//                inner_bulletin_btn = view.findViewById(R.id.nav_bar_inner_bulletin_button),
+//                savedBtn = view.findViewById(R.id.nav_bar_bookmarks_button),
+//                settingsBtn = view.findViewById(R.id.nav_bar_settings_button);
+//        View bulletinBtnLayout = view.findViewById(R.id.nav_bar_bulletin_button);
+//
+//        homeBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                navigation.goToHome();
+//            }
+//        });
+//        bulletinBtnLayout.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                navigation.goToBulletin();
+//            }
+//        });
+//        savedBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                navigation.goToSaved();
+//            }
+//        });
+//        settingsBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                navigation.goToSettings();
+//            }
+//        });
+//        switch (navigation.getHighlightOption()){
+//            case HOME:
+//                homeBtn.setColorFilter(ContextCompat.getColor(this.getContext(),R.color.DarkCrimson_1A0303));
+//                break;
+//            case BULLETIN:
+//                inner_bulletin_btn.setColorFilter(ContextCompat.getColor(this.getContext(),R.color.DarkCrimson_1A0303));
+//                break;
+//            case SAVED:
+//                savedBtn.setColorFilter(ContextCompat.getColor(this.getContext(),R.color.DarkCrimson_1A0303));
+//                break;
+//            case SETTINGS:
+//                settingsBtn.setColorFilter(ContextCompat.getColor(this.getContext(),R.color.DarkCrimson_1A0303));
+//                break;
+//            case NONE:
+//            default:
+//        }
+//
+//        final ImageView bulletinDot = view.findViewById(R.id.nav_bar_bulletinDot);
+//        new Handler().post(new Runnable() {
+//            @Override
+//            public void run() {
+//                android.os.Process.setThreadPriority(Process.THREAD_PRIORITY_LOWEST);
+//                bulletinDot.setVisibility(View.GONE);
+//                final BulletinDatabase db = BulletinDatabase.getInstance(getContext());
+//                final Resources r = getResources();
+//                final String[] categories = new String[]
+//                        {
+//                                r.getString(R.string.fb_bull_seniors),
+//                                r.getString(R.string.fb_bull_events),
+//                                r.getString(R.string.fb_bull_colleges),
+//                                r.getString(R.string.fb_bull_reference),
+//                                r.getString(R.string.fb_bull_athletics),
+//                                r.getString(R.string.fb_bull_others),
+//                        };
+//                final DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child(r.getString(R.string.fb_bull_key));
+//                ref.addValueEventListener(new ValueEventListener() {
+//                    @Override
+//                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                        boolean success = false;
+//                        for (String category : categories) {
+//                            if(success)
+//                                break;
+//                            DataSnapshot snapshot1 = snapshot.child(category);
+//                            for (DataSnapshot dataSnapshot : snapshot1.getChildren()) {
+//                                if(success)
+//                                    break;
+//                                String ID = dataSnapshot.getKey();
+//                                if(!db.getReadStatusByID(ID)) {
+//                                    bulletinDot.setVisibility(View.VISIBLE);
+//                                    success = true;
+//                                }
+//                            }
+//                        }
+//
+//                    }
+//
+//                    @Override
+//                    public void onCancelled(@NonNull DatabaseError error) {
+//
+//                    }
+//                });
+//            }
+//        });
         return view;
     }
 
@@ -156,6 +156,9 @@ public class Navigation_Bar extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
 
         super.onActivityCreated(savedInstanceState);
+        if(navigation == null){
+            return;
+        }
         final View scrollingView = getActivity().findViewById(navigation.getScrollingViewId());
 
         final ViewGroup navBar= view.findViewById(R.id.nav_bar_ConstraintLayout);

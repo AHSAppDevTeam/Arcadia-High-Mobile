@@ -8,6 +8,9 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Process;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -15,38 +18,41 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.database.DatabaseError;
 import com.hsappdev.ahs.misc.FullScreenActivity;
+import com.hsappdev.ahs.misc.FullScreenFragment;
 import com.hsappdev.ahs.misc.ValContainer;
 import com.hsappdev.ahs.settingsActivities.Settings_Activity;
 
 import java.util.ArrayList;
 
-public class News_Activity extends FullScreenActivity implements Navigation, NotifBtn.Navigation, ArticleNavigation{
+public class News_Activity extends FullScreenFragment implements ArticleNavigation{
 
     /*private static final String TAG = "News";*/
 
+    View root;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.news_layout);
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        root = inflater.inflate(R.layout.news_layout, container, false);
 
         final Resources r = getResources();
 
         final ValContainer<Boolean> notifArticleFound = new ValContainer<>(false);
 
-        final String notif_articleID = getIntent().getStringExtra(getResources().getString(R.string.notif_articleID_key));
+        final String notif_articleID = null /*getActivity().getStringExtra(getResources().getString(R.string.notif_articleID_key))*/;
         if(notif_articleID != null) {
-            final Article article = ArticleDatabase.getInstance(getApplicationContext()).getArticleById(notif_articleID);
+            final Article article = ArticleDatabase.getInstance(root.getContext()).getArticleById(notif_articleID);
             if(article != null) {
                 notifArticleFound.setVal(true);
-                Intent intent = new Intent(News_Activity.this, ArticleActivity.class);
+                Intent intent = new Intent(root.getContext(), ArticleActivity.class);
                 intent.putExtra(ArticleActivity.data_key, article);
                 startActivity(intent);
             }
             if(!notifArticleFound.getVal()) {
-                Bulletin_Article bulletin_article = BulletinDatabase.getInstance(getApplicationContext()).getArticleByID(notif_articleID);
+                Bulletin_Article bulletin_article = BulletinDatabase.getInstance(getContext()).getArticleByID(notif_articleID);
                 if(bulletin_article != null) {
                     notifArticleFound.setVal(true);
-                    Intent intent = new Intent(News_Activity.this, Bulletin_Article_Activity.class);
+                    Intent intent = new Intent(root.getContext(), Bulletin_Article_Activity.class);
                     intent.putExtra(Bulletin_Article_Activity.data_KEY, bulletin_article);
                     startActivity(intent);
                 }
@@ -60,14 +66,14 @@ public class News_Activity extends FullScreenActivity implements Navigation, Not
                 r.getString(R.string.news_asbNews_name),
         };
 
-        final RecyclerView recyclerView = findViewById(R.id.news_recyclerView);
+        final RecyclerView recyclerView = root.findViewById(R.id.news_recyclerView);
         recyclerView.setNestedScrollingEnabled(false);
 
         final NewsRecyclerAdapter adapter = new NewsRecyclerAdapter(titles, this);
         recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setLayoutManager(new LinearLayoutManager(root.getContext()));
 
-        final FirebaseDatabaseHandler handler = new FirebaseDatabaseHandler(getApplicationContext());
+        final FirebaseDatabaseHandler handler = new FirebaseDatabaseHandler(root.getContext());
 
         if(notif_articleID != null && !notifArticleFound.getVal()) {
             final byte NOT_FOUND = -1, LOADING = 0, FOUND = 1;
@@ -84,7 +90,7 @@ public class News_Activity extends FullScreenActivity implements Navigation, Not
                     if(article.getID().equals(notif_articleID)) {
                         /*Log.d("frames", "FOUND!");*/
                         news_found.setVal(FOUND);
-                        Intent intent = new Intent(News_Activity.this, ArticleActivity.class);
+                        Intent intent = new Intent(root.getContext(), ArticleActivity.class);
                         intent.putExtra(Bulletin_Article_Activity.data_KEY, article);
                         /*Log.d("frames", "start Activity");*/
                         startActivity(intent);
@@ -113,7 +119,7 @@ public class News_Activity extends FullScreenActivity implements Navigation, Not
                     Log.d("frames", notif_articleID);
                     Log.d("frames", bulletin_found.getVal() +"\t"+ news_found.getVal());*/
                     if(bulletin_found.getVal() == NOT_FOUND && news_found.getVal() != FOUND) {
-                        startActivity(new Intent(News_Activity.this, Notif_Activity.class));
+                        startActivity(new Intent(root.getContext(), Notif_Activity.class));
                         /*Log.d("frames", "start Activity");*/
                     }
                     news_found.setVal(NOT_FOUND);
@@ -123,7 +129,7 @@ public class News_Activity extends FullScreenActivity implements Navigation, Not
 
                             android.os.Process.setThreadPriority(Process.THREAD_PRIORITY_BACKGROUND);
                             /*Log.d("frames", "saving news");*/
-                            ArticleDatabase.getInstance(getApplicationContext()).updateArticles(articles);
+                            ArticleDatabase.getInstance(root.getContext()).updateArticles(articles);
                         }
                     }.run();
 
@@ -145,7 +151,7 @@ public class News_Activity extends FullScreenActivity implements Navigation, Not
                     if(article.getID().equals(notif_articleID)) {
                         /*Log.d("frames", "FOUND!");*/
                         bulletin_found.setVal(FOUND);
-                        Intent intent = new Intent(News_Activity.this, Bulletin_Article_Activity.class);
+                        Intent intent = new Intent(root.getContext(), Bulletin_Article_Activity.class);
                         intent.putExtra(Bulletin_Article_Activity.data_KEY, article);
                         /*Log.d("frames", "start Activity");*/
                         startActivity(intent);
@@ -159,7 +165,7 @@ public class News_Activity extends FullScreenActivity implements Navigation, Not
                     Log.d("frames", notif_articleID);
                     Log.d("frames", bulletin_found.getVal() +"\t"+ news_found.getVal());*/
                     if(news_found.getVal() == NOT_FOUND && bulletin_found.getVal() != FOUND) {
-                        startActivity(new Intent(News_Activity.this, Notif_Activity.class));
+                        startActivity(new Intent(root.getContext(), Notif_Activity.class));
                         /*Log.d("frames", "start Activity");*/
                     }
                     bulletin_found.setVal(NOT_FOUND);
@@ -169,7 +175,7 @@ public class News_Activity extends FullScreenActivity implements Navigation, Not
 
                             android.os.Process.setThreadPriority(Process.THREAD_PRIORITY_BACKGROUND);
                             /*Log.d("frames", "saving news");*/
-                            BulletinDatabase.getInstance(getApplicationContext()).updateArticles(articles);
+                            BulletinDatabase.getInstance(root.getContext()).updateArticles(articles);
                         }
                     }.run();
 
@@ -216,7 +222,7 @@ public class News_Activity extends FullScreenActivity implements Navigation, Not
 
                             android.os.Process.setThreadPriority(Process.THREAD_PRIORITY_BACKGROUND);
                             /*Log.d("frames", "saving news");*/
-                            ArticleDatabase.getInstance(getApplicationContext()).updateArticles(articles);
+                            ArticleDatabase.getInstance(root.getContext()).updateArticles(articles);
                             /*Log.d("frames", "saved news");*/
                         }
                     }.run();
@@ -247,7 +253,7 @@ public class News_Activity extends FullScreenActivity implements Navigation, Not
                         public void onAllArticlesLoaded(final ArrayList<Bulletin_Article> articles) {
 
                             android.os.Process.setThreadPriority(Process.THREAD_PRIORITY_BACKGROUND);
-                            BulletinDatabase.getInstance(getApplicationContext()).updateArticles(articles);
+                            BulletinDatabase.getInstance(root.getContext()).updateArticles(articles);
                         }
 
                         @Override
@@ -264,10 +270,12 @@ public class News_Activity extends FullScreenActivity implements Navigation, Not
             public void run() {
                 android.os.Process.setThreadPriority(Process.THREAD_PRIORITY_LOWEST);
                 createNotificationChannel();
-                Settings settings = new Settings(getApplicationContext());
+                Settings settings = new Settings(root.getContext());
                 settings.resubscribeToAll();
             }
         });
+
+        return root;
     }
 
 
@@ -282,56 +290,17 @@ public class News_Activity extends FullScreenActivity implements Navigation, Not
             channel.setDescription(description);
             // Register the channel with the system; you can't change the importance
             // or other notification behaviors after this
-            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            NotificationManager notificationManager = getActivity().getSystemService(NotificationManager.class);
             notificationManager.createNotificationChannel(channel);
         }
     }
 
     @Override
-    public void goToHome() {
-
-    }
-
-    @Override
-    public void goToBulletin() {
-        Intent myIntent = new Intent(News_Activity.this, Bulletin_Activity.class);
-        startActivity(myIntent);
-    }
-
-    @Override
-    public void goToSaved() {
-        Intent myIntent = new Intent(News_Activity.this, Saved_Activity.class);
-        startActivity(myIntent);
-    }
-
-    @Override
-    public void goToSettings() {
-        Intent myIntent = new Intent(News_Activity.this, Settings_Activity.class);
-        startActivity(myIntent);
-    }
-
-    @Override
-    public int getScrollingViewId() {
-        return R.id.home_page__scrollView;
-    }
-
-    @Override
-    public HighlightOption getHighlightOption() {
-        return HighlightOption.HOME;
-    }
-
-    @Override
-    public void goToNotif() {
-        Intent myIntent = new Intent(News_Activity.this, Notif_Activity.class);
-        startActivity(myIntent);
-    }
-
-    @Override
     public void onItemClicked(Article article) {
-        Intent intent = new Intent(News_Activity.this, ArticleActivity.class);
+        Intent intent = new Intent(root.getContext(), ArticleActivity.class);
         intent.putExtra(ArticleActivity.data_key, article);
         startActivity(intent);
-        overridePendingTransition(R.anim.from_right, R.anim.maintain);
+        getActivity().overridePendingTransition(R.anim.from_right, R.anim.maintain);
 
     }
 }

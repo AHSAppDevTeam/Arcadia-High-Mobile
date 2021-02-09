@@ -25,12 +25,12 @@
             android:clipChildren="false">
 
 
-            <fragment
-                android:id="@+id/news_header"
-                android:name="com.hsappdev.ahs.News_Header"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:layout="@layout/header_layout" />
+<!--            <fragment-->
+<!--                android:id="@+id/news_header"-->
+<!--                android:name="com.hsappdev.ahs.News_Header"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                tools:layout="@layout/header_layout" />-->
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/news_recyclerView"
