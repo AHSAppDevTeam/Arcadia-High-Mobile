@@ -32,16 +32,7 @@ open class pushTransition: NSObject, UIViewControllerAnimatedTransitioning{
         
         UIImpactFeedbackGenerator(style: .light).impactOccurred();
         
-        /*if self.type == .navigation, let toViewController = transitionContext.viewController(forKey: .to) {
-            transitionContext.containerView.insertSubview(toViewController.view, belowSubview: fromViewController.view)
-        }*/
-        
-        //transitionContext.containerView.insertSubview(, belowSubview: <#T##UIView#>)
-        
-        //print("push")
-        //toViewController.view.alpha = 1;
         transitionContext.containerView.insertSubview(toViewController.view, aboveSubview: fromViewController.view)
-        //toViewController.view.alpha = 0;
         toViewController.view.frame = CGRect(x: UIScreen.main.bounds.width, y: 0, width: toViewController.view.frame.width, height: toViewController.view.frame.height);
         
         

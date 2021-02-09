@@ -90,16 +90,9 @@ extension dataManager{
                         }
                         singleArticle.articleCatagory = index == 0 ? "General Info" : s;
                         temp.append(singleArticle);
-                        //print(singleArticle.isFeatured);
-                        /*if (singleArticle.isFeatured){
-                            homeClass.featuredArticles.append(singleArticle);
-                        }*/
                         completion(true, singleArticle);
                     }
                     homeArticleList[index] = temp;
-                    
-                    //completion(index);
-                    //self.completionHandler(index);
                     
                 };
                 

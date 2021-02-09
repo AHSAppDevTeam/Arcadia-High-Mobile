@@ -23,7 +23,6 @@ class zoomableImageViewController: UIViewController, UIScrollViewDelegate{
     
     override func viewDidLoad() {
         super.viewDidLoad();
-      //  scrollView.bottomAnchor.constraint(equalToSystemSpacingBelow: view.bottomAnchor, multiplier: 1).isActive = true;
         if (image == nil){
             dismissAction(UIButton());
         }

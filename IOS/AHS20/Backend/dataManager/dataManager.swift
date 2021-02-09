@@ -61,7 +61,7 @@ class dataManager {
             }
         }
         Messaging.messaging().subscribe(toTopic: "mandatory");
-        //print("testing sub")
+
         //Messaging.messaging().subscribe(toTopic: "testing");
     }
 

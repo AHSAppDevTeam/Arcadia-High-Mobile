@@ -25,8 +25,7 @@ extension dataManager{
             };
             
             aboutUsPage.names[index] = currentString;
-            //print("current - \(currentString)");
-            //self.firebaseWaitListNum -= 1;
+
             completion();
         }
         

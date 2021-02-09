@@ -37,7 +37,6 @@ class articlePageClass: UIViewController, UIScrollViewDelegate, UINavigationCont
     var imageSize = 1;
     var videoSize = 1;
     var articleContent: articleData?;
-    //var imageAvgColors = [Int:UIColor]();
     
     let imagePageControl = UIPageControl();
     let imageScrollView = UIScrollView();
@@ -45,26 +44,14 @@ class articlePageClass: UIViewController, UIScrollViewDelegate, UINavigationCont
     var passImageToZoomSegue: UIImage?;
     
     
-    /// START DISMISS ON PAN
-    //var interactor: Interactor? = nil;
-    //let transition = CATransition();
-    /// END DISMISS ON PAN
-
     
     override func viewDidLoad() {
         super.viewDidLoad();
         // NewYorkSmall-MediumItalic, NewYorkMedium-Bold
-       // imageAvgColors = [Int:UIColor]();
         bookmarkButton.articleCompleteData = articleContent ?? articleData();
         
         bookmarkButton.tintColor = mainThemeColor;
         setBookmarkColor();
-        
-        //let gestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(gestureAction));
-        //gestureRecognizer.edges = .left;
-        //gestureRecognizer.delegate = self;
-        //view.addGestureRecognizer(gestureRecognizer);
-        //mainScrollView.addGestureRecognizer(gestureRecognizer);
         
         gestureRecognizer.addTarget(self, action: #selector(self.handlePan));
         
@@ -80,7 +67,6 @@ class articlePageClass: UIViewController, UIScrollViewDelegate, UINavigationCont
         let padding = CGFloat(15);
         let universalWidth = UIScreen.main.bounds.width - 2 * padding;
         
-        //nextY += 7;
         let articleTitleText = articleContent?.articleTitle;
         let titleFont = UIFont(name: "NewYorkMedium-Bold", size: CGFloat(fontSize+8));
         let articleTitleFrame = CGRect(x: padding, y: nextY, width: universalWidth, height: articleTitleText?.getHeight(withConstrainedWidth: universalWidth, font: titleFont!) ?? 0);
@@ -114,12 +100,6 @@ class articlePageClass: UIViewController, UIScrollViewDelegate, UINavigationCont
                 let buttonImage = UIButton(frame: imageFrame);
                 buttonImage.imgFromURL(sURL: articleContent?.articleImages?[imageIndex] ?? "");
                 buttonImage.imageView?.contentMode = .scaleAspectFill;
-                /*buttonImage.imageView?.image?.getColors({ (colors) -> Void in
-                    self.imageAvgColors[imageIndex+self.videoSize] = colors?.primary ?? UIColor.lightGray;
-                    if (imageIndex == 0){
-                        self.imageScrollView.backgroundColor = self.imageAvgColors[self.videoSize];
-                    }
-                });*/
                 buttonImage.addTarget(self, action: #selector(toggleZoom), for: .touchUpInside);
                 imageScrollView.addSubview(buttonImage);
                 origX += imageFrame.size.width;
@@ -135,11 +115,9 @@ class articlePageClass: UIViewController, UIScrollViewDelegate, UINavigationCont
             nextY += imageScrollViewFrame.size.height;
             
             if (imageSize + videoSize > 1){
-                //print("got to image")
                 imagePageControl.frame = CGRect(x: padding, y: nextY + 4, width: UIScreen.main.bounds.width, height: 20);
                 imagePageControl.currentPage = 0;
                 imagePageControl.numberOfPages = imageSize+videoSize;
-                //imagePageControl.center = CGPoint(x: UIScreen.main.bounds.width / 2, y: nextY + 12);
                 imagePageControl.tintColor = InverseBackgroundColor;
                 imagePageControl.pageIndicatorTintColor = BackgroundGrayColor;
                 imagePageControl.currentPageIndicatorTintColor = InverseBackgroundColor;
@@ -198,7 +176,6 @@ class articlePageClass: UIViewController, UIScrollViewDelegate, UINavigationCont
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if (articleContent?.articleAuthor != nil && imageFrame.size.width != 0){
             imagePageControl.currentPage = Int(round(imageScrollView.contentOffset.x / imageFrame.size.width));
-            //UIScrollView.animate(withDuration: 0.3, delay: 0, options: .allowUserInteraction, animations: {self.imageScrollView.backgroundColor = self.imageAvgColors[self.imagePageControl.currentPage] != nil ? self.imageAvgColors[self.imagePageControl.currentPage] : UIColor.lightGray;}, completion: nil);
         }
     }
 }

@@ -28,8 +28,6 @@ extension homeClass{
     }
     
     @objc internal func refreshAllArticles(){
-        //print("refresh");
-        //article.setUpLocalData();
         featuredLabel.text = loading;
         asbLabel.text = loading;
         generalLabel.text = loading;
@@ -38,7 +36,6 @@ extension homeClass{
     }
     
     @objc internal func openArticle(sender: CustomUIButton){
-        //print("Button pressed");
         let articleDataDict: [String: articleData] = ["articleContent" : sender.articleCompleteData];
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "article"), object: nil, userInfo: articleDataDict);
     }

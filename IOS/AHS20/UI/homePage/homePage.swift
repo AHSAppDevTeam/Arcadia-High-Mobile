@@ -131,7 +131,6 @@ class homeClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDeleg
 		guard (scrollView.tag != -1 && asbNewsFrame.size.width != 0 && generalInfoFrame.size.width != 0 && districtNewsFrame.size.width != 0) else{
 			return;
 		}
-		//print("curr - \(asbNewsPageControl.currentPage) = \(asbNewsScrollView.contentOffset.x) / \(asbNewsFrame.size.width)")
 		asbNewsPageControl.currentPage = Int(round(asbNewsScrollView.contentOffset.x / asbNewsFrame.size.width));
 		
 		generalInfoPageControl.currentPage = Int(round(generalInfoScrollView.contentOffset.x / generalInfoFrame.size.width));

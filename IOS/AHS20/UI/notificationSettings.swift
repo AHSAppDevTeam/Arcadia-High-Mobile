@@ -108,13 +108,10 @@ class notificationSettingsClass: UITableViewController{
             }
         }
         
-        //print(selectedNotifications);
         UserDefaults.standard.set(notificationFuncClass.selectedNotifications, forKey: "selectedNotifications");
         
         dataManager.updateSubscriptionNotifs();
         
-       // filterTotalNotificationArticles();
-       // unreadNotif = (notificationList[1].count > 0);
         notificationFuncClass.unreadNotifCount = notificationFuncClass.numOfUnreadInArray(arr: notificationFuncClass.filterThroughSelectedNotifcations());
         UIApplication.shared.applicationIconBadgeNumber = notificationFuncClass.unreadNotifCount;
     }

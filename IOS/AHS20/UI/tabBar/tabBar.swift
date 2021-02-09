@@ -51,13 +51,10 @@ class tabBarClass: UIViewController, UIScrollViewDelegate {
     private var transitionDelegateVar : transitionDelegate!;
     
     @IBAction func openNotifications(_ sender: UIButton) {
-        //print("Notifcations");
-        //performSegue(withIdentifier: "notificationSegue", sender: nil);
         
         guard let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "notificationPageController") as? notificationsClass else{
             return;
         };
-        //vc.refreshControl.beginRefreshing();
         transitionDelegateVar = transitionDelegate();
         vc.transitioningDelegate = transitionDelegateVar;
         vc.modalPresentationStyle = .custom;
@@ -68,11 +65,7 @@ class tabBarClass: UIViewController, UIScrollViewDelegate {
         guard let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "articlePageController") as? articlePageClass else{
             return;
         };
-        //vc.interactor = interactor;
         vc.articleContent = notification.userInfo?["articleContent"] as? articleData;
-        //transition(to: vc);
-        //vc.modalTransitionStyle = transitionClass.getInitialTransition();
-        //view.window!.layer.add(transitionClass.getInitialTransition(), forKey: kCATransition);
         transitionDelegateVar = transitionDelegate();
         vc.transitioningDelegate = transitionDelegateVar;
         vc.modalPresentationStyle = .custom;
@@ -102,11 +95,6 @@ class tabBarClass: UIViewController, UIScrollViewDelegate {
         dataManager.setUpConnection();
         setUpNotifDot();
         
-        //developer stuff
-        //setUpDevConfigs();
-        
-        //UserDefaults.standard.removeObject(forKey: "notificationReadDict");
-        
         NotificationCenter.default.addObserver(self, selector: #selector(self.articleSelector), name:NSNotification.Name(rawValue: "article"), object: nil);
         NotificationCenter.default.addObserver(self, selector: #selector(self.updateNotifDot), name:NSNotification.Name(rawValue: "updateNotifDot"), object: nil);
         
@@ -114,9 +102,6 @@ class tabBarClass: UIViewController, UIScrollViewDelegate {
         savedArticleClass.getArticleDictionary();
         
         fontSize = UserDefaults.standard.integer(forKey: "fontSize") != 0 ? UserDefaults.standard.integer(forKey: "fontSize") : 20;
-        
-        //tabBarView.backgroundColor = BackgroundColor;
-        //contentView.backgroundColor = BackgroundColor;
         
         // set up buttons
         for index in 0..<buttons.count{
@@ -135,8 +120,7 @@ class tabBarClass: UIViewController, UIScrollViewDelegate {
         savedViewController = storyboard.instantiateViewController(withIdentifier: "savedViewController") as! savedClass;
         settingsViewController = storyboard.instantiateViewController(withIdentifier: "settingsViewController") as! settingClass;
         viewControllers = [homeViewController, bulletinViewController, savedViewController, settingsViewController];
-        //buttons[selectedIndex].setImage(UIImage(named: iconImagePathInv[selectedIndex]), for: .normal);
-        //buttons[selectedIndex].tintColor = selectedColor;
+
         let vc = viewControllers[selectedIndex];
         addChild(vc);
         vc.view.frame = contentView.bounds;
@@ -188,7 +172,6 @@ class tabBarClass: UIViewController, UIScrollViewDelegate {
             
             // add current view controller
             sender.tintColor = InverseBackgroundColor;
-            //sender.setImage(UIImage(named: iconImagePathInv[sender.tag]), for: .normal);
             let vc = viewControllers[selectedIndex];
             addChild(vc);
             vc.view.frame = contentView.bounds;
@@ -197,8 +180,6 @@ class tabBarClass: UIViewController, UIScrollViewDelegate {
             
             
             if (sender.tag == 0){
-                //               topBar.layer.cornerRadius = homeTopCornerRadius;
-                //topBar.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner];
                 topBarHeightContraint.constant = 62;
                 topBar.layer.shadowColor = BackgroundGrayColor.cgColor;
                 homeTopBarContent.isHidden = false;

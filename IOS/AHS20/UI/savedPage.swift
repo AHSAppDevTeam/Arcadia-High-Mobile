@@ -15,7 +15,6 @@ class savedClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDele
     
     
     @objc func openArticle(sender: CustomUIButton){
-        // print("Button pressed");
         let articleDataDict: [String: articleData] = ["articleContent" : sender.articleCompleteData];
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "article"), object: nil, userInfo: articleDataDict);
     }
@@ -85,11 +84,9 @@ class savedClass: UIViewController, UIScrollViewDelegate, UITabBarControllerDele
                     imageView.backgroundColor = BackgroundColor;
                     imageView.contentMode = .scaleAspectFill;
                     imageView.clipsToBounds = true;
-                    //imageView.setRoundedEdge(corners: [.topLeft, .topRight, .bottomLeft, .bottomRight], radius: 3);
                     imageView.layer.borderWidth = 0.5;
                     imageView.layer.borderColor = BackgroundGrayColor.cgColor;
                     imageView.layer.cornerRadius = 3;
-                    //imageView.clipsToBounds = true;
                     articleButton.addSubview(imageView);
                     leftEdge += imageViewFrame.size.width + 2 * leftPadding;
                 }

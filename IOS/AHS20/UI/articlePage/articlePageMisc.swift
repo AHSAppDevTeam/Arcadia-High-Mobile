@@ -20,21 +20,15 @@ extension articlePageClass{
             }
             sender.isSelected = !sender.isSelected;
             setBookmarkColor();
-            //resetUpArticles = true;
         }
     }
     
     @IBAction internal func exitArticle(_ sender: UIButton){
-        // imageAvgColors = [Int:UIColor]();
-        //transitionDismissal();
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "savedpage_reloadSavedArticles"), object: nil, userInfo: nil);
         self.dismiss(animated: true);
-        //print("pressed")
-        //self.view.frame = CGRect(x: self.view.frame.width/2, y: 0, width: self.view.frame.width, height: self.view.frame.height);
     }
     
     @IBAction internal func handlePan(_ gestureRecognizer: UIPanGestureRecognizer){
-       //print("got pan")
         popTransition.handlePan(gestureRecognizer, fromViewController: self);
     }
     

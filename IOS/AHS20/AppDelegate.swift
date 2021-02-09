@@ -36,9 +36,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         application.registerForRemoteNotifications();
         
-        //self.window?.backgroundColor = UIColor.white;
-        //self.window?.tintColor = UIColor.white;
-        
         return true;
     }
     
@@ -51,15 +48,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // With swizzling disabled you must let Messaging know about the message, for Analytics
         // Messaging.messaging().appDidReceiveMessage(userInfo)
         // Print message ID.
-        
-        /*print("Tapped on notif");
-         
-         if let messageID = userInfo[gcmMessageIDKey] {
-         print("Message ID: \(messageID)")
-         }
-         
-         // Print full message.
-         print(userInfo)*/
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
@@ -70,15 +58,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // With swizzling disabled you must let Messaging know about the message, for Analytics
         // Messaging.messaging().appDidReceiveMessage(userInfo)
         // Print message ID.
-        
-        /* print("Tapped on notif2");
-         if let messageID = userInfo[gcmMessageIDKey] {
-         print("Message ID: \(messageID)")
-         }
-         
-         
-         // Print full message.
-         print(userInfo)*/
         
         completionHandler(UIBackgroundFetchResult.newData)
     }
@@ -115,18 +94,9 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 willPresent notification: UNNotification,
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) { // handle regularly
-        //let userInfo = notification.request.content.userInfo
         
         // With swizzling disabled you must let Messaging know about the message, for Analytics
         // Messaging.messaging().appDidReceiveMessage(userInfo)
-        // Print message ID.
-        /*if let messageID = userInfo[gcmMessageIDKey] {
-         print("Message ID: \(messageID)")
-         }
-         print("Handled notifications reg");
-         // Print full message.
-         print(userInfo)*/
-        
         
         // Change this to your preferred presentation option
         completionHandler([[.alert, .sound]])
@@ -136,15 +106,8 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
                                 didReceive response: UNNotificationResponse,
                                 withCompletionHandler completionHandler: @escaping () -> Void) { // handle tapping on notification
         let userInfo = response.notification.request.content.userInfo
-        // Print message ID.
         
-        //   print("tapped on notification");
-        
-        // Print full message.
-        //print("got notification - \(userInfo)")
-        // TODO: GOTO ARTICLE from  articleID
-        let id = userInfo["articleID"] as? String ?? "";
-        if (id != ""){
+        if let id = userInfo["articleID"] as? String{
             dataManager.loadAllArticles(completion: { (isConnected, data) in
                 if (isConnected){
                     if (data!.articleID == id){
@@ -153,12 +116,14 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
                     }
                 }
             });
+            notificationFuncClass.loadNotifPref();
+            notificationsClass.notificationReadDict[id] = true;
+            notificationFuncClass.saveNotifPref(filter: false);
+        }
+        else{
+            print("Failed to cast articleID as String");
         }
         
-        let notificationID = userInfo["notifID"] as? String ?? "";
-        notificationFuncClass.loadNotifPref();
-        notificationsClass.notificationReadDict[notificationID] = true;
-        notificationFuncClass.saveNotifPref(filter: false);
         completionHandler()
     }
 }
