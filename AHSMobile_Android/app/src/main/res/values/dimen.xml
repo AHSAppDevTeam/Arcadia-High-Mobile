@@ -15,5 +15,5 @@
 
     <dimen name = "Selector_Dot_Radius">4dp</dimen>
 
-    <dimen name = "SmallRound_BG_Radius">5dp</dimen>
+    <dimen name = "SmallRound_BG_Radius">15dp</dimen>
 </resources>

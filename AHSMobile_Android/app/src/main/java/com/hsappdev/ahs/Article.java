@@ -4,6 +4,9 @@ import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class Article implements Parcelable {
 
     private final String ID;
@@ -13,7 +16,7 @@ public class Article implements Parcelable {
     private final String story;
     private final String [] imagePaths;
     private final String [] videoIDS;
-
+    private int views;
     private final Type type;
 
 
@@ -40,6 +43,34 @@ public class Article implements Parcelable {
         this.imagePaths = imagePaths;
         this.videoIDS = videoIDS;
         this.type = type;
+        this.views = 0;
+    }
+
+    public Article(
+            @NonNull
+                    String ID,
+            long time_updated,
+            @NonNull
+                    String title,
+            @NonNull
+                    String author,
+            @NonNull
+                    String story,
+            String[] imagePaths,
+            String[] videoIDS,
+            Type type,
+            int views
+    )
+    {
+        this.ID = ID;
+        this.time_updated = time_updated;
+        this.title = title;
+        this.author = author;
+        this.story = story;
+        this.imagePaths = imagePaths;
+        this.videoIDS = videoIDS;
+        this.type = type;
+        this.views = views;
     }
 
     public static final Creator<Article> CREATOR = new Creator<Article>() {
@@ -58,6 +89,10 @@ public class Article implements Parcelable {
     public long getTimeUpdated()
     {
         return time_updated;
+    }
+    public int getViews()
+    {
+        return views;
     }
     public String getTitle()
     {
@@ -85,7 +120,8 @@ public class Article implements Parcelable {
         "title::\t" + title + "\n" +
         "author::\t" + author + "\n" +
         "story::\t" + ((story.length() > 40) ? story.substring(0,40) : story) + "\n" + // so output might not be overly long
-        "type::\t" + type.toString();
+        "type::\t" + type.toString() +
+                "views::\t" + views;
     }
 
     // The following methods are for the purpose of extending Parcelable
@@ -99,6 +135,7 @@ public class Article implements Parcelable {
         imagePaths = in.createStringArray();
         videoIDS = in.createStringArray();
         type = (Type) in.readSerializable();
+        views = in.readInt();
     }
 
     @Override
@@ -116,6 +153,7 @@ public class Article implements Parcelable {
         dest.writeStringArray(imagePaths);
         dest.writeStringArray(videoIDS);
         dest.writeSerializable(type);
+        dest.writeInt(views);
     }
 
     /**

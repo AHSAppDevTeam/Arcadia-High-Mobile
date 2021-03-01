@@ -2,6 +2,7 @@ package com.hsappdev.ahs;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -17,6 +18,9 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ServerValue;
 import com.hsappdev.ahs.misc.FullScreenActivity;
 import com.hsappdev.ahs.misc.Helper;
 import com.hsappdev.ahs.misc.MediaYoutubeFragment;
@@ -32,6 +36,30 @@ public class ArticleActivity extends FullScreenActivity implements ArticleImageF
     private ValContainer<Boolean> saved_copy;
     private Article article;
 
+
+    public void incrementViews() {
+        Resources r = getResources();
+        final DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child(r.getString(R.string.fb_news_key));
+        Log.d("NewViews", article.getType().getName()+"  "+article.getID());
+        Log.d("NewViews", ref.child(convertTypeNumCode(article.getType().getNumCode())).child(article.getID()).child(r.getString(R.string.fb_art_views)).toString());
+        ref.child(convertTypeNumCode(article.getType().getNumCode())).child(article.getID()).child(r.getString(R.string.fb_art_views)).setValue(ServerValue.increment(1));
+    }
+
+    public String convertTypeNumCode(int i){
+        switch (i){
+            case 1:
+                return "ASB";
+            case 2:
+                return "District";
+
+            case 3:
+                return "General_Info";
+
+        }
+        return "";
+
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +67,7 @@ public class ArticleActivity extends FullScreenActivity implements ArticleImageF
         setContentView(R.layout.article_layout);
 
         article = getIntent().getParcelableExtra(data_key);
+        incrementViews();
         final String[] imagePaths= article.getImagePaths();
 
         final String[] videoIDs = article.getVideoIDS();
