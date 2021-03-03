@@ -1,4 +1,5 @@
-# AHS2020app
+# Arcadia-High-Mobile
+
 The official source code for Arcadia High Mobile (avaliable on the Apple app store and Google play store). Includes source code for both iOS and Android in their respective folders. 
 The purpose of AHS App Dev Team is to drive a culture where students can collaborate to produce application(s) that would revolutionize the way that the community stays connected.
 
