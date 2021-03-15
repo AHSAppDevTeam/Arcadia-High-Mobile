@@ -6,11 +6,14 @@ import android.widget.TextView;
 
 import androidx.core.content.res.ResourcesCompat;
 import androidx.core.text.HtmlCompat;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.load.resource.bitmap.FitCenter;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
+import com.bumptech.glide.request.target.SizeReadyCallback;
 import com.hsappdev.ahs.R;
 
 import java.text.SimpleDateFormat;
@@ -107,6 +110,16 @@ public class Helper{
                 .load(url)
                 .error(R.drawable.image_bg)
                 .transform(new CenterCrop(), new RoundedCorners((int) view.getContext().getResources().getDimension(R.dimen.SmallRound_BG_Radius)))
+                .transition(DrawableTransitionOptions.withCrossFade())
+                .into(view);
+    }
+
+    public static void setImageFromUrl_FitFullSize(final ImageView view, String url) {
+        Glide
+                .with(view.getContext())
+                .load(url)
+                .error(R.drawable.image_bg)
+                .transform(new RoundedCorners((int) view.getContext().getResources().getDimension(R.dimen.SmallRound_BG_Radius)))
                 .transition(DrawableTransitionOptions.withCrossFade())
                 .into(view);
     }

@@ -18,4 +18,6 @@
     <color name = "Gray_5F5F5F">#5F5F5F</color>
     <color name = "DarkCrimson_1A0303">#1A0303</color>
     <color name = "DarkCrimson_Transparent">#DD1A0303</color>
+    <color name="SlateGray_707070">#707070</color>
+    <color name="CalmRed_cc5454">#cc5454</color>
 </resources>

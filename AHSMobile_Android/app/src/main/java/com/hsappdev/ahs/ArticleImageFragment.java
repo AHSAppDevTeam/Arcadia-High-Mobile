@@ -67,7 +67,7 @@ public class ArticleImageFragment extends Fragment implements View.OnClickListen
         /*container.addView(imageView);*/
         final ImageView open_in_new = view.findViewById(R.id.article_image_open_in_new);
         view.setOnClickListener(this);
-        Helper.setImageFromUrl_CenterCrop_FullSize(imageView, imagePath);
+        Helper.setImageFromUrl_FitFullSize(imageView, imagePath);
         /*Helper.setImageFromUrl(imageView, imagePath, new Helper.OnPaletteLoad() {
             @Override
             public void onLoad(Palette palette) {

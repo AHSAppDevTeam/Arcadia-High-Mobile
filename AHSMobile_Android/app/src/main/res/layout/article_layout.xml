@@ -16,7 +16,6 @@
         android:orientation="vertical"
 
         android:paddingTop="@dimen/Half_Padding"
-
         android:paddingBottom="@dimen/Half_Padding">
 
         <LinearLayout
@@ -42,8 +41,8 @@
                 android:paddingRight="@dimen/Half_Padding"
                 android:paddingBottom="@dimen/Half_Padding"
                 android:scaleType="fitStart"
-                app:tint="@color/AngryRed_9F0C0C"
-                app:srcCompat="@drawable/arrow_back" />
+                app:srcCompat="@drawable/arrow_back"
+                app:tint="@color/SlateGray_707070" />
 
             <com.hsappdev.ahs.misc.AutoAdjustTextSize_TextView
                 android:id="@+id/article_type_text"
@@ -52,16 +51,31 @@
 
                 android:layout_gravity="center_vertical"
                 android:layout_weight="0"
-                android:background="@drawable/type_rounded_bg"
                 android:fontFamily="@font/sf_pro_display"
                 android:paddingLeft="7dp"
-                android:paddingTop="3dp"
+                android:paddingTop="0dp"
+                android:paddingRight="4dp"
+                android:paddingBottom="0dp"
+                android:text="Some"
+                android:textColor="@color/CalmRed_cc5454"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <com.hsappdev.ahs.misc.AutoAdjustTextSize_TextView
+                android:id="@+id/article_type_text_secondary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_gravity="center_vertical"
+                android:layout_weight="0"
+                android:fontFamily="@font/sf_pro_display"
+                android:paddingLeft="0dp"
+                android:paddingTop="0dp"
                 android:paddingRight="7dp"
-                android:paddingBottom="3dp"
-                android:text="TYPE"
-                android:textColor="@color/White"
-                android:textSize="12sp"
-                />
+                android:paddingBottom="0dp"
+                android:text="Section"
+                android:textColor="@color/CalmRed_cc5454"
+                android:textSize="20dp" />
 
             <Space
                 android:layout_width="wrap_content"
@@ -90,17 +104,6 @@
             android:paddingRight="@dimen/Full_Padding"
             android:paddingBottom="@dimen/Full_Padding">
 
-
-            <com.hsappdev.ahs.misc.AutoAdjustTextSize_TextView
-                android:id="@+id/article_titleText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/newyork_mediumbold"
-                android:text="Title Lorem Ipsum"
-                android:textColor="@color/DarkCrimson_1A0303"
-                android:textSize="24sp"
-                android:textIsSelectable="true"/>
-
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -113,10 +116,12 @@
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintDimensionRatio="1.5"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintDimensionRatio="1.5"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="1.0" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <com.google.android.material.tabs.TabLayout
@@ -139,16 +144,31 @@
                 android:id="@+id/youtube_player"/>-->
 
             <com.hsappdev.ahs.misc.AutoAdjustTextSize_TextView
+                android:id="@+id/article_titleText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:layout_gravity="center"
+                android:fontFamily="@font/sf_pro_compactbold"
+                android:text="Lorem ipsum dolor consectetur"
+                android:textColor="@color/DarkCrimson_1A0303"
+                android:textIsSelectable="true"
+                android:textSize="30sp" />
+
+            <com.hsappdev.ahs.misc.AutoAdjustTextSize_TextView
                 android:id="@+id/article_authorText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
 
-                android:fontFamily="@font/newyork_smallmediumitalic"
-                android:text="Author"
-                android:textColor="@color/DarkCrimson_1A0303"
+                android:layout_gravity="center"
+                android:fontFamily="@font/sf_pro_display"
+                android:text="By Name Lastname"
+                android:textAlignment="center"
 
-                android:textSize="16sp"
-                android:textIsSelectable="true"/>
+                android:textColor="@color/SlateGray_707070"
+
+                android:textIsSelectable="true"
+                android:textSize="16sp" />
 
             <com.hsappdev.ahs.misc.AutoAdjustTextSize_TextView
                 android:id="@+id/article_dateText"
@@ -157,12 +177,13 @@
                 android:layout_weight="1"
 
                 android:fontFamily="@font/sf_pro_display"
-                android:gravity="start|center_vertical"
+                android:gravity="center"
 
                 android:text="Month 00, 0000"
-                android:textColor="@color/DarkCrimson_1A0303"
+                android:textColor="@color/SlateGray_707070"
+                android:textIsSelectable="true"
                 android:textSize="14sp"
-                android:textIsSelectable="true"/>
+                android:textStyle="bold" />
 
             <com.hsappdev.ahs.misc.AutoAdjustTextSize_TextView
                 android:id="@+id/article_bodyText"
@@ -170,10 +191,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/Full_Padding"
                 android:fontFamily="@font/sf_pro_display"
-                android:text="Body"
-                android:textColor="@color/DarkCrimson_1A0303"
-                android:textSize="18sp"
-                android:textIsSelectable="true"/>
+                android:text="@string/placeHolderParagraph"
+                android:textColor="@color/CoffeeRed_473D3D"
+                android:textIsSelectable="true"
+                android:textSize="18sp" />
         </LinearLayout>
 
 

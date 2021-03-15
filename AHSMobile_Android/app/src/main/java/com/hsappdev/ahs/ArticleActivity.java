@@ -91,11 +91,17 @@ public class ArticleActivity extends FullScreenActivity implements ArticleImageF
         dateText.setText(Helper.getDateFromTime(Helper.defaultDatePattern, article.getTimeUpdated()));
         titleText.setText(article.getTitle());
         authorText.setText(this.getString(R.string.author_placeholder, article.getAuthor()));
-        Log.d("Article:jeffrey",article.getStory());
         Helper.setHtmlParsedText_toView(bodyText, article.getStory());
 
         TextView typeText = findViewById(R.id.article_type_text);
-        typeText.setText(article.getType().getName());
+        TextView typeTextSecondary = findViewById(R.id.article_type_text_secondary);
+
+        typeText.setText(article.getType().getName().split(" ")[0]);
+        try {
+            typeTextSecondary.setText(article.getType().getName().split(" ")[1]);
+        } catch (IndexOutOfBoundsException e){
+            typeTextSecondary.setText("Section");
+        }
 
         // set up bookmark button
         final ImageView bookmarkButton = findViewById(R.id.article_bookmarkButton);
