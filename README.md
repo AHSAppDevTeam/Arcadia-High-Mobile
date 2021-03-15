@@ -1,5 +1,16 @@
 # Arcadia-High-Mobile
 
+---
+
+# Deprecated
+
+New repos can be found here:
+ - [Android](https://github.com/AHSAppDevTeam/Arcadia-High-Mobile-Android)
+ - [iOS](https://github.com/AHSAppDevTeam/Arcadia-High-Mobile-iOS)
+ - [ACES](https://github.com/AHSAppDevTeam/Aces)
+ 
+---
+
 The official source code for Arcadia High Mobile (avaliable on the Apple app store and Google play store). Includes source code for both iOS and Android in their respective folders. 
 The purpose of AHS App Dev Team is to drive a culture where students can collaborate to produce application(s) that would revolutionize the way that the community stays connected.
 
