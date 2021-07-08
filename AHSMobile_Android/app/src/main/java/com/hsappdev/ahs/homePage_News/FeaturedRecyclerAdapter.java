@@ -95,6 +95,8 @@ public class FeaturedRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.V
             Helper.setTimeText_toView(timeText,
                     Helper.TimeFromNow(article.getTimeUpdated())
             );
+            // TODO: REMOVE Testing views functionality only
+            timeText.setText(timeText.getText()+"  |  "+Integer.toString(article.getViews()) + " views");
             String imagePaths = article.getImagePath();
             if(imagePaths != null && imagePaths.length() > 0)
                 Helper.setImageFromUrl_CenterCrop_FullSize(

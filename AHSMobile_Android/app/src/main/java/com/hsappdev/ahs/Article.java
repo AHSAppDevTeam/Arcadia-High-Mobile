@@ -4,42 +4,73 @@ import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class Article implements Parcelable {
 
     private final String ID;
-    private final long time_updated;
+    private final long timestamp;
     private final String title;
     private final String author;
-    private final String story;
-    private final String [] imagePaths;
+    private final String body;
+    private final String [] imageURLs;
     private final String [] videoIDS;
-
+    private int views;
     private final Type type;
 
-
     public Article(
-            @NonNull
-            String ID,
-            long time_updated,
-            @NonNull
-            String title,
-            @NonNull
-            String author,
-            @NonNull
-            String story,
-            String[] imagePaths,
-            String[] videoIDS,
-            Type type
+        @NonNull
+        String ID,
+        long timestamp,
+        @NonNull
+        String title,
+        @NonNull
+        String author,
+        @NonNull
+        String body,
+        String[] imageURLs,
+        String[] videoIDS,
+        Type type,
+        int views
     )
     {
         this.ID = ID;
-        this.time_updated = time_updated;
+        this.timestamp = timestamp;
         this.title = title;
         this.author = author;
-        this.story = story;
-        this.imagePaths = imagePaths;
+        this.body = body;
+        this.imageURLs = imageURLs;
         this.videoIDS = videoIDS;
         this.type = type;
+        this.views = views;
+    }
+    
+    
+    public Article(
+        @NonNull
+        String ID,
+        long timestamp,
+        @NonNull
+        String title,
+        @NonNull
+        String author,
+        @NonNull
+        String body,
+        String[] imageURLs,
+        String[] videoIDS,
+        Type type
+    )
+    {
+        this.ID = ID;
+        this.timestamp = timestamp;
+        this.title = title;
+        this.author = author;
+        this.body = body;
+        this.imageURLs = imageURLs;
+        this.videoIDS = videoIDS;
+        this.type = type;
+        this.views = 0;
     }
 
     public static final Creator<Article> CREATOR = new Creator<Article>() {
@@ -55,22 +86,26 @@ public class Article implements Parcelable {
     };
 
     public String getID() {return ID;}
-    public long getTimeUpdated()
+    public long getTimestamp()
     {
-        return time_updated;
+        return timestamp;
+    }
+    public int getViews()
+    {
+        return views;
     }
     public String getTitle()
     {
         return title;
     }
     public String getAuthor() {return author;}
-    public String getStory()
+    public String getBody()
     {
-        return story;
+        return body;
     }
-    public String[] getImagePaths()
+    public String[] getImageURLs()
     {
-        return imagePaths;
+        return imageURLs;
     }
     public String[] getVideoIDS() {return videoIDS;}
 
@@ -81,24 +116,26 @@ public class Article implements Parcelable {
     public String toString()
     {
         return "ID::\t" + ID + "\n" +
-        "time::\t" + time_updated + "\n" +
+        "time::\t" + timestamp + "\n" +
         "title::\t" + title + "\n" +
         "author::\t" + author + "\n" +
-        "story::\t" + ((story.length() > 40) ? story.substring(0,40) : story) + "\n" + // so output might not be overly long
-        "type::\t" + type.toString();
+        "body::\t" + ((body.length() > 40) ? body.substring(0,40) : body) + "\n" + // so output might not be overly long
+        "type::\t" + type.toString() +
+                "views::\t" + views;
     }
 
     // The following methods are for the purpose of extending Parcelable
     // make sure to update methods should a new field be added
     protected Article(Parcel in) {
         ID = in.readString();
-        time_updated = in.readLong();
+        timestamp = in.readLong();
         title = in.readString();
         author = in.readString();
-        story = in.readString();
-        imagePaths = in.createStringArray();
+        body = in.readString();
+        imageURLs = in.createStringArray();
         videoIDS = in.createStringArray();
         type = (Type) in.readSerializable();
+        views = in.readInt();
     }
 
     @Override
@@ -109,13 +146,14 @@ public class Article implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(ID);
-        dest.writeLong(time_updated);
+        dest.writeLong(timestamp);
         dest.writeString(title);
         dest.writeString(author);
-        dest.writeString(story);
-        dest.writeStringArray(imagePaths);
+        dest.writeString(body);
+        dest.writeStringArray(imageURLs);
         dest.writeStringArray(videoIDS);
         dest.writeSerializable(type);
+        dest.writeInt(views);
     }
 
     /**

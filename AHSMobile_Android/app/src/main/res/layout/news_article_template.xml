@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="?attr/selectableItemBackground"
@@ -15,26 +16,28 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent=".5" />
+        app:layout_constraintGuide_percent="0.40" />
 
 
     <com.hsappdev.ahs.misc.AutoAdjustTextSize_TextView
         android:id="@+id/article_display__title_Text"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_weight="1"
         android:ellipsize="end"
         android:fontFamily="@font/sf_pro_semibold"
-        android:maxLines="2"
+        android:maxLines="3"
         android:text="Lorum Ipsum the Long Title"
         android:textColor="@color/DarkCrimson_1A0303"
         android:textSize="20sp"
         app:autoSizeTextType="none"
+        app:layout_constraintBottom_toTopOf="@+id/article_display__time_updated_Text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/article_display__guideline"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.hsappdev.ahs.misc.AdaptingTextView
+        android:visibility="gone"
         android:id="@+id/article_display__summary_Text"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -66,14 +69,9 @@
 
     <com.hsappdev.ahs.misc.AutoAdjustTextSize_TextView
         android:id="@+id/article_display__time_updated_Text"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/Quarter_Padding"
-        android:layout_marginLeft="@dimen/Quarter_Padding"
-        android:layout_marginBottom="@dimen/Quarter_Padding"
-        android:background="@drawable/news_updatetext_bg"
         android:fontFamily="@font/sf_pro_display"
-        android:foreground="@drawable/image_border"
         android:maxLines="1"
         android:paddingLeft="5dp"
         android:paddingTop="3dp"
@@ -83,5 +81,35 @@
         android:textColor="@color/DarkCrimson_1A0303"
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@+id/article_display__imageView"
-        app:layout_constraintStart_toStartOf="@+id/article_display__imageView" />
+        app:layout_constraintStart_toEndOf="@+id/news_featured_typeText" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="19dp"
+        android:layout_height="23dp"
+        app:layout_constraintBottom_toBottomOf="@+id/article_display__time_updated_Text"
+        app:layout_constraintStart_toStartOf="@+id/article_display__guideline"
+        app:layout_constraintTop_toBottomOf="@+id/article_display__title_Text"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/bookmarked_icon_active" />
+
+    <com.hsappdev.ahs.misc.AutoAdjustTextSize_TextView
+        android:id="@+id/news_featured_typeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:fontFamily="@font/sf_pro_display"
+        android:paddingLeft="7dp"
+        android:paddingTop="3dp"
+        android:paddingRight="7dp"
+        android:paddingBottom="3dp"
+        android:text="Type"
+        android:textAllCaps="true"
+        android:textColor="@color/AngryRed_9F0C0C"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/imageView"
+        app:layout_constraintVertical_bias="1.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

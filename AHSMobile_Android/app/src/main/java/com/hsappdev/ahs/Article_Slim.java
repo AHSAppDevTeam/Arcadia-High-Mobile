@@ -14,6 +14,7 @@ public class Article_Slim implements Parcelable, Comparable<Article_Slim> {
     private final String title;
     private final String story;
     private final String imagePath;
+    private int views;
 
     private final Article.Type type;
 
@@ -28,6 +29,7 @@ public class Article_Slim implements Parcelable, Comparable<Article_Slim> {
         else
             this.imagePath = "";
         this.type = article.getType();
+        this.views = article.getViews();
     }
 
     public static ArrayList<Article_Slim> toArticle_Slim(ArrayList<Article> articles) {
@@ -90,7 +92,10 @@ public class Article_Slim implements Parcelable, Comparable<Article_Slim> {
     {
         return imagePath;
     }
-
+    public int getViews()
+    {
+        return views;
+    }
     public Article.Type getType() { return type;}
 
     @NonNull
@@ -113,6 +118,7 @@ public class Article_Slim implements Parcelable, Comparable<Article_Slim> {
         story = in.readString();
         imagePath = in.readString();
         type = (Article.Type) in.readSerializable();
+        views = in.readInt();
     }
 
     @Override
@@ -128,6 +134,7 @@ public class Article_Slim implements Parcelable, Comparable<Article_Slim> {
         dest.writeString(story);
         dest.writeString(imagePath);
         dest.writeSerializable(type);
+        dest.writeSerializable(views);
     }
 
     @Override

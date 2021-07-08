@@ -2,6 +2,7 @@
 
 <LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/news_gradient"
@@ -10,18 +11,40 @@
     android:paddingTop="@dimen/Half_Padding"
     android:paddingRight="0dp"
     >
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
     <com.hsappdev.ahs.misc.AutoAdjustTextSize_TextView
         android:id="@+id/template_news__TitleText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/Full_Padding"
-        android:layout_marginLeft="@dimen/Full_Padding"
 
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
         android:fontFamily="@font/sf_pro_semibold"
         android:text="SOMETHING NEWS"
-        android:textColor="@color/DarkCrimson_1A0303"
-        android:textSize="24sp" />
+        android:textColor="@color/AngryRed_9F0C0C"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/articleLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
+        android:fontFamily="@font/sf_pro_display"
+        android:text="Articles"
+        android:textColor="@color/AngryRed_9F0C0C"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/template_news__TitleText"
+        app:layout_constraintStart_toEndOf="@+id/template_news__TitleText"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/template_news__ViewPager2"
@@ -34,7 +57,7 @@
         android:id="@+id/template_news__TabLayout"
         android:layout_width="wrap_content"
 
-        android:layout_height="40dp"
+        android:layout_height="20dp"
         android:layout_gravity="center_horizontal"
         app:tabBackground="@drawable/tab_selector"
         app:tabGravity="fill"
@@ -43,5 +66,7 @@
 
 
     </com.google.android.material.tabs.TabLayout>
+
+
 
 </LinearLayout>

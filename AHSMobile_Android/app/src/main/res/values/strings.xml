@@ -56,6 +56,7 @@
     <string name="fb_art_videos">articleVideoIDs</string>
     <string name="fb_art_time">articleUnixEpoch</string>
     <string name="fb_art_featured">isFeatured</string>
+    <string name="fb_art_views">views</string>
 
     <string name="fb_bull_key">bulletin</string>
     <string name="fb_bull_academics">Academics</string>

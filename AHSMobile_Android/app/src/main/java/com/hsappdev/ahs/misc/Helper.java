@@ -104,6 +104,7 @@ public class Helper{
 
     }
 
+
     public static void setImageFromUrl_CenterCrop_FullSize(final ImageView view, String url) {
         Glide
                 .with(view.getContext())

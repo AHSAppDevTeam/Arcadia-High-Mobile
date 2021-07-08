@@ -47,7 +47,8 @@ public class FirebaseDatabaseHandler {
                 articleImages = r.getString(R.string.fb_art_images),
                 articleVideos = r.getString(R.string.fb_art_videos),
                 articleTime = r.getString(R.string.fb_art_time),
-                articleFeatured = r.getString(R.string.fb_art_featured);
+                articleFeatured = r.getString(R.string.fb_art_featured),
+                articleViews = r.getString(R.string.fb_art_views);
 
         final DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child(r.getString(R.string.fb_news_key));
         ref.addValueEventListener(new ValueEventListener() {
@@ -74,6 +75,11 @@ public class FirebaseDatabaseHandler {
                         String body = child_sn.child(articleBody).getValue(String.class);
                         if(body == null)
                             body = "";
+                        int num_views = 0;
+                        Integer num_views_temp = child_sn.child(articleViews).getValue(Integer.class);
+                        if(num_views_temp != null){
+                            num_views = num_views_temp.intValue();
+                        }
                         // so html parse works correctly with new line characters
                         body = body.replace("\n","<br/>");
 
@@ -100,7 +106,7 @@ public class FirebaseDatabaseHandler {
 
                         long article_time = (long) child_sn.child(articleTime).getValue();
 
-                        Article article = new Article(ID,article_time,title,author,body,imagePaths,videoIDs, Article.Type.values()[i]);
+                        Article article = new Article(ID,article_time,title,author,body,imagePaths,videoIDs, Article.Type.values()[i], num_views);
                         boolean is_featured = (boolean) child_sn.child(articleFeatured).getValue();
 
                         if(is_featured)
